@@ -47,7 +47,7 @@ export default function HeroSection() {
           <div className="grid lg:grid-cols-3 gap-8 items-center">
             
             {/* Left Side - Hero Text */}
-            <div className="lg:col-span-1 text-center lg:text-left">
+            <div className="order-1 lg:order-1 lg:col-span-1 text-center lg:text-left">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Your Trusted<br />
                 <span className="text-blue-400">Moving</span><br />
@@ -67,12 +67,12 @@ export default function HeroSection() {
             </div>
 
             {/* Center - Video Carousel */}
-            <div className="lg:col-span-1 flex justify-center">
+            <div className="order-3 lg:order-2 lg:col-span-1 flex justify-center">
               <VideoCarousel />
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="lg:col-span-1 flex justify-center">
+            <div className="order-2 lg:order-3 lg:col-span-1 flex justify-center">
               <ContactForm />
             </div>
 
