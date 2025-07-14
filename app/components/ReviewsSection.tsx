@@ -13,19 +13,9 @@ export default function ReviewsSection() {
       text: 'Exceptional services,  very  honest, no hidden fees. They were very quick to respond to any questions I had when I needed information about the move. Moving crew showed up on time, the movers were very understanding and professional pack and move everything without any concerns. Very quick and efficient. Movers took extra care and precaution with all my items and were very friendly and courteous and professional. Affordable  price. Overall couldn't be happier with the service provided . Highly recommend them for any moving needs. I will definitely use their services again in the future. Thank you!'
     },
     {
-      name: 'Karima',
+      name: 'Jake W.',
       rating: 5,
-      text: 'A Moving Experience That Deserves a Standing Ovation!
-
-From start to finish, U Movex delivered a flawless and truly stress-free moving experience. Their team arrived right on time, full of positive energy and professionalism. They handled every box and piece of furniture with the utmost care--as if it were their own.
-
-What stood out most was their attention to detail and genuine commitment to making my move smooth. They anticipated my needs before I even voiced them, offered clever solutions to tight corners, and worked quickly without ever compromising quality.
-
-Communication was crystal-clear from booking to final delivery. No surprises, no hidden fees--just outstanding service and peace of mind.
-
-I've moved quite a bit in my life, but U Movex set a new gold standard. If you're looking for a moving company that combines muscle with mindfulness and efficiency with heart, look no further. MoveX isn't just a moving service--they're a moving experience.
-
-Thank you, U Movex, for turning something typically stressful into something truly memorable!'
+      text: 'Best moving experience I've ever had! Everything was seamless and stress free. Strong communication and upfront with pricing / no hidden fees. They both worked very quick and diligently making a 8+ hour job under 6 hours. They were very accommodating, professional, and experienced in the moving process. I would HIGHLY recommend to friends and family. Well done'
     },
     {
       name: 'J B.',
