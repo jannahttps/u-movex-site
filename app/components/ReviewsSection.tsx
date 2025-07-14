@@ -8,34 +8,48 @@ export default function ReviewsSection() {
 
   const reviews = [
     {
-      name: 'Maria Rodriguez',
+      name: 'Mari. M',
       rating: 5,
-      text: 'U-MOVEX made our family move from Miami to Orlando absolutely stress-free! The team arrived on time, wrapped everything perfectly, and treated our furniture like it was their own. Carlos and his crew were professional, friendly, and worked incredibly efficiently. Not a single item was damaged, and they even helped us set up our new home. Highly recommend for anyone moving in Florida!'
+      text: 'Exceptional services,  very  honest, no hidden fees. They were very quick to respond to any questions I had when I needed information about the move. Moving crew showed up on time, the movers were very understanding and professional pack and move everything without any concerns. Very quick and efficient. Movers took extra care and precaution with all my items and were very friendly and courteous and professional. Affordable  price. Overall couldn't be happier with the service provided . Highly recommend them for any moving needs. I will definitely use their services again in the future. Thank you!'
     },
     {
-      name: 'James Thompson',
+      name: 'Karima',
       rating: 5,
-      text: 'Outstanding service from start to finish! I needed to move my office quickly, and U-MOVEX handled everything professionally. They provided all the packing materials, disassembled and reassembled our office furniture, and completed the move in record time. The pricing was transparent with no hidden fees, exactly as promised. Will definitely use them again for future moves.'
+      text: 'A Moving Experience That Deserves a Standing Ovation!
+
+From start to finish, U Movex delivered a flawless and truly stress-free moving experience. Their team arrived right on time, full of positive energy and professionalism. They handled every box and piece of furniture with the utmost care--as if it were their own.
+
+What stood out most was their attention to detail and genuine commitment to making my move smooth. They anticipated my needs before I even voiced them, offered clever solutions to tight corners, and worked quickly without ever compromising quality.
+
+Communication was crystal-clear from booking to final delivery. No surprises, no hidden fees--just outstanding service and peace of mind.
+
+I've moved quite a bit in my life, but U Movex set a new gold standard. If you're looking for a moving company that combines muscle with mindfulness and efficiency with heart, look no further. MoveX isn't just a moving service--they're a moving experience.
+
+Thank you, U Movex, for turning something typically stressful into something truly memorable!'
     },
     {
-      name: 'Sarah Chen',
+      name: 'J B.',
       rating: 5,
-      text: 'Moving my elderly parents was a delicate situation, but U-MOVEX handled it with such care and patience. The movers took extra time to explain each step, protected all the antique furniture perfectly, and even helped arrange items in the new apartment. The customer service was exceptional - they called to check on us after the move. This is what professional moving service should look like!'
+      text: 'Daniel and his crew were amazing they came on time they grabbed everything they pack their truck easily and unloaded it very quickly I was very pleased with your work and would highly recommend them. Also their rate was really reasonable, and I was able to give a generous tip to the guys.
+
+'
     },
     {
-      name: 'Michael Davis',
+      name: 'Mrs Williams',
       rating: 5,
-      text: 'I was skeptical about hiring movers, but U-MOVEX exceeded all expectations. They moved our 4-bedroom house including piano and artwork without any issues. The team was courteous, worked hard throughout the day, and stayed within the quoted time frame. The best part was their attention to protecting our new home\'s floors and walls. Worth every penny!'
+      text: 'I was literally shocked at the professionalism, friendliness & efficiency of this team.  I could not have asked for anyone better to help me with my move.  They moved quickly, the price was very reasonable & they were honest & straight forward about it, no hidden fees.  I would highly recommend hiring this team if you're looking for a stress free & reasonable priced move!!!
+
+'
     },
     {
-      name: 'Amanda Foster',
+      name: 'Rosalba V.',
       rating: 5,
-      text: 'Fantastic experience with U-MOVEX! Last-minute apartment move in Tampa, and they accommodated our tight schedule, even working on a weekend. The crew was energetic, careful with our belongings, and made what could have been a stressful day actually enjoyable. Great communication throughout the process. Definitely the best moving company in Florida!'
+      text: 'I had a fantastic experience with this moving company! From start to finish, they were incredibly professional, efficient, and careful with all of my belongings. The team arrived on time, worked quickly, and handled everything with care. On top of that, their pricing was very fair and transparent--great value for the quality of service. I highly recommend them to anyone looking for a stress-free and reliable moving experience!'
     },
     {
-      name: 'Robert Johnson',
+      name: 'S K.',
       rating: 5,
-      text: 'Professional, reliable, and affordable! U-MOVEX moved our family from Jacksonville to Fort Lauderdale. They provided excellent packing service, handled our kids\' items with special care, and made the long-distance move smooth. The truck was clean and well-equipped, movers were experienced, and everything arrived in perfect condition. Couldn\'t ask for better service!'
+      text: 'I requested service to help me move from one apartment to another apartment, within the same complex. The two gentlemen showed up on time and ready to go. They quickly assessed the job and got to work. They were extremely professional and efficient. Both guys were able to get my items moved within the allotted timeframe that I had planned. They handled everything with care and I would definitely recommend them to anyone looking for a dependable and hardworking team!'
     }
   ];
 
