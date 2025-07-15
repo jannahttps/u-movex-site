@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Pacifico } from "next/font/google";
 import "./globals.css";
+import Head from "next/head"; // ⬅️ импорт Head для вставки <link>
 
 const pacifico = Pacifico({
   weight: "400",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   description:
     "Affordable, licensed moving company in Orlando. U-MOVEX offers local and statewide moving, packing, loading & more. Get a free quote today!",
   icons: {
-    icon: "/favicon.ico", // ✅ Подключает favicon
+    icon: "/favicon.ico",
   },
   keywords: [
     "Orlando movers",
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "U-MOVEX",
     images: [
       {
-        url: "/favicon.ico", // или можно подгрузить красивую превью-картинку (1200x630) позже
+        url: "/favicon.ico",
         width: 48,
         height: 48,
         alt: "U-MOVEX Logo",
@@ -77,6 +78,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
+      <Head>
+        {/* ✅ Remix Icon CDN */}
+        <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+          rel="stylesheet"
+        />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}
       >
