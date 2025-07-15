@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Affordable, licensed moving company in Orlando. U-MOVEX offers local and statewide moving, packing, loading & more. Get a free quote today!",
   icons: {
-    icon: "/favicon.png", // ✅ Подключает favicon
+    icon: "/favicon.ico", // ✅ Подключает favicon
   },
   keywords: [
     "Orlando movers",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "U-MOVEX",
     images: [
       {
-        url: "/favicon.png", // или можно подгрузить красивую превью-картинку (1200x630) позже
+        url: "/favicon.ico", // или можно подгрузить красивую превью-картинку (1200x630) позже
         width: 48,
         height: 48,
         alt: "U-MOVEX Logo",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "U-MOVEX - Moving Services in Orlando",
     description:
       "Affordable, professional movers in Orlando. Licensed, insured & highly rated.",
-    images: ["/favicon.png"],
+    images: ["/favicon.ico"],
   },
   viewport: "width=device-width, initial-scale=1",
   robots: {
