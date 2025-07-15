@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 
 export default function VideoCarousel() {
   const [currentVideo, setCurrentVideo] = useState(0);
-  const [firstVideoPlayedOnce, setFirstVideoPlayedOnce] = useState(false);
+  const [autoplayFailed, setAutoplayFailed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const videos = [
@@ -38,44 +38,40 @@ export default function VideoCarousel() {
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
-    if (currentVideo === 0 && !firstVideoPlayedOnce) {
-      return;
-    }
+    videoElement
+      .play()
+      .then(() => setAutoplayFailed(false)) // Удаляем подсказку, если всё ок
+      .catch(() => setAutoplayFailed(true)); // Показываем сообщение
+  }, [currentVideo]);
 
-    videoElement.play().catch(() => {
-      // Игнорируем autoplay-ошибки
-    });
-  }, [currentVideo, firstVideoPlayedOnce]);
-
-  const handleUserPlay = () => {
-    if (currentVideo === 0 && !firstVideoPlayedOnce) {
-      setFirstVideoPlayedOnce(true);
-    }
+  const handlePlay = () => {
+    setAutoplayFailed(false); // Скрываем сообщение при ручном воспроизведении
   };
-
-  // Проверка: мобильное устройство?
-  const isMobile = typeof window !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
 
   return (
     <div className="flex flex-col items-center">
       <div className="relative">
-
-<video
-  key={videos[currentVideo].src}
-  ref={videoRef}
-  src={videos[currentVideo].src}
-  controls
-  loop
-  onPlay={handleUserPlay}
-  playsInline
-  muted
-  preload="metadata"
-  poster="/preview.jpg"
-  className="w-96 h-[640px] rounded-2xl shadow-2xl border-4 border-white/20 object-cover"
-  >
-
+        <video
+          key={videos[currentVideo].src}
+          ref={videoRef}
+          src={videos[currentVideo].src}
+          controls
+          loop
+          playsInline
+          muted
+          preload="metadata"
+          poster="/preview.jpg"
+          onPlay={handlePlay}
+          className="w-96 h-[640px] rounded-2xl shadow-2xl border-4 border-white/20 object-cover"
+        >
           Ваш браузер не поддерживает видео.
         </video>
+
+        {autoplayFailed && (
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/40 text-white text-sm font-medium pointer-events-none rounded-2xl">
+            Нажмите ▶ для воспроизведения
+          </div>
+        )}
 
         {/* Кнопка назад */}
         <div className="absolute -left-4 top-1/2 transform -translate-y-1/2">
