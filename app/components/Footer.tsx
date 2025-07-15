@@ -49,21 +49,21 @@ export default function Footer() {
 
             <div className="flex gap-4">
               <a 
-                href="https://www.tiktok.com/@umovexflorida" 
+                href="https://www.tiktok.com/@umovex?_t=ZT-8y3ZCcWAPcl&_r=1" 
                 target="_blank"
                 className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer"
               >
                 <i className="ri-tiktok-line text-xl"></i>
               </a>
               <a 
-                href="https://www.facebook.com/umovexflorida" 
+                href="https://www.facebook.com/profile.php?id=61576221543424" 
                 target="_blank"
                 className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer"
               >
                 <i className="ri-facebook-line text-xl"></i>
               </a>
               <a 
-                href="https://www.youtube.com/@umovexflorida" 
+                href="https://youtube.com/@daniil-v6g8r?si=Wjmdpk4nXguuLggQ" 
                 target="_blank"
                 className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer"
               >
