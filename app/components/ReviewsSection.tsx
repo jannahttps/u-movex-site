@@ -5,38 +5,39 @@ import { useState } from "react";
 export default function ReviewsSection() {
   const [currentReview, setCurrentReview] = useState(0);
 
-  const reviews = [
-    {
-      name: "Mari M.",
-      rating: 5,
-      text: "Exceptional service! Honest, no hidden fees. Movers were professional, fast and careful with my items. Highly recommend!",
-    },
-    {
-      name: "Jake W.",
-      rating: 5,
-      text: "Best moving experience ever. Everything was seamless, stress-free, and professional. Strong communication and no hidden fees.",
-    },
-    {
-      name: "J B.",
-      rating: 5,
-      text: "Daniel and his crew were amazing. On time, efficient, and reasonably priced. Highly recommend!",
-    },
-    {
-      name: "Mrs Williams",
-      rating: 5,
-      text: "Shocked by the professionalism and speed! No hidden fees, very honest. Would definitely hire again!",
-    },
-    {
-      name: "Rosalba V.",
-      rating: 5,
-      text: "Fantastic experience from start to finish. Very professional, efficient and transparent pricing.",
-    },
-    {
-      name: "S K.",
-      rating: 5,
-      text: "Moved within same complex. Team was fast, professional, and handled everything with care. Highly recommend!",
-    }
-  ];
+const reviews = [
+  {
+    name: "Mari M.",
+    rating: 5,
+    text: "Exceptional service! Honest, no hidden fees. Movers were quick to respond, arrived on time, and handled everything with great care. Highly recommend U Movex for a stress-free move!",
+  },
+  {
+    name: "Karima",
+    rating: 5,
+    text: "U Movex delivered a flawless, stress-free move. On time, professional, thoughtful, and highly efficient. No surprises, no hidden fees. Truly a gold standard in moving services!",
+  },
+  {
+    name: "Jake W.",
+    rating: 5,
+    text: "Best moving experience I’ve ever had! Everything was seamless, communication was clear, and there were no hidden fees. They worked fast and with great care. Highly recommend!",
+  },
+  {
+    name: "J B.",
+    rating: 5,
+    text: "Daniel and his crew were amazing. They packed, moved, and unloaded everything quickly and carefully. Great value, professional attitude. Highly recommend!",
+  },
+  {
+    name: "Rohan D.",
+    rating: 5,
+    text: "Dani and his partner were excellent! Everything was packed properly and moved without damage. Best movers I’ve dealt with. Highly recommended!",
+  },
+  {
+    name: "Sarita M.",
+    rating: 5,
+    text: "U Movex did a fantastic job moving my mom’s furniture. They were prompt, patient, and super accommodating. Would absolutely use them again!",
+  }
+];
+
 
   const nextReview = () => {
     setCurrentReview((prev) => (prev + 1) % reviews.length);
