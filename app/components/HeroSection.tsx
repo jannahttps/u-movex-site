@@ -34,9 +34,10 @@ export default function HeroSection() {
             <a href="https://wa.me/14076396520" target="_blank" className="w-9 h-9 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
               <i className="ri-whatsapp-line text-white text-lg sm:text-xl"></i>
             </a>
-            <a href="https://m.me/umovexflorida" target="_blank" className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
-              <i className="ri-messenger-line text-white text-lg sm:text-xl"></i>
-            </a>
+            <a href="https://www.facebook.com/profile.php?id=61576221543424" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+  <i className="ri-messenger-line text-white text-lg sm:text-xl"></i>
+</a>
+
           </div>
         </div>
       </header>
@@ -57,12 +58,14 @@ export default function HeroSection() {
                 Professional moving services in Florida. We make your relocation stress-free with our experienced team and modern equipment.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                <button className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-base sm:text-lg">
-                  Get Free Quote
-                </button>
-                <button className="bg-white/20 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/30 transition-colors border border-white/30 text-base sm:text-lg">
-                  Call Now
-                </button>
+<a
+  href="tel:+14076396520"
+  className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-base sm:text-lg text-center"
+>
+  Talk to a Moving Expert
+</a>
+
+
               </div>
             </div>
 
