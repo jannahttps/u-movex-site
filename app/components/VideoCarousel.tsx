@@ -34,28 +34,27 @@ export default function VideoCarousel() {
     }
   ];
 
-  // Автовоспроизведение, кроме первого показа первого видео
   useEffect(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
-    // Видео 1 и его ещё не воспроизводили вручную — НЕ играть
     if (currentVideo === 0 && !firstVideoPlayedOnce) {
       return;
     }
 
-    // Для всех остальных — играть
     videoElement.play().catch(() => {
-      // Некоторые браузеры блокируют autoplay, игнорируем
+      // Игнорируем autoplay-ошибки
     });
   }, [currentVideo, firstVideoPlayedOnce]);
 
-  // Когда пользователь вручную нажал play на первом видео
   const handleUserPlay = () => {
     if (currentVideo === 0 && !firstVideoPlayedOnce) {
       setFirstVideoPlayedOnce(true);
     }
   };
+
+  // Проверка: мобильное устройство?
+  const isMobile = typeof window !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
 
   return (
     <div className="flex flex-col items-center">
@@ -67,12 +66,16 @@ export default function VideoCarousel() {
           controls
           loop
           onPlay={handleUserPlay}
+          playsInline // предотвращает fullscreen на iOS
+          muted // особенно важно для inline-воспроизведения на мобильных
+          preload="metadata"
+          poster={isMobile ? '/preview.jpg' : undefined} // только на мобильных
           className="w-96 h-[640px] rounded-2xl shadow-2xl border-4 border-white/20 object-cover"
         >
           Ваш браузер не поддерживает видео.
         </video>
 
-        {/* Кнопки переключения видео */}
+        {/* Кнопка назад */}
         <div className="absolute -left-4 top-1/2 transform -translate-y-1/2">
           <button 
             onClick={() => setCurrentVideo(currentVideo > 0 ? currentVideo - 1 : videos.length - 1)}
@@ -82,6 +85,7 @@ export default function VideoCarousel() {
           </button>
         </div>
 
+        {/* Кнопка вперёд */}
         <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
           <button 
             onClick={() => setCurrentVideo(currentVideo < videos.length - 1 ? currentVideo + 1 : 0)}
@@ -92,7 +96,7 @@ export default function VideoCarousel() {
         </div>
       </div>
 
-      {/* Индикаторы точек */}
+      {/* Индикаторы */}
       <div className="flex gap-2 mt-6">
         {videos.map((_, index) => (
           <button
