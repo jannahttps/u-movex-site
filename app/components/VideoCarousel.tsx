@@ -59,19 +59,21 @@ export default function VideoCarousel() {
   return (
     <div className="flex flex-col items-center">
       <div className="relative">
-        <video
-          key={videos[currentVideo].src}
-          ref={videoRef}
-          src={videos[currentVideo].src}
-          controls
-          loop
-          onPlay={handleUserPlay}
-          playsInline // предотвращает fullscreen на iOS
-          muted // особенно важно для inline-воспроизведения на мобильных
-          preload="metadata"
-          poster={isMobile ? '/preview.jpg' : undefined} // только на мобильных
-          className="w-96 h-[640px] rounded-2xl shadow-2xl border-4 border-white/20 object-cover"
-        >
+
+<video
+  key={videos[currentVideo].src}
+  ref={videoRef}
+  src={videos[currentVideo].src}
+  controls
+  loop
+  onPlay={handleUserPlay}
+  playsInline
+  muted
+  preload="metadata"
+  poster="/preview.jpg"
+  className="w-96 h-[640px] rounded-2xl shadow-2xl border-4 border-white/20 object-cover"
+  >
+
           Ваш браузер не поддерживает видео.
         </video>
 
