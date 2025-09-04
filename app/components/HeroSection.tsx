@@ -52,10 +52,11 @@ export default function HeroSection() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Your Trusted<br />
                 <span className="text-blue-400">Moving</span><br />
-                Partner
+                Company
               </h1>
               <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed">
-                Professional moving services in Florida. We make your relocation stress-free with our experienced team and modern equipment.
+                Professional movers in Orlando and across Florida. U-Movex provides reliable local and commercial moving services, packing, and modern equipment to make your relocation stress-free.
+
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
 <a
