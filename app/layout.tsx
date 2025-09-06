@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono, Pacifico } from "next/font/google";
 import "./globals.css";
-import Head from "next/head"; // ⬅️ импорт Head для вставки <link>
 
 const pacifico = Pacifico({
   weight: "400",
@@ -25,9 +25,7 @@ export const metadata: Metadata = {
   title: "U-MOVEX - Top Rated Moving Company in Orlando, Florida",
   description:
     "Affordable, licensed moving company in Orlando. U-MOVEX offers local and statewide moving, packing, loading & more. Get a free quote today!",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
   keywords: [
     "Orlando movers",
     "moving company Orlando",
@@ -46,14 +44,7 @@ export const metadata: Metadata = {
       "Trusted and affordable moving services in Orlando and across Florida. Book your move with U-MOVEX today!",
     url: "https://u-movex.com",
     siteName: "U-MOVEX",
-    images: [
-      {
-        url: "/favicon.ico",
-        width: 48,
-        height: 48,
-        alt: "U-MOVEX Logo",
-      },
-    ],
+    images: [{ url: "/favicon.ico", width: 48, height: 48, alt: "U-MOVEX Logo" }],
     type: "website",
   },
   twitter: {
@@ -64,39 +55,36 @@ export const metadata: Metadata = {
     images: ["/favicon.ico"],
   },
   viewport: "width=device-width, initial-scale=1",
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-  },
+  robots: { index: true, follow: true, nocache: false },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <Head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TK3RWLECG9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TK3RWLECG9"; // можете вынести в .env
 
-  gtag('config', 'G-TK3RWLECG9');
-</script>
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
         {/* ✅ Remix Icon CDN */}
         <link
           href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
           rel="stylesheet"
         />
-      </Head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}
-      >
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}>
+        {/* ✅ Google tag (gtag.js) — корректно через next/script */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
+
         {children}
       </body>
     </html>
