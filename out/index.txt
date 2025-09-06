@@ -1,22 +1,23 @@
 1:"$Sreact.fragment"
-2:I[7555,[],""]
-3:I[1295,[],""]
-4:I[894,[],"ClientPageRoot"]
-5:I[5580,["974","static/chunks/app/page-8414ac9b62d4076e.js"],"default"]
-8:I[9665,[],"MetadataBoundary"]
-a:I[9665,[],"OutletBoundary"]
-d:I[4911,[],"AsyncMetadataOutlet"]
-f:I[9665,[],"ViewportBoundary"]
-11:I[6614,[],""]
-:HL["/_next/static/css/4f53d928c45b4aa5.css","style"]
-0:{"P":null,"b":"Bm4laQveeibPX7ypT9TVD","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/4f53d928c45b4aa5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"__variable_5cfdac __variable_9a8899 __variable_5f64cf antialiased","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"flex flex-col items-center justify-center h-screen text-center px-4","children":[["$","h1",null,{"className":"text-5xl md:text-5xl font-semibold text-gray-100","children":"404"}],["$","h1",null,{"className":"text-2xl md:text-3xl font-semibold mt-6","children":"This page has not been generated"}],["$","p",null,{"className":"mt-4 text-xl md:text-2xl text-gray-500","children":"Tell me what you would like on this page"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"Component":"$5","searchParams":{},"params":{},"promises":["$@6","$@7"]}],["$","$L8",null,{"children":"$L9"}],null,["$","$La",null,{"children":["$Lb","$Lc",["$","$Ld",null,{"promise":"$@e"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","wuiSuT-w4pMSkpAsLdfR4",{"children":[["$","$Lf",null,{"children":"$L10"}],null]}],null]}],false]],"m":"$undefined","G":["$11","$undefined"],"s":false,"S":true}
-12:"$Sreact.suspense"
-13:I[4911,[],"AsyncMetadata"]
-6:{}
+2:I[9243,["177","static/chunks/app/layout-c9546e97ea86e000.js"],""]
+3:I[7555,[],""]
+4:I[1295,[],""]
+5:I[894,[],"ClientPageRoot"]
+6:I[5580,["974","static/chunks/app/page-5503a949ab7e21c7.js"],"default"]
+9:I[9665,[],"MetadataBoundary"]
+b:I[9665,[],"OutletBoundary"]
+e:I[4911,[],"AsyncMetadataOutlet"]
+10:I[9665,[],"ViewportBoundary"]
+12:I[6614,[],""]
+:HL["/_next/static/css/1fb768ed6ee937d2.css","style"]
+0:{"P":null,"b":"2IZ9mcHNpBjjOJgVItei5","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/1fb768ed6ee937d2.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","link",null,{"href":"https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css","rel":"stylesheet"}]}],["$","body",null,{"className":"__variable_5cfdac __variable_9a8899 __variable_5f64cf antialiased","children":[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-TK3RWLECG9","strategy":"afterInteractive"}],["$","$L2",null,{"id":"ga4-init","strategy":"afterInteractive","children":"\n            window.dataLayer = window.dataLayer || [];\n            function gtag(){dataLayer.push(arguments);}\n            gtag('js', new Date());\n            gtag('config', 'G-TK3RWLECG9');\n          "}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"flex flex-col items-center justify-center h-screen text-center px-4","children":[["$","h1",null,{"className":"text-5xl md:text-5xl font-semibold text-gray-100","children":"404"}],["$","h1",null,{"className":"text-2xl md:text-3xl font-semibold mt-6","children":"This page has not been generated"}],["$","p",null,{"className":"mt-4 text-xl md:text-2xl text-gray-500","children":"Tell me what you would like on this page"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L5",null,{"Component":"$6","searchParams":{},"params":{},"promises":["$@7","$@8"]}],["$","$L9",null,{"children":"$La"}],null,["$","$Lb",null,{"children":["$Lc","$Ld",["$","$Le",null,{"promise":"$@f"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","_faoNxiBrFTEIW3n7Pizd",{"children":[["$","$L10",null,{"children":"$L11"}],null]}],null]}],false]],"m":"$undefined","G":["$12","$undefined"],"s":false,"S":true}
+13:"$Sreact.suspense"
+14:I[4911,[],"AsyncMetadata"]
 7:{}
-9:["$","$12",null,{"fallback":null,"children":["$","$L13",null,{"promise":"$@14"}]}]
+8:{}
+a:["$","$13",null,{"fallback":null,"children":["$","$L14",null,{"promise":"$@15"}]}]
+d:null
+11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 c:null
-10:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-b:null
-14:{"metadata":[["$","title","0",{"children":"Readdy Site"}],["$","meta","1",{"name":"description","content":"Generated by Readdy"}]],"error":null,"digest":"$undefined"}
-e:{"metadata":"$14:metadata","error":null,"digest":"$undefined"}
+15:{"metadata":[["$","title","0",{"children":"U-MOVEX - Top Rated Moving Company in Orlando, Florida"}],["$","meta","1",{"name":"description","content":"Affordable, licensed moving company in Orlando. U-MOVEX offers local and statewide moving, packing, loading & more. Get a free quote today!"}],["$","link","2",{"rel":"author","href":"https://u-movex.com"}],["$","meta","3",{"name":"author","content":"U-MOVEX"}],["$","meta","4",{"name":"keywords","content":"Orlando movers,moving company Orlando,local moving,affordable movers,U-MOVEX Florida,professional moving services,packing help,best moving company Orlando"}],["$","meta","5",{"name":"robots","content":"index, follow"}],["$","meta","6",{"property":"og:title","content":"U-MOVEX - Top Rated Moving Company in Orlando"}],["$","meta","7",{"property":"og:description","content":"Trusted and affordable moving services in Orlando and across Florida. Book your move with U-MOVEX today!"}],["$","meta","8",{"property":"og:url","content":"https://u-movex.com"}],["$","meta","9",{"property":"og:site_name","content":"U-MOVEX"}],["$","meta","10",{"property":"og:image","content":"https://u-movex.com/favicon.ico"}],["$","meta","11",{"property":"og:image:width","content":"48"}],["$","meta","12",{"property":"og:image:height","content":"48"}],["$","meta","13",{"property":"og:image:alt","content":"U-MOVEX Logo"}],["$","meta","14",{"property":"og:type","content":"website"}],["$","meta","15",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","16",{"name":"twitter:title","content":"U-MOVEX - Moving Services in Orlando"}],["$","meta","17",{"name":"twitter:description","content":"Affordable, professional movers in Orlando. Licensed, insured & highly rated."}],["$","meta","18",{"name":"twitter:image","content":"https://u-movex.com/favicon.ico"}],["$","link","19",{"rel":"icon","href":"/favicon.ico"}]],"error":null,"digest":"$undefined"}
+f:{"metadata":"$15:metadata","error":null,"digest":"$undefined"}
