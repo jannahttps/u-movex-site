@@ -20,7 +20,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// ✅ SEO + Favicon + Open Graph
 export const metadata: Metadata = {
   title: "U-MOVEX - Top Rated Moving Company in Orlando, Florida",
   description:
@@ -58,20 +57,20 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, nocache: false },
 };
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TK3RWLECG9"; // можете вынести в .env
+const GA_ID = "G-TK3RWLECG9";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* ✅ Remix Icon CDN */}
+        {/* Remix Icon CDN */}
         <link
           href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
           rel="stylesheet"
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}>
-        {/* ✅ Google tag (gtag.js) — корректно через next/script */}
+        {/* Google tag (gtag.js) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
@@ -84,6 +83,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', '${GA_ID}');
           `}
         </Script>
+        <Script id="ga-debug" strategy="afterInteractive">
+  {`
+    console.log('[GA4 DEBUG] init for ${GA_ID}', typeof window.gtag);
+  `}
+</Script>
+
 
         {children}
       </body>
