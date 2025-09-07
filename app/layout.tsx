@@ -92,19 +92,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Отслеживание звонков (клики по tel:) */}
         <Script id="ga-call-tracking" strategy="afterInteractive">
           {`
-            document.addEventListener('DOMContentLoaded', function () {
-              const phoneLinks = document.querySelectorAll("a[href^='tel:']");
-              phoneLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                  if (typeof gtag === 'function') {
-                    gtag('event', 'call_click', {
-                      event_category: 'engagement',
-                      event_label: 'Phone Call'
-                    });
-                    console.log('[GA4] Call click event sent');
-                  }
+            document.addEventListener('click', function (e) {
+              const link = e.target.closest && e.target.closest('a[href^="tel:"]');
+              if (link && typeof window.gtag === 'function') {
+                window.gtag('event', 'call_click', {
+                  event_category: 'engagement',
+                  event_label: 'Phone Call'
                 });
-              });
+                console.log('[GA4] Call click event sent');
+              }
             });
           `}
         </Script>
