@@ -1,0 +1,25 @@
+# Принудительно редиректим с www → без www
+[[redirects]]
+  from = "https://www.u-movex.com/*"
+  to = "https://u-movex.com/:splat"
+  status = 301
+  force = true
+
+# Принудительно редиректим с http → https
+[[redirects]]
+  from = "http://u-movex.com/*"
+  to = "https://u-movex.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.u-movex.com/*"
+  to = "https://u-movex.com/:splat"
+  status = 301
+  force = true
+
+# SPA rewrite (для React/одностраничных сайтов)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
