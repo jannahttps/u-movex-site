@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono, Pacifico } from "next/font/google";
 import "./globals.css";
@@ -20,6 +20,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+/** ✅ Перенесли viewport в отдельный экспорт (чтобы не было warning в Next) */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+/** ✅ Каноникал включён через alternates.canonical (наследуется всеми страницами, если не переопределено локально) */
 export const metadata: Metadata = {
   title: "U-MOVEX - Top Rated Moving Company in Orlando, Florida",
   description:
@@ -37,6 +44,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "U-MOVEX", url: "https://u-movex.com" }],
   metadataBase: new URL("https://u-movex.com"),
+  /** 👇 ВАЖНО: канонический URL. Благодаря metadataBase можно писать просто "/" */
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "U-MOVEX - Top Rated Moving Company in Orlando",
     description:
@@ -53,18 +64,14 @@ export const metadata: Metadata = {
       "Affordable, professional movers in Orlando. Licensed, insured & highly rated.",
     images: ["/favicon.ico"],
   },
-  viewport: "width=device-width, initial-scale=1",
   robots: { index: true, follow: true, nocache: false },
 };
 
 // ---- IDs из переменных окружения (Netlify) ----
-// GA4 (обязателен)
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TK3RWLECG9";
-// Google Ads (опционально, для прямой отправки конверсий в Ads)
 const ADS_ID = process.env.NEXT_PUBLIC_ADS_ID || "AW-17184627515";
-// Метки (labels) для конверсий в Ads — возьми из Google Ads
-const ADS_CALL_LABEL = process.env.NEXT_PUBLIC_ADS_CALL_LABEL || ""; // например: Ab7CJHd2zkbEu2ooJA
-const ADS_FORM_LABEL = process.env.NEXT_PUBLIC_ADS_FORM_LABEL || ""; // например: XyZ123abcDEF456
+const ADS_CALL_LABEL = process.env.NEXT_PUBLIC_ADS_CALL_LABEL || "";
+const ADS_FORM_LABEL = process.env.NEXT_PUBLIC_ADS_FORM_LABEL || "";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -102,7 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
 
-        {/* Трекинг кликов по телефону: GA4 (call_click) + (опц.) конверсия в Google Ads */}
+        {/* Трекинг кликов по телефону */}
         <Script id="call-tracking" strategy="afterInteractive">
           {`
             document.addEventListener('click', function (e) {
@@ -116,6 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   event_label: 'Phone Call'
                 });
                 console.log('[GA4] call_click sent');
+
                 // Google Ads (если есть метка)
                 var adsId = '${ADS_ID}';
                 var label = '${ADS_CALL_LABEL}';
@@ -132,16 +140,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
 
-        {/* Трекинг отправки формы: GA4 (form_submit) + (опц.) конверсия в Google Ads
-            Пометь целевую форму атрибутом data-ga-lead (рекомендовано):
-            <form id="quote-form" name="Get Free Quote" data-ga-lead ...> */}
+        {/* Трекинг отправки формы */}
         <Script id="form-tracking" strategy="afterInteractive">
           {`
             document.addEventListener('submit', function (e) {
               var form = e.target;
               if (!form || !(form instanceof HTMLFormElement)) return;
 
-              // Отслеживать только формы с data-ga-lead (снимите комментарий, если хотите ограничить)
+              // Можно ограничить отслеживание только целевых форм:
               // if (!form.hasAttribute('data-ga-lead')) return;
 
               var formId = form.getAttribute('id') || '';
@@ -167,7 +173,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   console.log('[ADS] form conversion sent to', adsId + '/' + label);
                 }
               }
-            }, true); // capture=true — ловим сабмит наверняка
+            }, true);
           `}
         </Script>
 
