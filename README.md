@@ -1,30 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# U-Movex — Moving Company Website  
 
-## Getting Started
+A fully responsive website for a moving services company, designed and developed **from scratch**: from concept and UI/UX design to front-end coding, deployment, and Google services integration.  
 
-First, run the development server:
+🌐 **Live demo:** [u-movex.com](https://u-movex.com)  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
+- Modern, responsive design (desktop + mobile)  
+- Service catalog with images  
+- Customer reviews carousel  
+- Contact form with email integration  
+- Social media links (TikTok, Facebook, YouTube)  
+- Optimized for SEO and fast performance  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
+- **Front-End:** HTML, CSS, JavaScript, React  
+- **Tools:** VS Code, Git, GitHub  
+- **Design:** Figma, Photoshop, AI-assisted design tools  
+- **Deployment:** Domain & hosting setup, Google Analytics, Google Search Console  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📸 Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![U-Movex Website Mockup](screenshots/umovex-mockup.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## 📂 Project Structure
+
