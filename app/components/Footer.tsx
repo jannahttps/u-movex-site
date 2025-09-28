@@ -13,12 +13,15 @@ export default function Footer() {
             <p className="text-gray-300 mb-6">
               Florida's trusted moving company providing professional, reliable, and affordable moving services across the state.
             </p>
-            <div className="text-xl font-semibold">
-              <a href="tel:+14076396520" className="hover:underline">
-                +1 (407) 639-6520
-              </a>
-            </div>
-          </div>
+           <div className="text-xl font-semibold flex flex-col md:flex-row md:items-center">
+  <a href="tel:+14076396520" className="hover:underline">
+    +1 (407) 639-6520
+  </a>
+  <span className="hidden md:inline mx-3">|</span>
+  <a href="mailto:umovexfl@gmail.com" className="hover:underline mt-2 md:mt-0">
+    umovexfl@gmail.com
+  </a>
+</div>
 
           {/* Услуги */}
           <div>
