@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import InputMask from "react-input-mask";
 import PromoTimer from "./PromoTimer";
 
 const SHOW_PROMO_TIMER = false;
@@ -17,7 +16,7 @@ type FormState = {
   emailError?: string;
 };
 
-const phoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+// simple validators
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
 export default function ContactForm() {
@@ -29,13 +28,28 @@ export default function ContactForm() {
     submitted: false,
   });
 
+  // controlled phone value with lightweight mask
+  const [phoneValue, setPhoneValue] = useState("");
+
+  function formatPhone(v: string) {
+    const d = v.replace(/\D/g, "").slice(0, 10);
+    const p1 = d.slice(0, 3);
+    const p2 = d.slice(3, 6);
+    const p3 = d.slice(6, 10);
+    if (d.length > 6) return `(${p1}) ${p2}-${p3}`;
+    if (d.length > 3) return `(${p1}) ${p2}`;
+    if (d.length > 0) return `(${p1}`;
+    return "";
+  }
+
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (s.submitting) return;
 
     const form = e.currentTarget;
     const fd = new FormData(form);
-    const phone = (fd.get("phoneNumber") as string)?.trim();
+
+    const phoneDigits = phoneValue.replace(/\D/g, ""); // 10 digits expected
     const email = (fd.get("email") as string)?.trim();
 
     let phoneError = "";
@@ -48,18 +62,26 @@ export default function ContactForm() {
       }));
       return;
     }
-    if (s.prefPhone && (!phone || !phoneRegex.test(phone))) {
-      phoneError = "Please enter a valid phone number (e.g. 407-639-6520).";
+
+    if (s.prefPhone) {
+      if (phoneDigits.length !== 10) {
+        phoneError = "Please enter a valid phone number (e.g. 407-639-6520).";
+      }
     }
-    if (s.prefEmail && (!email || !emailRegex.test(email))) {
-      emailError = "Please enter a valid email address (e.g. name@mail.com).";
+
+    if (s.prefEmail) {
+      if (!email || !emailRegex.test(email)) {
+        emailError = "Please enter a valid email address (e.g. name@mail.com).";
+      }
     }
 
     if (phoneError || emailError) {
-      setS((x) => ({ ...x, phoneError, emailError }));
+      setS((x) => ({ ...x, phoneError, emailError, error: undefined }));
       return;
     }
 
+    // push formatted phone value into the form (so Netlify receives it)
+    fd.set("phoneNumber", phoneValue);
     fd.set(
       "preferredContact",
       [s.prefPhone && "phone", s.prefEmail && "email"].filter(Boolean).join(", ")
@@ -73,6 +95,7 @@ export default function ContactForm() {
         phoneError: undefined,
         emailError: undefined,
       }));
+
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -80,8 +103,10 @@ export default function ContactForm() {
           Array.from(fd.entries()).map(([k, v]) => [k, String(v)]) as [string, string][]
         ).toString(),
       });
+
       setS((x) => ({ ...x, submitted: true, submitting: false }));
       form.reset();
+      setPhoneValue("");
     } catch {
       setS((x) => ({
         ...x,
@@ -162,6 +187,7 @@ export default function ContactForm() {
                   placeholder="Email Address"
                   inputMode="email"
                   autoComplete="email"
+                  required={s.prefEmail}
                   className={`block w-full px-4 py-3 rounded-xl border ${
                     s.emailError ? "border-red-500" : "border-gray-300"
                   } focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base`}
@@ -171,23 +197,21 @@ export default function ContactForm() {
                 )}
               </label>
 
-              {/* Phone */}
+              {/* Phone (masked locally) */}
               <label className="relative">
-                <InputMask mask="(999) 999-9999" maskChar="">
-                  {(inputProps: any) => (
-                    <input
-                      {...inputProps}
-                      type="tel"
-                      name="phoneNumber"
-                      placeholder="(407) 639-6520"
-                      inputMode="tel"
-                      autoComplete="tel"
-                      className={`block w-full px-4 py-3 rounded-xl border ${
-                        s.phoneError ? "border-red-500" : "border-gray-300"
-                      } focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base`}
-                    />
-                  )}
-                </InputMask>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  placeholder="(407) 639-6520"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  required={s.prefPhone}
+                  value={phoneValue}
+                  onChange={(e) => setPhoneValue(formatPhone(e.target.value))}
+                  className={`block w-full px-4 py-3 rounded-xl border ${
+                    s.phoneError ? "border-red-500" : "border-gray-300"
+                  } focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base`}
+                />
                 {s.phoneError && (
                   <p className="text-red-600 text-sm mt-1">{s.phoneError}</p>
                 )}
@@ -243,7 +267,9 @@ export default function ContactForm() {
                     <input
                       type="checkbox"
                       checked={s.prefPhone}
-                      onChange={(e) => setS((x) => ({ ...x, prefPhone: e.target.checked }))}
+                      onChange={(e) =>
+                        setS((x) => ({ ...x, prefPhone: e.target.checked }))
+                      }
                     />
                     <span>Phone</span>
                   </label>
@@ -251,7 +277,9 @@ export default function ContactForm() {
                     <input
                       type="checkbox"
                       checked={s.prefEmail}
-                      onChange={(e) => setS((x) => ({ ...x, prefEmail: e.target.checked }))}
+                      onChange={(e) =>
+                        setS((x) => ({ ...x, prefEmail: e.target.checked }))
+                      }
                     />
                     <span>Email</span>
                   </label>
