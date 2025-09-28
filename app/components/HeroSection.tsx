@@ -13,33 +13,25 @@ export default function HeroSection() {
     >
       {/* Header */}
       <header className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-8 py-6 gap-4 sm:gap-0 relative z-10">
-        {/* Логотип */}
-        <div className="flex items-center gap-3 bg-black/20 backdrop-blur-sm rounded-xl px-4 py-3">
+        {/* Лого + текст */}
+        <div className="flex items-center gap-3 bg-black/30 backdrop-blur-sm rounded-xl ring-1 ring-white/20 px-4 py-3">
           <img
-            src="/videos/logo.png"
+            src="/videos/logo.png" // ← сюда подставь свой обновлённый логотип
             alt="U-MOVEX Logo"
             className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
           />
-          {/* Логотип + текст */}
-<div className="flex items-center gap-3 bg-black/30 backdrop-blur-sm rounded-xl px-4 py-3">
-  <img 
-    src="/videos/logo.png" 
-    alt="U-MOVEX Logo" 
-    className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
-  />
-  <div className="flex flex-col leading-tight">
-    <div className="text-xl sm:text-3xl font-bold text-white tracking-wide">
-      U-MOVEX
-    </div>
-    <div className="text-xs sm:text-base font-semibold text-gray-200 tracking-wide">
-      ORLANDO MOVING COMPANY
-    </div>
-  </div>
-</div>
+          <div className="flex flex-col leading-tight">
+            <div className="text-xl sm:text-3xl font-bold text-white tracking-wide">
+              U-MOVEX
+            </div>
+            <div className="text-xs sm:text-base font-semibold text-gray-200 tracking-wide">
+              ORLANDO MOVING COMPANY
+            </div>
+          </div>
+        </div>
 
         {/* Контакты и мессенджеры */}
         <div className="flex flex-col items-center sm:items-end gap-2">
-          {/* Телефон + e-mail: вертикально на мобилках, в линию на десктопе */}
           <div className="flex flex-col sm:flex-row sm:items-center text-white font-bold text-lg sm:text-2xl">
             <a href="tel:+14076396520" className="hover:underline">
               +1 (407) 639-6520
@@ -53,7 +45,6 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Иконки */}
           <div className="flex gap-3">
             <a
               href="https://wa.me/14076396520"
@@ -69,7 +60,7 @@ export default function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-              aria-label="Facebook / Messenger"
+              aria-label="Messenger"
             >
               <i className="ri-messenger-line text-white text-lg sm:text-xl"></i>
             </a>
