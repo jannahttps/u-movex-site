@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import PromoTimer from "./PromoTimer"; // ⬅️ наш таймер с оффером
+import PromoTimer from "./PromoTimer"; // таймер остаётся импортированным
+
+// 🔘 флаг управления показом таймера
+const SHOW_PROMO_TIMER = false;
 
 export default function ContactForm() {
   const [commentsLength, setCommentsLength] = useState(0);
@@ -19,7 +22,7 @@ export default function ContactForm() {
   return (
     <section id="quote" className="mx-auto my-10 w-full max-w-4xl px-4">
       {/* 🔥 Акционный таймер (3 дня) — над формой */}
-      <PromoTimer />
+      {SHOW_PROMO_TIMER && <PromoTimer />}
 
       {/* Карточка формы */}
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md mx-auto">
@@ -49,17 +52,6 @@ export default function ContactForm() {
               type="text"
               name="fullName"
               placeholder="Full Name"
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-            />
-          </div>
-
-          {/* Новое поле для e-mail */}
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
             />
@@ -123,7 +115,7 @@ export default function ContactForm() {
             {submitting ? "Sending..." : "Get Free Quote"}
           </button>
 
-          {/* Доп. CTA на звонок */}
+          {/* Доп. CTA на звонок — повышает конверсию с мобильных */}
           <a
             href="tel:+14076396520"
             className="block text-center w-full border border-blue-200 text-blue-700 py-3 px-6 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
