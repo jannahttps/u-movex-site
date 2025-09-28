@@ -16,7 +16,6 @@ type FormState = {
   emailError?: string;
 };
 
-// simple validators
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
 export default function ContactForm() {
@@ -28,7 +27,6 @@ export default function ContactForm() {
     submitted: false,
   });
 
-  // controlled phone value with lightweight mask
   const [phoneValue, setPhoneValue] = useState("");
 
   function formatPhone(v: string) {
@@ -49,43 +47,38 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    const phoneDigits = phoneValue.replace(/\D/g, ""); // 10 digits expected
+    const phoneDigits = phoneValue.replace(/\D/g, "");
     const email = (fd.get("email") as string)?.trim();
 
     let phoneError = "";
     let emailError = "";
 
     if (!s.prefPhone && !s.prefEmail) {
-      setS((x) => ({
-        ...x,
-        error: "Please select at least one preferred contact method.",
-      }));
+      setS((x) => ({ ...x, error: "Please select at least one preferred contact method." }));
       return;
     }
-
-    if (s.prefPhone) {
-      if (phoneDigits.length !== 10) {
-        phoneError = "Please enter a valid phone number (e.g. 407-639-6520).";
-      }
+    if (s.prefPhone && phoneDigits.length !== 10) {
+      phoneError = "Please enter a valid phone number (e.g. 407-639-6520).";
     }
-
-    if (s.prefEmail) {
-      if (!email || !emailRegex.test(email)) {
-        emailError = "Please enter a valid email address (e.g. name@mail.com).";
-      }
+    if (s.prefEmail && (!email || !emailRegex.test(email))) {
+      emailError = "Please enter a valid email address (e.g. name@mail.com).";
     }
-
     if (phoneError || emailError) {
       setS((x) => ({ ...x, phoneError, emailError, error: undefined }));
       return;
     }
 
-    // push formatted phone value into the form (so Netlify receives it)
+    // make sure Netlify receives the right values
+    fd.set("form-name", "contact");
     fd.set("phoneNumber", phoneValue);
     fd.set(
       "preferredContact",
       [s.prefPhone && "phone", s.prefEmail && "email"].filter(Boolean).join(", ")
     );
+
+    // encode to x-www-form-urlencoded
+    const body = new URLSearchParams();
+    for (const [k, v] of fd.entries()) body.append(k, String(v));
 
     try {
       setS((x) => ({
@@ -96,13 +89,13 @@ export default function ContactForm() {
         emailError: undefined,
       }));
 
-      await fetch("/", {
+      const res = await fetch("/?no-cache=1", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(
-          Array.from(fd.entries()).map(([k, v]) => [k, String(v)]) as [string, string][]
-        ).toString(),
+        body: body.toString(),
       });
+
+      if (!res.ok) throw new Error("Netlify response not ok");
 
       setS((x) => ({ ...x, submitted: true, submitting: false }));
       form.reset();
@@ -125,11 +118,22 @@ export default function ContactForm() {
       {SHOW_PROMO_TIMER && <PromoTimer />}
 
       <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 w-full max-w-2xl mx-auto">
+        {/* ---- Invisible Netlify registration form (build-time detection) ---- */}
+        <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="text" name="fullName" />
+          <input type="email" name="email" />
+          <input type="tel" name="phoneNumber" />
+          <input type="text" name="pickupAddress" />
+          <input type="text" name="dropoffAddress" />
+          <input type="text" name="preferredContact" />
+          <textarea name="comments" />
+          <input name="bot-field" />
+        </form>
+        {/* ------------------------------------------------------------------ */}
+
         {s.submitted ? (
           <div className="text-center space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
-              Thank you for your request!
-            </h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Thank you for your request!</h2>
             <p className="text-gray-700 text-base sm:text-lg">
               We will get back to you as soon as possible today.
             </p>
@@ -156,7 +160,6 @@ export default function ContactForm() {
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              action="/thank-you"
               onSubmit={onSubmit}
               className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4"
             >
@@ -192,12 +195,10 @@ export default function ContactForm() {
                     s.emailError ? "border-red-500" : "border-gray-300"
                   } focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base`}
                 />
-                {s.emailError && (
-                  <p className="text-red-600 text-sm mt-1">{s.emailError}</p>
-                )}
+                {s.emailError && <p className="text-red-600 text-sm mt-1">{s.emailError}</p>}
               </label>
 
-              {/* Phone (masked locally) */}
+              {/* Phone */}
               <label className="relative">
                 <input
                   type="tel"
@@ -212,9 +213,7 @@ export default function ContactForm() {
                     s.phoneError ? "border-red-500" : "border-gray-300"
                   } focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base`}
                 />
-                {s.phoneError && (
-                  <p className="text-red-600 text-sm mt-1">{s.phoneError}</p>
-                )}
+                {s.phoneError && <p className="text-red-600 text-sm mt-1">{s.phoneError}</p>}
               </label>
 
               {/* Addresses */}
@@ -247,14 +246,10 @@ export default function ContactForm() {
                   placeholder="Comment or Special Instructions"
                   maxLength={500}
                   rows={4}
-                  onChange={(e) =>
-                    setS((x) => ({ ...x, commentsLength: e.target.value.length }))
-                  }
+                  onChange={(e) => setS((x) => ({ ...x, commentsLength: e.target.value.length }))}
                   className="block w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base resize-y"
                 />
-                <div className="text-xs text-gray-500 mt-1 text-right">
-                  {s.commentsLength}/500
-                </div>
+                <div className="text-xs text-gray-500 mt-1 text-right">{s.commentsLength}/500</div>
               </label>
 
               {/* Preferred contact method */}
@@ -267,9 +262,7 @@ export default function ContactForm() {
                     <input
                       type="checkbox"
                       checked={s.prefPhone}
-                      onChange={(e) =>
-                        setS((x) => ({ ...x, prefPhone: e.target.checked }))
-                      }
+                      onChange={(e) => setS((x) => ({ ...x, prefPhone: e.target.checked }))}
                     />
                     <span>Phone</span>
                   </label>
@@ -277,9 +270,7 @@ export default function ContactForm() {
                     <input
                       type="checkbox"
                       checked={s.prefEmail}
-                      onChange={(e) =>
-                        setS((x) => ({ ...x, prefEmail: e.target.checked }))
-                      }
+                      onChange={(e) => setS((x) => ({ ...x, prefEmail: e.target.checked }))}
                     />
                     <span>Email</span>
                   </label>
@@ -287,9 +278,7 @@ export default function ContactForm() {
               </fieldset>
 
               {/* Global error */}
-              {s.error && (
-                <p className="md:col-span-2 text-sm text-red-600">{s.error}</p>
-              )}
+              {s.error && <p className="md:col-span-2 text-sm text-red-600">{s.error}</p>}
 
               {/* CTA buttons */}
               <div className="md:col-span-2 flex flex-col gap-3">
@@ -301,7 +290,6 @@ export default function ContactForm() {
                   {s.submitting ? "Sending..." : "Get Free Quote"}
                 </button>
 
-                {/* Sticky call button for mobile */}
                 <a
                   href="tel:+14076396520"
                   className="md:hidden sticky bottom-2 z-10 text-center w-full border border-blue-200 text-blue-700 py-3 px-6 rounded-2xl font-semibold bg-white/90 backdrop-blur hover:bg-blue-50 transition"
@@ -309,7 +297,6 @@ export default function ContactForm() {
                   📞 Call Now (407) 639-6520
                 </a>
 
-                {/* Desktop call button */}
                 <a
                   href="tel:+14076396520"
                   className="hidden md:block text-center w-full border border-blue-200 text-blue-700 py-3 px-6 rounded-2xl font-semibold hover:bg-blue-50 transition"
