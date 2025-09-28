@@ -20,11 +20,22 @@ export default function HeroSection() {
             alt="U-MOVEX Logo"
             className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
           />
-          <div className="flex flex-col leading-tight">
-            <div className="text-xl sm:text-3xl font-bold text-white tracking-wide">U-MOVEX</div>
-            <div className="text-sm sm:text-lg font-semibold text-white/90 tracking-wide">MOVING COMPANY</div>
-          </div>
-        </div>
+          {/* Логотип + текст */}
+<div className="flex items-center gap-3 bg-black/30 backdrop-blur-sm rounded-xl px-4 py-3">
+  <img 
+    src="/videos/logo.png" 
+    alt="U-MOVEX Logo" 
+    className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
+  />
+  <div className="flex flex-col leading-tight">
+    <div className="text-xl sm:text-3xl font-bold text-white tracking-wide">
+      U-MOVEX
+    </div>
+    <div className="text-xs sm:text-base font-semibold text-gray-200 tracking-wide">
+      ORLANDO MOVING COMPANY
+    </div>
+  </div>
+</div>
 
         {/* Контакты и мессенджеры */}
         <div className="flex flex-col items-center sm:items-end gap-2">
