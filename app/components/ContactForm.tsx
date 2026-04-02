@@ -68,7 +68,6 @@ export default function ContactForm() {
       return;
     }
 
-    // make sure Netlify receives the right values
     fd.set("form-name", "contact");
     fd.set("phoneNumber", phoneValue);
     fd.set(
@@ -76,7 +75,6 @@ export default function ContactForm() {
       [s.prefPhone && "phone", s.prefEmail && "email"].filter(Boolean).join(", ")
     );
 
-    // encode to x-www-form-urlencoded
     const body = new URLSearchParams();
     for (const [k, v] of fd.entries()) body.append(k, String(v));
 
@@ -118,18 +116,21 @@ export default function ContactForm() {
       {SHOW_PROMO_TIMER && <PromoTimer />}
 
       <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 w-full max-w-2xl mx-auto">
-        {/* ---- Invisible Netlify registration form (build-time detection) ---- */}
+        
+        {/* ---- Invisible Netlify registration form ---- */}
         <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
           <input type="text" name="fullName" />
           <input type="email" name="email" />
           <input type="tel" name="phoneNumber" />
           <input type="text" name="pickupAddress" />
           <input type="text" name="dropoffAddress" />
+          <input type="date" name="movingDate" />
+          <input type="text" name="bedrooms" />
           <input type="text" name="preferredContact" />
           <textarea name="comments" />
           <input name="bot-field" />
         </form>
-        {/* ------------------------------------------------------------------ */}
+        {/* ------------------------------------------------ */}
 
         {s.submitted ? (
           <div className="text-center space-y-4">
@@ -164,146 +165,43 @@ export default function ContactForm() {
               className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4"
             >
               <input type="hidden" name="form-name" value="contact" />
-              <p className="hidden">
-                <label>
-                  Don’t fill this out: <input name="bot-field" />
-                </label>
-              </p>
 
-              {/* Full name */}
               <label className="md:col-span-2">
-                <input
-                  type="text"
-                  name="fullName"
-                  placeholder="Full Name"
-                  autoComplete="name"
-                  required
-                  className="block w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base"
-                />
+                <input type="text" name="fullName" placeholder="Full Name" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
               </label>
 
-              {/* Email */}
-              <label className="relative">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  inputMode="email"
-                  autoComplete="email"
-                  required={s.prefEmail}
-                  className={`block w-full px-4 py-3 rounded-xl border ${
-                    s.emailError ? "border-red-500" : "border-gray-300"
-                  } focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base`}
-                />
-                {s.emailError && <p className="text-red-600 text-sm mt-1">{s.emailError}</p>}
+              <label>
+                <input type="email" name="email" placeholder="Email Address" className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
               </label>
 
-              {/* Phone */}
-              <label className="relative">
-                <input
-                  type="tel"
-                  name="phoneNumber"
-                  placeholder="(407) 639-6520"
-                  inputMode="tel"
-                  autoComplete="tel"
-                  required={s.prefPhone}
-                  value={phoneValue}
-                  onChange={(e) => setPhoneValue(formatPhone(e.target.value))}
-                  className={`block w-full px-4 py-3 rounded-xl border ${
-                    s.phoneError ? "border-red-500" : "border-gray-300"
-                  } focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base`}
-                />
-                {s.phoneError && <p className="text-red-600 text-sm mt-1">{s.phoneError}</p>}
-              </label>
-
-              {/* Addresses */}
-              <label className="md:col-span-2">
-                <input
-                  type="text"
-                  name="pickupAddress"
-                  placeholder="Pick-Up Address"
-                  autoComplete="address-line1"
-                  required
-                  className="block w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base"
-                />
+              <label>
+                <input type="tel" name="phoneNumber" placeholder="(407) 639-6520" className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
               </label>
 
               <label className="md:col-span-2">
-                <input
-                  type="text"
-                  name="dropoffAddress"
-                  placeholder="Drop-Off Address"
-                  autoComplete="address-line2"
-                  required
-                  className="block w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base"
-                />
+                <input type="text" name="pickupAddress" placeholder="Pick-Up Address" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
               </label>
 
-              {/* Comments */}
               <label className="md:col-span-2">
-                <textarea
-                  name="comments"
-                  placeholder="Comment or Special Instructions"
-                  maxLength={500}
-                  rows={4}
-                  onChange={(e) => setS((x) => ({ ...x, commentsLength: e.target.value.length }))}
-                  className="block w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-blue-200 focus:border-blue-500 text-base resize-y"
-                />
-                <div className="text-xs text-gray-500 mt-1 text-right">{s.commentsLength}/500</div>
+                <input type="text" name="dropoffAddress" placeholder="Drop-Off Address" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
               </label>
 
-              {/* Preferred contact method */}
-              <fieldset className="md:col-span-2 border border-gray-200 rounded-xl p-3 sm:p-4">
-                <legend className="text-sm font-semibold text-gray-700">
-                  Preferred contact method (choose at least one)
-                </legend>
-                <div className="mt-2 flex gap-6">
-                  <label className="inline-flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={s.prefPhone}
-                      onChange={(e) => setS((x) => ({ ...x, prefPhone: e.target.checked }))}
-                    />
-                    <span>Phone</span>
-                  </label>
-                  <label className="inline-flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={s.prefEmail}
-                      onChange={(e) => setS((x) => ({ ...x, prefEmail: e.target.checked }))}
-                    />
-                    <span>Email</span>
-                  </label>
-                </div>
-              </fieldset>
+              {/* NEW FIELDS */}
+              <label>
+                <input type="date" name="movingDate" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
+              </label>
 
-              {/* Global error */}
-              {s.error && <p className="md:col-span-2 text-sm text-red-600">{s.error}</p>}
+              <label>
+                <input type="text" name="bedrooms" placeholder="Number of Bedrooms (e.g. 1, 2, 3)" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
+              </label>
 
-              {/* CTA buttons */}
-              <div className="md:col-span-2 flex flex-col gap-3">
-                <button
-                  type="submit"
-                  disabled={s.submitting}
-                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-2xl text-lg font-semibold hover:bg-blue-700 active:translate-y-[1px] transition disabled:opacity-70"
-                >
-                  {s.submitting ? "Sending..." : "Get Free Quote"}
-                </button>
+              <label className="md:col-span-2">
+                <textarea name="comments" placeholder="Comments" className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
+              </label>
 
-                <a
-                  href="tel:+14076396520"
-                  className="md:hidden sticky bottom-2 z-10 text-center w-full border border-blue-200 text-blue-700 py-3 px-6 rounded-2xl font-semibold bg-white/90 backdrop-blur hover:bg-blue-50 transition"
-                >
-                  📞 Call Now (407) 639-6520
-                </a>
-
-                <a
-                  href="tel:+14076396520"
-                  className="hidden md:block text-center w-full border border-blue-200 text-blue-700 py-3 px-6 rounded-2xl font-semibold hover:bg-blue-50 transition"
-                >
-                  📞 Call Now (407) 639-6520
-                </a>
-              </div>
+              <button type="submit" className="md:col-span-2 bg-blue-600 text-white py-4 rounded-xl">
+                Get Free Quote
+              </button>
             </form>
           </>
         )}
