@@ -117,7 +117,7 @@ export default function ContactForm() {
 
       <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 w-full max-w-2xl mx-auto">
         
-        {/* ---- Invisible Netlify registration form ---- */}
+        {/* Invisible Netlify form */}
         <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
           <input type="text" name="fullName" />
           <input type="email" name="email" />
@@ -130,29 +130,19 @@ export default function ContactForm() {
           <textarea name="comments" />
           <input name="bot-field" />
         </form>
-        {/* ------------------------------------------------ */}
 
         {s.submitted ? (
           <div className="text-center space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Thank you for your request!</h2>
-            <p className="text-gray-700 text-base sm:text-lg">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+              Thank you for your request!
+            </h2>
+            <p className="text-gray-700">
               We will get back to you as soon as possible today.
             </p>
-            <img
-              src="/u-movex-gator-thumbs-up.png"
-              alt="U-MOVEX gator thumbs up"
-              className="mx-auto w-40 h-40 sm:w-56 sm:h-56 object-contain"
-            />
-            <a
-              href="tel:+14076396520"
-              className="inline-block border border-blue-200 text-blue-700 py-3 px-6 rounded-xl font-semibold hover:bg-blue-50 transition-colors"
-            >
-              📞 Call Now (407) 639-6520
-            </a>
           </div>
         ) : (
           <>
-            <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
+            <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
               Start your easy move today!
             </h2>
 
@@ -162,42 +152,44 @@ export default function ContactForm() {
               data-netlify="true"
               netlify-honeypot="bot-field"
               onSubmit={onSubmit}
-              className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
             >
               <input type="hidden" name="form-name" value="contact" />
 
-              <label className="md:col-span-2">
-                <input type="text" name="fullName" placeholder="Full Name" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
+              <input type="text" name="fullName" placeholder="Full Name" required className="px-4 py-3 border rounded-xl" />
+
+              <input type="email" name="email" placeholder="Email Address" className="px-4 py-3 border rounded-xl" />
+
+              <input type="tel" name="phoneNumber" placeholder="(407) 639-6520" className="px-4 py-3 border rounded-xl" />
+
+              <input type="text" name="pickupAddress" placeholder="Pick-Up Address" required className="md:col-span-2 px-4 py-3 border rounded-xl" />
+
+              <input type="text" name="dropoffAddress" placeholder="Drop-Off Address" required className="md:col-span-2 px-4 py-3 border rounded-xl" />
+
+              {/* Moving Date */}
+              <label className="relative md:col-span-2">
+                <span className="text-sm text-gray-600 mb-1 block">
+                  Preferred Moving Date
+                </span>
+                <input
+                  type="date"
+                  name="movingDate"
+                  required
+                  className="w-full px-4 py-3 pr-10 border rounded-xl appearance-none"
+                />
+                <span className="absolute right-3 top-[42px] text-gray-400">📅</span>
               </label>
 
-              <label>
-                <input type="email" name="email" placeholder="Email Address" className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
-              </label>
+              {/* Bedrooms */}
+              <input
+                type="text"
+                name="bedrooms"
+                placeholder="Bedrooms (1, 2, 3...)"
+                required
+                className="px-4 py-3 border rounded-xl"
+              />
 
-              <label>
-                <input type="tel" name="phoneNumber" placeholder="(407) 639-6520" className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
-              </label>
-
-              <label className="md:col-span-2">
-                <input type="text" name="pickupAddress" placeholder="Pick-Up Address" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
-              </label>
-
-              <label className="md:col-span-2">
-                <input type="text" name="dropoffAddress" placeholder="Drop-Off Address" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
-              </label>
-
-              {/* NEW FIELDS */}
-              <label>
-                <input type="date" name="movingDate" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
-              </label>
-
-              <label>
-                <input type="text" name="bedrooms" placeholder="Number of Bedrooms (e.g. 1, 2, 3)" required className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
-              </label>
-
-              <label className="md:col-span-2">
-                <textarea name="comments" placeholder="Comments" className="block w-full px-4 py-3 rounded-xl border border-gray-300" />
-              </label>
+              <textarea name="comments" placeholder="Comments" className="md:col-span-2 px-4 py-3 border rounded-xl" />
 
               <button type="submit" className="md:col-span-2 bg-blue-600 text-white py-4 rounded-xl">
                 Get Free Quote
