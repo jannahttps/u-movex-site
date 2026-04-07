@@ -54,6 +54,7 @@ export default function ReviewsSection() {
 
   return (
     <section
+      id="reviews"
       aria-labelledby="reviews-heading"
       className="bg-gradient-to-br from-blue-50 to-white px-4 py-16 sm:px-6 lg:px-8"
     >
@@ -118,7 +119,7 @@ export default function ReviewsSection() {
           <button
             onClick={prevReview}
             aria-label="Previous review"
-            className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition hover:bg-gray-50 sm:-left-5 sm:h-12 sm:w-12"
+            className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition hover:bg-gray-50 sm:-left-5 sm:h-12 sm:w-12"
           >
             <span aria-hidden="true" className="text-xl text-gray-600">
               ←
@@ -128,7 +129,7 @@ export default function ReviewsSection() {
           <button
             onClick={nextReview}
             aria-label="Next review"
-            className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition hover:bg-gray-50 sm:-right-5 sm:h-12 sm:w-12"
+            className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition hover:bg-gray-50 sm:-right-5 sm:h-12 sm:w-12"
           >
             <span aria-hidden="true" className="text-xl text-gray-600">
               →
