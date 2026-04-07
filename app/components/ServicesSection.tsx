@@ -21,12 +21,13 @@ export default function ServicesSection() {
       link: '/local-movers-orlando',
     },
     {
-      title: 'Apartment, House & Office Moves',
+      title: 'Apartment Movers in Orlando, FL',
       description:
-        'We handle apartment moves, home relocations, and office moving services with organized planning and careful transportation.',
+        'Careful apartment moving services in Orlando with help for stairs, elevators, tight spaces, packing, and organized transportation.',
       image:
         'https://readdy.ai/api/search-image?query=Split%20view%20showing%20apartment%20building%2C%20family%20house%2C%20and%20modern%20office%20building%20in%20Florida%20setting%2C%20professional%20moving%20service%20illustration%20style&width=400&height=300&seq=service2&orientation=landscape',
-      alt: 'Apartment, house, and office moving services',
+      alt: 'Apartment moving services in Orlando',
+      link: '/apartment-movers-orlando',
     },
     {
       title: 'Professional Packing Services',
@@ -78,9 +79,9 @@ export default function ServicesSection() {
             Professional Moving Services in Orlando, FL
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
-            From local residential moves to office relocation and packing help,
-            U-MOVEX provides clear, reliable moving solutions designed to keep
-            your move organized and stress-free.
+            From local residential moves to apartment relocation and packing
+            help, U-MOVEX provides clear, reliable moving solutions designed to
+            keep your move organized and stress-free.
           </p>
         </header>
 
