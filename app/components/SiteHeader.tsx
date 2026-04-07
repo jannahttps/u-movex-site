@@ -3,185 +3,163 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-type SiteHeaderProps = {
-  dark?: boolean;
-};
-
-export default function SiteHeader({ dark = false }: SiteHeaderProps) {
+export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [open]);
-
-  const baseText = dark || scrolled ? 'text-gray-900' : 'text-white';
-  const subText = dark || scrolled ? 'text-gray-600' : 'text-white/80';
-  const shell =
-    dark || scrolled
-      ? 'border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-xl'
-      : 'bg-transparent';
+  const isSolid = scrolled;
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${shell}`}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isSolid
+            ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
+
           {/* LOGO */}
-          <Link
-            href="/"
-            className="flex items-center gap-3"
-            onClick={() => setOpen(false)}
-          >
+          <Link href="/" className="flex items-center">
             <img
-              src="/videos/logo.png"
-              alt="U-MOVEX logo"
-              className="h-11 w-11 rounded-lg object-contain sm:h-12 sm:w-12"
+              src="/logo.png"
+              alt="U-MOVEX Orlando Movers"
+              className="h-14 sm:h-16 lg:h-20 w-auto object-contain"
             />
-            <div className="leading-tight">
-              <div className={`text-lg font-bold tracking-wide sm:text-xl ${baseText}`}>
-                U-MOVEX
-              </div>
-              <div className={`text-[11px] font-semibold uppercase tracking-[0.22em] sm:text-xs ${subText}`}>
-                Orlando Movers
-              </div>
-            </div>
           </Link>
 
-          {/* DESKTOP MENU */}
-          <nav className="hidden items-center gap-6 lg:flex">
-            <Link href="/#quote" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
-              Free Quote
-            </Link>
-
-            <Link href="/#services" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
+          {/* NAV */}
+          <nav className="hidden lg:flex items-center gap-6">
+            <Link href="/#services" className="text-sm font-semibold text-gray-700 hover:text-blue-600">
               Services
             </Link>
-
-            <Link href="/#reviews" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
+            <Link href="/#reviews" className="text-sm font-semibold text-gray-700 hover:text-blue-600">
               Reviews
             </Link>
-
-            <Link href="/local-movers-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
+            <Link href="/local-movers-orlando" className="text-sm font-semibold text-gray-700 hover:text-blue-600">
               Local
             </Link>
-
-            <Link href="/apartment-movers-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
+            <Link href="/apartment-movers-orlando" className="text-sm font-semibold text-gray-700 hover:text-blue-600">
               Apartment
             </Link>
-
-            <Link href="/office-movers-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
+            <Link href="/office-movers-orlando" className="text-sm font-semibold text-gray-700 hover:text-blue-600">
               Office
             </Link>
-
-            <Link href="/packing-services-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
+            <Link href="/packing-services-orlando" className="text-sm font-semibold text-gray-700 hover:text-blue-600">
               Packing
             </Link>
           </nav>
 
           {/* RIGHT SIDE */}
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="flex items-center gap-3">
+
+            {/* 🔥 PHONE (MAIN MONEY BUTTON) */}
             <a
               href="tel:+14076396520"
-              className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}
+              className="hidden lg:flex items-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-xl text-lg font-bold shadow-md hover:bg-blue-700 transition"
             >
-              +1 (407) 639-6520
+              <i className="ri-phone-fill text-lg"></i>
+              (407) 639-6520
             </a>
 
+            {/* CTA */}
             <Link
               href="/#quote"
-              className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
+              className="hidden lg:flex items-center px-4 py-2.5 rounded-xl border border-gray-300 text-sm font-semibold hover:bg-gray-50"
             >
               Get Estimate
             </Link>
-          </div>
 
-          {/* BURGER */}
-          <button
-            onClick={() => setOpen(!open)}
-            className={`inline-flex h-11 w-11 items-center justify-center rounded-xl border lg:hidden ${
-              dark || scrolled
-                ? 'border-gray-200 bg-white text-gray-900'
-                : 'border-white/20 bg-white/10 text-white backdrop-blur-sm'
-            }`}
-          >
-            <i className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}></i>
-          </button>
+            {/* MOBILE CALL */}
+            <a
+              href="tel:+14076396520"
+              className="lg:hidden bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2"
+            >
+              <i className="ri-phone-fill"></i>
+              Call
+            </a>
+
+            {/* BURGER */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center"
+            >
+              <i className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-xl`}></i>
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* OVERLAY */}
-      <div
-        className={`fixed inset-0 z-40 bg-black/40 transition lg:hidden ${
-          open ? 'opacity-100' : 'pointer-events-none opacity-0'
-        }`}
-        onClick={() => setOpen(false)}
-      />
-
       {/* MOBILE MENU */}
-      <aside
-        className={`fixed right-0 top-0 z-50 h-full w-[85%] max-w-sm bg-white p-6 shadow-xl transition ${
+      {open && (
+        <div className="fixed inset-0 z-40 bg-black/40" onClick={() => setOpen(false)} />
+      )}
+
+      <div
+        className={`fixed right-0 top-0 h-full w-80 bg-white z-50 shadow-xl transform transition ${
           open ? 'translate-x-0' : 'translate-x-full'
         } lg:hidden`}
       >
-        <div className="mb-8 flex items-center justify-between">
-          <div className="font-bold text-lg">Menu</div>
-          <button onClick={() => setOpen(false)}>
-            <i className="ri-close-line text-2xl"></i>
-          </button>
-        </div>
+        <div className="p-6 space-y-4">
 
-        <nav className="flex flex-col gap-3">
-          <Link href="/#quote" onClick={() => setOpen(false)} className="menu-link">Free Quote</Link>
-          <Link href="/#services" onClick={() => setOpen(false)} className="menu-link">Services</Link>
-          <Link href="/#reviews" onClick={() => setOpen(false)} className="menu-link">Reviews</Link>
+          <Link href="/" onClick={() => setOpen(false)}>
+            <img src="/logo.png" className="h-12 mb-6" />
+          </Link>
 
-          <div className="mt-4 text-sm font-semibold text-gray-500">Services</div>
-
-          <Link href="/local-movers-orlando" onClick={() => setOpen(false)} className="menu-link">
+          <Link href="/#services" onClick={() => setOpen(false)} className="block font-semibold">
+            Services
+          </Link>
+          <Link href="/#reviews" onClick={() => setOpen(false)} className="block font-semibold">
+            Reviews
+          </Link>
+          <Link href="/local-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold">
             Local Movers
           </Link>
-
-          <Link href="/apartment-movers-orlando" onClick={() => setOpen(false)} className="menu-link">
+          <Link href="/apartment-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold">
             Apartment Movers
           </Link>
-
-          <Link href="/office-movers-orlando" onClick={() => setOpen(false)} className="menu-link">
+          <Link href="/office-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold">
             Office Movers
           </Link>
-
-          <Link href="/packing-services-orlando" onClick={() => setOpen(false)} className="menu-link">
-            Packing Services
+          <Link href="/packing-services-orlando" onClick={() => setOpen(false)} className="block font-semibold">
+            Packing
           </Link>
-        </nav>
 
-        <div className="mt-8 space-y-3">
+          {/* BIG MOBILE CTA */}
           <a
             href="tel:+14076396520"
-            className="flex items-center justify-center rounded-xl border px-4 py-3 font-semibold"
+            className="block mt-6 bg-blue-600 text-white text-center py-3 rounded-xl font-bold"
+          >
+            Call (407) 639-6520
+          </a>
+        </div>
+      </div>
+
+      {/* MOBILE STICKY BAR */}
+      <div className="fixed bottom-3 left-4 right-4 lg:hidden z-40">
+        <div className="flex gap-3 bg-white shadow-lg rounded-xl p-2">
+          <a
+            href="tel:+14076396520"
+            className="flex-1 bg-blue-600 text-white text-center py-3 rounded-lg font-semibold"
           >
             Call Now
           </a>
-
           <Link
             href="/#quote"
-            onClick={() => setOpen(false)}
-            className="flex items-center justify-center rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white"
+            className="flex-1 border text-center py-3 rounded-lg font-semibold"
           >
-            Get Estimate
+            Get Quote
           </Link>
         </div>
-      </aside>
+      </div>
     </>
   );
 }
