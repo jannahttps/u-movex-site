@@ -62,6 +62,7 @@ export default function ServicesSection() {
 
   return (
     <section
+      id="services"
       aria-labelledby="services-heading"
       className="bg-gray-50 py-20"
     >
@@ -120,7 +121,7 @@ export default function ServicesSection() {
                 <Link
                   key={service.title}
                   href={service.link}
-                  className="group overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="group block cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   aria-label={`Learn more about ${service.title}`}
                 >
                   {cardContent}
