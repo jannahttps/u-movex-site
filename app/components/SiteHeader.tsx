@@ -28,12 +28,17 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
   const isSolid = dark || scrolled;
 
   const headerShell = isSolid
-    ? 'bg-white/95 border-b border-slate-200 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
+    ? 'bg-white/94 border-b border-slate-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
     : 'bg-transparent';
 
   const navText = isSolid ? 'text-slate-700' : 'text-white';
-  const logoText = isSolid ? 'text-slate-950' : 'text-white';
-  const logoSub = isSolid ? 'text-slate-500' : 'text-white/70';
+  const logoMain = isSolid ? 'text-slate-950' : 'text-white';
+  const logoSub = isSolid ? 'text-slate-500' : 'text-white/72';
+  const phoneText = isSolid ? 'text-slate-950' : 'text-white';
+  const getEstimateStyle = isSolid
+    ? 'border-slate-200 bg-white text-slate-800 hover:border-blue-100 hover:bg-blue-50 hover:text-blue-700'
+    : 'border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-white/15';
+
   const burgerStyle = isSolid
     ? 'border-slate-200 bg-white text-slate-900'
     : 'border-white/20 bg-white/10 text-white backdrop-blur-md';
@@ -50,21 +55,28 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             aria-label="Go to homepage"
             onClick={() => setOpen(false)}
           >
-            <div className="leading-none">
-              <div
-                className={`text-[1.55rem] font-black tracking-[0.08em] sm:text-[1.8rem] lg:text-[2rem] ${logoText}`}
-                style={{ fontFamily: 'Georgia, Times New Roman, serif' }}
-              >
-                U-MOVEX
-              </div>
+            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+              <div className="hidden sm:block h-10 w-px bg-gradient-to-b from-transparent via-blue-500/70 to-transparent" />
 
-              <div className="mt-1 flex items-center gap-2">
-                <span className="h-[2px] w-6 rounded-full bg-blue-500 sm:w-8"></span>
-                <span
-                  className={`text-[10px] font-semibold uppercase tracking-[0.32em] sm:text-[11px] ${logoSub}`}
+              <div className="min-w-0 leading-none">
+                <div
+                  className={`text-[1.38rem] font-semibold tracking-[0.08em] sm:text-[1.6rem] lg:text-[1.82rem] ${logoMain}`}
+                  style={{
+                    fontFamily:
+                      'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+                  }}
                 >
-                  Orlando Movers
-                </span>
+                  U-MOVEX
+                </div>
+
+                <div className="mt-1.5 flex items-center gap-2 sm:gap-3">
+                  <span className="h-px w-5 rounded-full bg-amber-400/90 sm:w-7" />
+                  <span
+                    className={`truncate text-[9px] font-semibold uppercase tracking-[0.34em] sm:text-[10px] lg:text-[11px] ${logoSub}`}
+                  >
+                    Orlando Movers
+                  </span>
+                </div>
               </div>
             </div>
           </Link>
@@ -112,16 +124,14 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             <a
               href="tel:+14076396520"
               aria-label="Call U-MOVEX at +1 (407) 639-6520"
-              className={`hidden lg:flex items-center rounded-2xl px-4 py-2.5 text-base font-bold tracking-[0.01em] transition hover:text-blue-600 ${
-                isSolid ? 'text-slate-900' : 'text-white'
-              }`}
+              className={`hidden lg:flex items-center rounded-2xl px-3 py-2.5 text-[1rem] font-semibold tracking-[0.01em] transition hover:text-blue-600 xl:px-4 ${phoneText}`}
             >
               +1 (407) 639-6520
             </a>
 
             <Link
               href="/#quote"
-              className="hidden lg:inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-blue-100 hover:bg-blue-50 hover:text-blue-700"
+              className={`hidden lg:inline-flex items-center justify-center rounded-2xl border px-4 py-2.5 text-sm font-semibold shadow-sm transition ${getEstimateStyle}`}
             >
               Get Estimate
             </Link>
@@ -171,15 +181,18 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
           >
             <div className="leading-none">
               <div
-                className="text-[1.45rem] font-black tracking-[0.08em] text-slate-950"
-                style={{ fontFamily: 'Georgia, Times New Roman, serif' }}
+                className="text-[1.32rem] font-semibold tracking-[0.08em] text-slate-950"
+                style={{
+                  fontFamily:
+                    'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+                }}
               >
                 U-MOVEX
               </div>
 
-              <div className="mt-1 flex items-center gap-2">
-                <span className="h-[2px] w-6 rounded-full bg-blue-500"></span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">
+              <div className="mt-1.5 flex items-center gap-2">
+                <span className="h-px w-5 rounded-full bg-amber-400/90" />
+                <span className="text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-500">
                   Orlando Movers
                 </span>
               </div>
