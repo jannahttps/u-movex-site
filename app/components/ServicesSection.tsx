@@ -30,12 +30,13 @@ export default function ServicesSection() {
       link: '/apartment-movers-orlando',
     },
     {
-      title: 'Professional Packing Services',
+      title: 'Packing Services in Orlando, FL',
       description:
-        'We pack furniture, fragile items, and moving boxes with protective materials to help your belongings arrive safely.',
+        'Professional packing services in Orlando with wrapping, fragile item protection, box organization, and moving preparation support.',
       image:
         'https://readdy.ai/api/search-image?query=Professional%20movers%20carefully%20packing%20delicate%20items%20with%20bubble%20wrap%20boxes%20and%20protective%20materials%2C%20organized%20packing%20station%20with%20supplies&width=400&height=300&seq=service3&orientation=landscape',
       alt: 'Professional packing services with boxes and protective materials',
+      link: '/packing-services-orlando',
     },
     {
       title: 'Office Movers in Orlando, FL',
