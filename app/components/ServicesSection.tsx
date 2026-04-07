@@ -38,12 +38,13 @@ export default function ServicesSection() {
       alt: 'Professional packing services with boxes and protective materials',
     },
     {
-      title: 'Hourly Moving Help',
+      title: 'Office Movers in Orlando, FL',
       description:
-        'Flexible hourly moving options for loading, unloading, rearranging furniture, and smaller moves without overpaying.',
+        'Organized office moving services in Orlando for desks, workstations, boxes, and business relocation with flexible scheduling.',
       image:
-        'https://readdy.ai/api/search-image?query=Clock%20with%20dollar%20signs%20and%20calculator%20showing%20transparent%20pricing%20concept%2C%20clean%20modern%20financial%20illustration%20with%20moving%20truck%20elements&width=400&height=300&seq=service4&orientation=landscape',
-      alt: 'Hourly moving help and transparent pricing concept',
+        'https://readdy.ai/api/search-image?query=Modern%20office%20relocation%20with%20desks%20chairs%20boxes%20and%20professional%20movers%20in%20a%20clean%20business%20environment&width=400&height=300&seq=service-office&orientation=landscape',
+      alt: 'Office moving services in Orlando',
+      link: '/office-movers-orlando',
     },
     {
       title: '2 Movers and Truck Included',
@@ -79,9 +80,9 @@ export default function ServicesSection() {
             Professional Moving Services in Orlando, FL
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
-            From local residential moves to apartment relocation and packing
-            help, U-MOVEX provides clear, reliable moving solutions designed to
-            keep your move organized and stress-free.
+            From local residential moves to apartment relocation, office moving,
+            and packing help, U-MOVEX provides clear, reliable moving solutions
+            designed to keep your move organized and stress-free.
           </p>
         </header>
 
