@@ -48,11 +48,23 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             aria-label="Go to homepage"
             onClick={() => setOpen(false)}
           >
-            <img
-  src="/logo-clean.png"
-  alt="U-MOVEX Orlando Movers"
-  className="h-12 sm:h-14 lg:h-16 xl:h-[72px] w-auto object-contain"
-/>
+            <Link href="/" className="flex items-center gap-3">
+  
+  {/* LOGO IMAGE */}
+  <img
+    src="/logo-clean.png"
+    alt="U-MOVEX Moving Company"
+    className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
+  />
+
+  {/* TEXT BLOCK */}
+  <div className="leading-tight">
+    <div className="text-[11px] sm:text-xs tracking-[0.25em] text-gray-500 uppercase">
+      Orlando Movers
+    </div>
+  </div>
+
+</Link>
           </Link>
 
           <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
