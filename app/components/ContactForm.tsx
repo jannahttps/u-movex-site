@@ -260,6 +260,7 @@ export default function ContactForm() {
                   placeholder="Email Address"
                   value={s.email}
                   onChange={handleChange}
+                  autoComplete="email"
                   className={`w-full rounded-xl border px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 ${
                     s.emailError ? "border-red-500" : "border-gray-300"
                   }`}
@@ -295,6 +296,7 @@ export default function ContactForm() {
                   required
                   value={s.pickupAddress}
                   onChange={handleChange}
+                  autoComplete="street-address"
                   className="w-full rounded-xl border border-gray-300 px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
@@ -307,37 +309,49 @@ export default function ContactForm() {
                   required
                   value={s.dropoffAddress}
                   onChange={handleChange}
+                  autoComplete="street-address"
                   className="w-full rounded-xl border border-gray-300 px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
-              <label className="relative md:col-span-2">
-                <span className="mb-1 block text-sm font-medium text-gray-600">
+              <div className="md:col-span-2">
+                <label
+                  htmlFor="movingDate"
+                  className="mb-1 block text-sm font-medium text-gray-600"
+                >
                   Preferred Moving Date
-                </span>
-                <input
-                  type="date"
-                  name="movingDate"
-                  required
-                  value={s.movingDate}
-                  onChange={handleChange}
-                  className="w-full min-h-[52px] rounded-xl border border-gray-300 bg-white px-4 py-3 pr-12 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                />
-                <span className="pointer-events-none absolute right-4 top-[42px] text-gray-400">
-                  📅
-                </span>
-              </label>
+                </label>
+                <div className="relative">
+                  <input
+                    id="movingDate"
+                    type="date"
+                    name="movingDate"
+                    required
+                    value={s.movingDate}
+                    onChange={handleChange}
+                    className="block w-full min-h-[52px] rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    style={{
+                      WebkitAppearance: "none",
+                      appearance: "none",
+                    }}
+                  />
+                </div>
+              </div>
 
               <div className="md:col-span-2">
-                <label className="mb-1 block text-sm font-medium text-gray-600">
+                <label
+                  htmlFor="bedrooms"
+                  className="mb-1 block text-sm font-medium text-gray-600"
+                >
                   Home Size
                 </label>
                 <select
+                  id="bedrooms"
                   name="bedrooms"
                   required
                   value={s.bedrooms}
                   onChange={handleChange}
-                  className="w-full min-h-[52px] rounded-xl border border-gray-300 bg-white px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="w-full min-h-[52px] rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 >
                   <option value="" disabled>
                     Select home size
