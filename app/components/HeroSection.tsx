@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import ContactForm from './ContactForm';
 import VideoCarousel from './VideoCarousel';
 
@@ -31,19 +32,54 @@ export default function HeroSection() {
                 and full-service moving designed to make your relocation easier.
               </p>
 
-              <div className="mb-6 grid gap-3 text-left text-sm text-white/90 sm:grid-cols-2 sm:text-base lg:max-w-xl">
-                <div className="rounded-xl bg-black/25 px-4 py-3 backdrop-blur-sm">
-                  Local & long-distance moves
-                </div>
-                <div className="rounded-xl bg-black/25 px-4 py-3 backdrop-blur-sm">
-                  Residential & office moving
-                </div>
-                <div className="rounded-xl bg-black/25 px-4 py-3 backdrop-blur-sm">
-                  Packing & unpacking help
-                </div>
-                <div className="rounded-xl bg-black/25 px-4 py-3 backdrop-blur-sm">
-                  Careful movers & fast quotes
-                </div>
+              <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:max-w-xl">
+                <Link
+                  href="/local-movers-orlando"
+                  className="group rounded-2xl border border-white/15 bg-black/30 px-4 py-4 text-left text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-black/45 hover:shadow-lg"
+                >
+                  <div className="mb-1 text-sm font-semibold text-white">
+                    Local & long-distance moves
+                  </div>
+                  <div className="text-xs text-white/70 transition group-hover:text-white/85">
+                    Local Movers
+                  </div>
+                </Link>
+
+                <Link
+                  href="/office-movers-orlando"
+                  className="group rounded-2xl border border-white/15 bg-black/30 px-4 py-4 text-left text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-black/45 hover:shadow-lg"
+                >
+                  <div className="mb-1 text-sm font-semibold text-white">
+                    Residential & office moving
+                  </div>
+                  <div className="text-xs text-white/70 transition group-hover:text-white/85">
+                    Office Movers
+                  </div>
+                </Link>
+
+                <Link
+                  href="/packing-services-orlando"
+                  className="group rounded-2xl border border-white/15 bg-black/30 px-4 py-4 text-left text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-black/45 hover:shadow-lg"
+                >
+                  <div className="mb-1 text-sm font-semibold text-white">
+                    Packing & unpacking help
+                  </div>
+                  <div className="text-xs text-white/70 transition group-hover:text-white/85">
+                    Packing Services
+                  </div>
+                </Link>
+
+                <Link
+                  href="/apartment-movers-orlando"
+                  className="group rounded-2xl border border-white/15 bg-black/30 px-4 py-4 text-left text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-black/45 hover:shadow-lg"
+                >
+                  <div className="mb-1 text-sm font-semibold text-white">
+                    Careful movers & fast quotes
+                  </div>
+                  <div className="text-xs text-white/70 transition group-hover:text-white/85">
+                    Apartment Movers
+                  </div>
+                </Link>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 lg:justify-start">
