@@ -68,6 +68,7 @@ export default function WhyChooseUsSection() {
 
   return (
     <section
+      id="why-choose-us"
       aria-labelledby="why-choose-us-heading"
       className="bg-white py-20"
     >
