@@ -12,7 +12,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -27,92 +27,65 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
 
   const isSolid = dark || scrolled;
 
-  const shell = isSolid
-    ? 'border-b border-slate-200/80 bg-white/95 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
+  const headerShell = isSolid
+    ? 'bg-white/95 border-b border-slate-200 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
     : 'bg-transparent';
 
   const navText = isSolid ? 'text-slate-700' : 'text-white';
-
-  const desktopPhoneShell = isSolid
-    ? 'border-slate-200 bg-white text-slate-900 shadow-sm'
+  const burgerStyle = isSolid
+    ? 'border-slate-200 bg-white text-slate-900'
     : 'border-white/20 bg-white/10 text-white backdrop-blur-md';
-
-  const desktopPhoneSub = isSolid ? 'text-slate-500' : 'text-white/70';
-
-  const logoShell = isSolid
-    ? 'bg-white/90 border-slate-200/80 shadow-sm'
-    : 'bg-slate-950/25 border-white/10 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.18)]';
-
-  const logoImageClass = isSolid
-    ? 'opacity-100'
-    : 'opacity-95';
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${shell}`}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerShell}`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <Link
             href="/"
             className="min-w-0 flex items-center"
-            aria-label="Go to U-MOVEX homepage"
+            aria-label="Go to homepage"
             onClick={() => setOpen(false)}
           >
-            <div
-              className={`flex items-center rounded-2xl border px-3 py-2 transition-all duration-300 sm:px-4 sm:py-2.5 ${logoShell}`}
-            >
-              <img
-                src="/logo-clean.png"
-                alt="U-MOVEX Orlando Movers"
-                className={`block h-9 w-auto object-contain transition-all duration-300 sm:h-10 lg:h-11 ${logoImageClass}`}
-              />
-            </div>
+            <img
+              src="/logo-clean.png"
+              alt="U-MOVEX Orlando Movers"
+              className="h-9 w-auto object-contain sm:h-10 lg:h-11"
+            />
           </Link>
 
-          <nav className="hidden items-center gap-5 xl:gap-6 lg:flex">
-            <Link
-              href="/#quote"
-              className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
-            >
-              Free Quote
-            </Link>
-
+          <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
             <Link
               href="/#services"
               className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
             >
               Services
             </Link>
-
             <Link
               href="/#reviews"
               className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
             >
               Reviews
             </Link>
-
             <Link
               href="/local-movers-orlando"
               className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
             >
               Local
             </Link>
-
             <Link
               href="/apartment-movers-orlando"
               className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
             >
               Apartment
             </Link>
-
             <Link
               href="/office-movers-orlando"
               className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
             >
               Office
             </Link>
-
             <Link
               href="/packing-services-orlando"
               className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
@@ -125,59 +98,34 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             <a
               href="tel:+14076396520"
               aria-label="Call U-MOVEX at +1 (407) 639-6520"
-              className={`hidden xl:flex min-w-[220px] items-center gap-3 rounded-2xl border px-4 py-2.5 transition hover:-translate-y-0.5 hover:shadow-md ${desktopPhoneShell}`}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
-                <i className="ri-phone-fill text-base" aria-hidden="true"></i>
-              </div>
-              <div className="leading-tight">
-                <div
-                  className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${desktopPhoneSub}`}
-                >
-                  Call us now
-                </div>
-                <div className="text-base font-bold tracking-[0.02em]">
-                  +1 (407) 639-6520
-                </div>
-              </div>
-            </a>
-
-            <a
-              href="tel:+14076396520"
-              aria-label="Call U-MOVEX at +1 (407) 639-6520"
-              className={`hidden lg:inline-flex xl:hidden h-11 items-center justify-center rounded-2xl border px-4 text-sm font-bold transition hover:-translate-y-0.5 hover:shadow-md ${desktopPhoneShell}`}
+              className={`hidden lg:flex items-center rounded-2xl px-4 py-2.5 text-base font-bold tracking-[0.01em] transition hover:text-blue-600 ${
+                isSolid ? 'text-slate-900' : 'text-white'
+              }`}
             >
               +1 (407) 639-6520
             </a>
 
-            <a
-              href="tel:+14076396520"
-              aria-label="Call U-MOVEX now"
-              className="group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-2xl border border-blue-400/30 bg-gradient-to-r from-blue-600 via-blue-600 to-blue-500 px-4 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,99,235,0.35)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(37,99,235,0.42)] sm:h-12 sm:px-5"
-            >
-              <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.22),transparent)] opacity-0 transition duration-500 group-hover:translate-x-full group-hover:opacity-100"></span>
-              <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
-              <span className="hidden sm:inline">Call Now</span>
-              <span className="sm:hidden">Call</span>
-            </a>
-
             <Link
               href="/#quote"
-              className="hidden h-11 items-center justify-center rounded-2xl border border-slate-200 bg-white/90 px-4 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-blue-100 hover:bg-blue-50 hover:text-blue-700 lg:inline-flex"
+              className="hidden lg:inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-blue-100 hover:bg-blue-50 hover:text-blue-700"
             >
               Get Estimate
             </Link>
+
+            <a
+              href="tel:+14076396520"
+              className="inline-flex h-11 items-center justify-center rounded-2xl bg-blue-600 px-4 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(37,99,235,0.28)] transition hover:bg-blue-700 lg:hidden"
+            >
+              <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
+              Call
+            </a>
 
             <button
               type="button"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border shadow-sm transition lg:hidden ${
-                isSolid
-                  ? 'border-slate-200 bg-white text-slate-900'
-                  : 'border-white/20 bg-white/10 text-white backdrop-blur-md'
-              }`}
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border transition lg:hidden ${burgerStyle}`}
             >
               <i
                 className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}
@@ -207,13 +155,11 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             className="flex items-center"
             onClick={() => setOpen(false)}
           >
-            <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-              <img
-                src="/logo-clean.png"
-                alt="U-MOVEX Orlando Movers"
-                className="block h-9 w-auto object-contain"
-              />
-            </div>
+            <img
+              src="/logo-clean.png"
+              alt="U-MOVEX Orlando Movers"
+              className="h-9 w-auto object-contain"
+            />
           </Link>
 
           <button
@@ -227,14 +173,6 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
         </div>
 
         <nav className="flex flex-col gap-2">
-          <Link
-            href="/#quote"
-            onClick={() => setOpen(false)}
-            className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-50 hover:text-blue-700"
-          >
-            Free Quote
-          </Link>
-
           <Link
             href="/#services"
             onClick={() => setOpen(false)}
@@ -291,17 +229,10 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
         <div className="mt-8 space-y-3">
           <a
             href="tel:+14076396520"
-            className="flex items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-3 text-base font-semibold text-white shadow-[0_10px_26px_rgba(37,99,235,0.28)] transition hover:from-blue-700 hover:to-blue-600"
+            className="flex items-center justify-center rounded-2xl bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-[0_10px_26px_rgba(37,99,235,0.28)] transition hover:bg-blue-700"
           >
             <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
-            Call Now
-          </a>
-
-          <a
-            href="tel:+14076396520"
-            className="flex items-center justify-center rounded-2xl border border-slate-200 px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
-          >
-            +1 (407) 639-6520
+            Call +1 (407) 639-6520
           </a>
 
           <Link
@@ -313,6 +244,25 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
           </Link>
         </div>
       </aside>
+
+      <div className="fixed inset-x-0 bottom-3 z-40 px-4 lg:hidden">
+        <div className="mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-white/40 bg-white/95 p-2 shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-xl">
+          <a
+            href="tel:+14076396520"
+            className="flex-1 rounded-xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
+          >
+            <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
+            Call Now
+          </a>
+
+          <Link
+            href="/#quote"
+            className="flex-1 rounded-xl border border-slate-200 px-4 py-3 text-center text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
+          >
+            Get Estimate
+          </Link>
+        </div>
+      </div>
     </>
   );
 }
