@@ -25,7 +25,7 @@ export default function ServicesSection() {
       description:
         'Careful apartment moving services in Orlando with help for stairs, elevators, tight spaces, packing, and organized transportation.',
       image:
-        'https://readdy.ai/api/search-image?query=Split%20view%20showing%20apartment%20building%2C%20family%20house%2C%20and%20modern%20office%20building%20in%20Florida%20setting%2C%20professional%20moving%20service%20illustration%20style&width=400&height=300&seq=service2&orientation=landscape',
+        'https://readdy.ai/api/search-image?query=Professional%20apartment%20moving%20service%20in%20Orlando%20Florida%20with%20movers%20carrying%20boxes%20in%20modern%20apartment%20building%20clean%20bright%20realistic%20style&width=400&height=300&seq=service-apartment-orlando&orientation=landscape',
       alt: 'Apartment moving services in Orlando',
       link: '/apartment-movers-orlando',
     },
@@ -34,7 +34,7 @@ export default function ServicesSection() {
       description:
         'Professional packing services in Orlando with wrapping, fragile item protection, box organization, and moving preparation support.',
       image:
-        'https://readdy.ai/api/search-image?query=Professional%20movers%20carefully%20packing%20delicate%20items%20with%20bubble%20wrap%20boxes%20and%20protective%20materials%2C%20organized%20packing%20station%20with%20supplies&width=400&height=300&seq=service3&orientation=landscape',
+        'https://readdy.ai/api/search-image?query=Professional%20movers%20carefully%20packing%20delicate%20items%20with%20bubble%20wrap%20boxes%20and%20protective%20materials%20organized%20packing%20station%20realistic%20clean%20style&width=400&height=300&seq=service-packing-orlando&orientation=landscape',
       alt: 'Professional packing services with boxes and protective materials',
       link: '/packing-services-orlando',
     },
@@ -43,7 +43,7 @@ export default function ServicesSection() {
       description:
         'Organized office moving services in Orlando for desks, workstations, boxes, and business relocation with flexible scheduling.',
       image:
-        'https://readdy.ai/api/search-image?query=Modern%20office%20relocation%20with%20desks%20chairs%20boxes%20and%20professional%20movers%20in%20a%20clean%20business%20environment&width=400&height=300&seq=service-office&orientation=landscape',
+        'https://readdy.ai/api/search-image?query=Professional%20office%20moving%20service%20in%20Orlando%20Florida%20with%20movers%20carrying%20office%20chairs%20desks%20and%20boxes%20inside%20modern%20workspace%20realistic%20clean%20style&width=400&height=300&seq=service-office-orlando-fixed&orientation=landscape',
       alt: 'Office moving services in Orlando',
       link: '/office-movers-orlando',
     },
@@ -91,7 +91,7 @@ export default function ServicesSection() {
           {services.map((service) => {
             const cardContent = (
               <>
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-52 overflow-hidden bg-gray-100">
                   <img
                     src={service.image}
                     alt={service.alt}
