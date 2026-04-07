@@ -24,7 +24,7 @@ export default function ServicesSection() {
       title: 'Apartment Movers in Orlando, FL',
       description:
         'Careful apartment moving services in Orlando with help for stairs, elevators, tight spaces, packing, and organized transportation.',
-      image: '/apartment-movers-orlando.jpg',
+      image: '/apartment-movers-orlando.png',
       alt: 'Apartment moving services in Orlando',
       link: '/apartment-movers-orlando',
     },
