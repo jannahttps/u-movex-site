@@ -32,6 +32,8 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
     : 'bg-transparent';
 
   const navText = isSolid ? 'text-slate-700' : 'text-white';
+  const logoText = isSolid ? 'text-slate-950' : 'text-white';
+  const logoSub = isSolid ? 'text-slate-500' : 'text-white/70';
   const burgerStyle = isSolid
     ? 'border-slate-200 bg-white text-slate-900'
     : 'border-white/20 bg-white/10 text-white backdrop-blur-md';
@@ -48,23 +50,23 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             aria-label="Go to homepage"
             onClick={() => setOpen(false)}
           >
-            <Link href="/" className="flex items-center gap-3">
+            <div className="leading-none">
+              <div
+                className={`text-[1.55rem] font-black tracking-[0.08em] sm:text-[1.8rem] lg:text-[2rem] ${logoText}`}
+                style={{ fontFamily: 'Georgia, Times New Roman, serif' }}
+              >
+                U-MOVEX
+              </div>
 
-  {/* LOGO */}
-  <img
-    src="/logo-clean.png"
-    alt="U-MOVEX Moving Company"
-    className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
-  />
-
-  {/* TEXT */}
-  <div className="leading-tight hidden sm:block">
-    <div className="text-[11px] tracking-[0.3em] uppercase text-white/70">
-      Orlando Movers
-    </div>
-  </div>
-
-</Link>
+              <div className="mt-1 flex items-center gap-2">
+                <span className="h-[2px] w-6 rounded-full bg-blue-500 sm:w-8"></span>
+                <span
+                  className={`text-[10px] font-semibold uppercase tracking-[0.32em] sm:text-[11px] ${logoSub}`}
+                >
+                  Orlando Movers
+                </span>
+              </div>
+            </div>
           </Link>
 
           <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
@@ -167,11 +169,21 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             className="flex items-center"
             onClick={() => setOpen(false)}
           >
-            <img
-              src="/logo-clean.png"
-              alt="U-MOVEX Orlando Movers"
-              className="h-9 w-auto object-contain"
-            />
+            <div className="leading-none">
+              <div
+                className="text-[1.45rem] font-black tracking-[0.08em] text-slate-950"
+                style={{ fontFamily: 'Georgia, Times New Roman, serif' }}
+              >
+                U-MOVEX
+              </div>
+
+              <div className="mt-1 flex items-center gap-2">
+                <span className="h-[2px] w-6 rounded-full bg-blue-500"></span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">
+                  Orlando Movers
+                </span>
+              </div>
+            </div>
           </Link>
 
           <button
