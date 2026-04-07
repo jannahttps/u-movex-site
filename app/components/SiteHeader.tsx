@@ -12,7 +12,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -25,240 +25,142 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
     };
   }, [open]);
 
-  const isSolid = dark || scrolled;
-
-  const headerShell = isSolid
-    ? 'bg-white/94 border-b border-slate-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
-    : 'bg-transparent';
-
-  const navText = isSolid ? 'text-slate-700' : 'text-white';
-  const logoMain = isSolid ? 'text-slate-950' : 'text-white';
-  const logoSub = isSolid ? 'text-slate-500' : 'text-white/72';
-  const phoneText = isSolid ? 'text-slate-950' : 'text-white';
-  const getEstimateStyle = isSolid
-    ? 'border-slate-200 bg-white text-slate-800 hover:border-blue-100 hover:bg-blue-50 hover:text-blue-700'
-    : 'border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-white/15';
-
-  const burgerStyle = isSolid
-    ? 'border-slate-200 bg-white text-slate-900'
-    : 'border-white/20 bg-white/10 text-white backdrop-blur-md';
+  const baseText = dark || scrolled ? 'text-gray-900' : 'text-white';
+  const subText = dark || scrolled ? 'text-gray-600' : 'text-white/80';
+  const shell =
+    dark || scrolled
+      ? 'border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-xl'
+      : 'bg-transparent';
 
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerShell}`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${shell}`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          
+          {/* LOGO */}
           <Link
             href="/"
-            className="min-w-0 flex items-center"
-            aria-label="Go to homepage"
+            className="flex items-center gap-3"
             onClick={() => setOpen(false)}
           >
-            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-              <div className="hidden sm:block h-10 w-px bg-gradient-to-b from-transparent via-blue-500/70 to-transparent" />
-
-              <div className="min-w-0 leading-none">
-                <div
-                  className={`text-[1.38rem] font-semibold tracking-[0.08em] sm:text-[1.6rem] lg:text-[1.82rem] ${logoMain}`}
-                  style={{
-                    fontFamily:
-                      'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-                  }}
-                >
-                  U-MOVEX
-                </div>
-
-                <div className="mt-1.5 flex items-center gap-2 sm:gap-3">
-                  <span className="h-px w-5 rounded-full bg-amber-400/90 sm:w-7" />
-                  <span
-                    className={`truncate text-[9px] font-semibold uppercase tracking-[0.34em] sm:text-[10px] lg:text-[11px] ${logoSub}`}
-                  >
-                    Orlando Movers
-                  </span>
-                </div>
+            <img
+              src="/videos/logo.png"
+              alt="U-MOVEX logo"
+              className="h-11 w-11 rounded-lg object-contain sm:h-12 sm:w-12"
+            />
+            <div className="leading-tight">
+              <div className={`text-lg font-bold tracking-wide sm:text-xl ${baseText}`}>
+                U-MOVEX
+              </div>
+              <div className={`text-[11px] font-semibold uppercase tracking-[0.22em] sm:text-xs ${subText}`}>
+                Orlando Movers
               </div>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
-            <Link
-              href="/#services"
-              className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
-            >
+          {/* DESKTOP MENU */}
+          <nav className="hidden items-center gap-6 lg:flex">
+            <Link href="/#quote" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
+              Free Quote
+            </Link>
+
+            <Link href="/#services" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
               Services
             </Link>
-            <Link
-              href="/#reviews"
-              className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
-            >
+
+            <Link href="/#reviews" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
               Reviews
             </Link>
-            <Link
-              href="/local-movers-orlando"
-              className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
-            >
+
+            <Link href="/local-movers-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
               Local
             </Link>
-            <Link
-              href="/apartment-movers-orlando"
-              className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
-            >
+
+            <Link href="/apartment-movers-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
               Apartment
             </Link>
-            <Link
-              href="/office-movers-orlando"
-              className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
-            >
+
+            <Link href="/office-movers-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
               Office
             </Link>
-            <Link
-              href="/packing-services-orlando"
-              className={`text-sm font-semibold transition hover:text-blue-600 ${navText}`}
-            >
+
+            <Link href="/packing-services-orlando" className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}>
               Packing
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          {/* RIGHT SIDE */}
+          <div className="hidden items-center gap-3 lg:flex">
             <a
               href="tel:+14076396520"
-              aria-label="Call U-MOVEX at +1 (407) 639-6520"
-              className={`hidden lg:flex items-center rounded-2xl px-3 py-2.5 text-[1rem] font-semibold tracking-[0.01em] transition hover:text-blue-600 xl:px-4 ${phoneText}`}
+              className={`text-sm font-semibold hover:text-blue-500 ${baseText}`}
             >
               +1 (407) 639-6520
             </a>
 
             <Link
               href="/#quote"
-              className={`hidden lg:inline-flex items-center justify-center rounded-2xl border px-4 py-2.5 text-sm font-semibold shadow-sm transition ${getEstimateStyle}`}
+              className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
             >
               Get Estimate
             </Link>
-
-            <a
-              href="tel:+14076396520"
-              className="inline-flex h-11 items-center justify-center rounded-2xl bg-blue-600 px-4 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(37,99,235,0.28)] transition hover:bg-blue-700 lg:hidden"
-            >
-              <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
-              Call
-            </a>
-
-            <button
-              type="button"
-              aria-label={open ? 'Close menu' : 'Open menu'}
-              aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-              className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border transition lg:hidden ${burgerStyle}`}
-            >
-              <i
-                className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}
-                aria-hidden="true"
-              ></i>
-            </button>
           </div>
+
+          {/* BURGER */}
+          <button
+            onClick={() => setOpen(!open)}
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-xl border lg:hidden ${
+              dark || scrolled
+                ? 'border-gray-200 bg-white text-gray-900'
+                : 'border-white/20 bg-white/10 text-white backdrop-blur-sm'
+            }`}
+          >
+            <i className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}></i>
+          </button>
         </div>
       </header>
 
+      {/* OVERLAY */}
       <div
-        className={`fixed inset-0 z-40 bg-slate-950/45 backdrop-blur-sm transition duration-300 lg:hidden ${
-          open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+        className={`fixed inset-0 z-40 bg-black/40 transition lg:hidden ${
+          open ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
         onClick={() => setOpen(false)}
       />
 
+      {/* MOBILE MENU */}
       <aside
-        className={`fixed right-0 top-0 z-50 h-full w-[86%] max-w-sm border-l border-slate-200 bg-white p-6 shadow-2xl transition-transform duration-300 lg:hidden ${
+        className={`fixed right-0 top-0 z-50 h-full w-[85%] max-w-sm bg-white p-6 shadow-xl transition ${
           open ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        aria-hidden={!open}
+        } lg:hidden`}
       >
         <div className="mb-8 flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center"
-            onClick={() => setOpen(false)}
-          >
-            <div className="leading-none">
-              <div
-                className="text-[1.32rem] font-semibold tracking-[0.08em] text-slate-950"
-                style={{
-                  fontFamily:
-                    'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-                }}
-              >
-                U-MOVEX
-              </div>
-
-              <div className="mt-1.5 flex items-center gap-2">
-                <span className="h-px w-5 rounded-full bg-amber-400/90" />
-                <span className="text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-500">
-                  Orlando Movers
-                </span>
-              </div>
-            </div>
-          </Link>
-
-          <button
-            type="button"
-            aria-label="Close menu"
-            onClick={() => setOpen(false)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 text-slate-900"
-          >
-            <i className="ri-close-line text-2xl" aria-hidden="true"></i>
+          <div className="font-bold text-lg">Menu</div>
+          <button onClick={() => setOpen(false)}>
+            <i className="ri-close-line text-2xl"></i>
           </button>
         </div>
 
-        <nav className="flex flex-col gap-2">
-          <Link
-            href="/#services"
-            onClick={() => setOpen(false)}
-            className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-50 hover:text-blue-700"
-          >
-            Services
-          </Link>
+        <nav className="flex flex-col gap-3">
+          <Link href="/#quote" onClick={() => setOpen(false)} className="menu-link">Free Quote</Link>
+          <Link href="/#services" onClick={() => setOpen(false)} className="menu-link">Services</Link>
+          <Link href="/#reviews" onClick={() => setOpen(false)} className="menu-link">Reviews</Link>
 
-          <Link
-            href="/#reviews"
-            onClick={() => setOpen(false)}
-            className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-50 hover:text-blue-700"
-          >
-            Reviews
-          </Link>
+          <div className="mt-4 text-sm font-semibold text-gray-500">Services</div>
 
-          <div className="mt-3 px-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-            Service Pages
-          </div>
-
-          <Link
-            href="/local-movers-orlando"
-            onClick={() => setOpen(false)}
-            className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-50 hover:text-blue-700"
-          >
+          <Link href="/local-movers-orlando" onClick={() => setOpen(false)} className="menu-link">
             Local Movers
           </Link>
 
-          <Link
-            href="/apartment-movers-orlando"
-            onClick={() => setOpen(false)}
-            className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-50 hover:text-blue-700"
-          >
+          <Link href="/apartment-movers-orlando" onClick={() => setOpen(false)} className="menu-link">
             Apartment Movers
           </Link>
 
-          <Link
-            href="/office-movers-orlando"
-            onClick={() => setOpen(false)}
-            className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-50 hover:text-blue-700"
-          >
+          <Link href="/office-movers-orlando" onClick={() => setOpen(false)} className="menu-link">
             Office Movers
           </Link>
 
-          <Link
-            href="/packing-services-orlando"
-            onClick={() => setOpen(false)}
-            className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-blue-50 hover:text-blue-700"
-          >
+          <Link href="/packing-services-orlando" onClick={() => setOpen(false)} className="menu-link">
             Packing Services
           </Link>
         </nav>
@@ -266,40 +168,20 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
         <div className="mt-8 space-y-3">
           <a
             href="tel:+14076396520"
-            className="flex items-center justify-center rounded-2xl bg-blue-600 px-4 py-3 text-base font-semibold text-white shadow-[0_10px_26px_rgba(37,99,235,0.28)] transition hover:bg-blue-700"
+            className="flex items-center justify-center rounded-xl border px-4 py-3 font-semibold"
           >
-            <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
-            Call +1 (407) 639-6520
-          </a>
-
-          <Link
-            href="/#quote"
-            onClick={() => setOpen(false)}
-            className="flex items-center justify-center rounded-2xl border border-slate-200 px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
-          >
-            Get Estimate
-          </Link>
-        </div>
-      </aside>
-
-      <div className="fixed inset-x-0 bottom-3 z-40 px-4 lg:hidden">
-        <div className="mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-white/40 bg-white/95 p-2 shadow-[0_14px_34px_rgba(15,23,42,0.16)] backdrop-blur-xl">
-          <a
-            href="tel:+14076396520"
-            className="flex-1 rounded-xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
-          >
-            <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
             Call Now
           </a>
 
           <Link
             href="/#quote"
-            className="flex-1 rounded-xl border border-slate-200 px-4 py-3 text-center text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
+            onClick={() => setOpen(false)}
+            className="flex items-center justify-center rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white"
           >
             Get Estimate
           </Link>
         </div>
-      </div>
+      </aside>
     </>
   );
 }
