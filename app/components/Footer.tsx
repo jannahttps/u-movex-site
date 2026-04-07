@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="mb-4 text-3xl font-bold">U-MOVEX</div>
 
             <p className="mb-6 leading-relaxed text-gray-300">
-              Reliable movers in Orlando, FL providing local and long-distance
+              Reliable movers in Orlando, FL providing local
               moving services for homes, apartments, and offices.
             </p>
 
