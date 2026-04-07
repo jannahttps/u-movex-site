@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://u-movex.com"),
   title: "Movers Orlando FL | U-MOVEX Moving Company",
   description:
-    "Professional movers in Orlando, FL offering local and long-distance moving, packing, loading, and unloading services. Get a free quote from U-MOVEX today.",
+    "Professional movers in Orlando, FL offering local moving, packing, loading, and unloading services. Get a free quote from U-MOVEX today.",
   keywords: [
     "movers Orlando FL",
     "Orlando moving company",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "office movers Orlando",
     "packing services Orlando",
     "loading and unloading Orlando",
-    "long distance movers Florida",
+    "movers in Orlando",
     "U-MOVEX",
   ],
   authors: [{ name: "U-MOVEX", url: "https://u-movex.com" }],
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Movers Orlando FL | U-MOVEX Moving Company",
     description:
-      "Reliable movers in Orlando, FL for homes, apartments, and offices. Local and long-distance moving services with free quotes.",
+      "Reliable movers in Orlando, FL for homes, apartments, and offices. Local moving services with free quotes.",
     url: "https://u-movex.com",
     siteName: "U-MOVEX",
     locale: "en_US",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Movers Orlando FL | U-MOVEX Moving Company",
     description:
-      "Reliable movers in Orlando, FL offering local and long-distance moving services.",
+      "Reliable movers in Orlando, FL offering local moving services.",
     images: ["/favicon.ico"],
   },
   robots: {
