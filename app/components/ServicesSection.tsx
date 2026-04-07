@@ -1,10 +1,13 @@
 'use client';
 
+import Link from 'next/link';
+
 type ServiceItem = {
   title: string;
   description: string;
   image: string;
   alt: string;
+  link?: string;
 };
 
 export default function ServicesSection() {
@@ -12,9 +15,10 @@ export default function ServicesSection() {
     {
       title: 'Local Movers in Orlando, FL',
       description:
-        'Reliable local moving services in Orlando and nearby areas with careful movers, modern equipment, and fast scheduling.',
+        'Reliable local movers in Orlando for apartments, homes, and offices. Fast quotes, careful handling, and professional service.',
       image: '/img1.jpg',
       alt: 'Local movers in Orlando loading a moving truck',
+      link: '/local-movers-orlando',
     },
     {
       title: 'Apartment, House & Office Moves',
@@ -80,31 +84,59 @@ export default function ServicesSection() {
         </header>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <article
-              key={service.title}
-              className="group overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="relative h-52 overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.alt}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
-              </div>
+          {services.map((service) => {
+            const cardContent = (
+              <>
+                <div className="relative h-52 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.alt}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+                </div>
 
-              <div className="p-6">
-                <h3 className="mb-3 text-xl font-semibold text-gray-900">
-                  {service.title}
-                </h3>
-                <p className="leading-relaxed text-gray-600">
-                  {service.description}
-                </p>
-              </div>
-            </article>
-          ))}
+                <div className="p-6">
+                  <h3 className="mb-3 text-xl font-semibold text-gray-900 transition group-hover:text-blue-600">
+                    {service.title}
+                  </h3>
+                  <p className="leading-relaxed text-gray-600">
+                    {service.description}
+                  </p>
+
+                  {service.link && (
+                    <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600">
+                      Learn more
+                      <span aria-hidden="true">→</span>
+                    </div>
+                  )}
+                </div>
+              </>
+            );
+
+            if (service.link) {
+              return (
+                <Link
+                  key={service.title}
+                  href={service.link}
+                  className="group overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  aria-label={`Learn more about ${service.title}`}
+                >
+                  {cardContent}
+                </Link>
+              );
+            }
+
+            return (
+              <article
+                key={service.title}
+                className="group overflow-hidden rounded-2xl bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                {cardContent}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
