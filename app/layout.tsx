@@ -20,60 +20,85 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/** ✅ Перенесли viewport в отдельный экспорт (чтобы не было warning в Next) */
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
 };
 
-/** ✅ Каноникал включён через alternates.canonical (наследуется всеми страницами, если не переопределено локально) */
 export const metadata: Metadata = {
-  title: "U-MOVEX - Top Rated Moving Company in Orlando, Florida",
+  metadataBase: new URL("https://u-movex.com"),
+  title: "Movers Orlando FL | U-MOVEX Moving Company",
   description:
-    "Affordable, licensed moving company in Orlando. U-MOVEX offers local and statewide moving, packing, loading & more. Get a free quote today!",
-  icons: { icon: "/favicon.ico" },
+    "Professional movers in Orlando, FL offering local and long-distance moving, packing, loading, and unloading services. Get a free quote from U-MOVEX today.",
   keywords: [
-    "Orlando movers",
-    "moving company Orlando",
-    "local moving",
-    "affordable movers",
-    "U-MOVEX Florida",
-    "professional moving services",
-    "packing help",
-    "best moving company Orlando",
+    "movers Orlando FL",
+    "Orlando moving company",
+    "local movers Orlando",
+    "moving company Orlando FL",
+    "apartment movers Orlando",
+    "office movers Orlando",
+    "packing services Orlando",
+    "loading and unloading Orlando",
+    "long distance movers Florida",
+    "U-MOVEX",
   ],
   authors: [{ name: "U-MOVEX", url: "https://u-movex.com" }],
-  metadataBase: new URL("https://u-movex.com"),
-  /** 👇 ВАЖНО: канонический URL. Благодаря metadataBase можно писать просто "/" */
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "U-MOVEX - Top Rated Moving Company in Orlando",
+    title: "Movers Orlando FL | U-MOVEX Moving Company",
     description:
-      "Trusted and affordable moving services in Orlando and across Florida. Book your move with U-MOVEX today!",
+      "Reliable movers in Orlando, FL for homes, apartments, and offices. Local and long-distance moving services with free quotes.",
     url: "https://u-movex.com",
     siteName: "U-MOVEX",
-    images: [{ url: "/favicon.ico", width: 48, height: 48, alt: "U-MOVEX Logo" }],
+    locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/favicon.ico",
+        width: 48,
+        height: 48,
+        alt: "U-MOVEX Logo",
+      },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "U-MOVEX - Moving Services in Orlando",
+    card: "summary",
+    title: "Movers Orlando FL | U-MOVEX Moving Company",
     description:
-      "Affordable, professional movers in Orlando. Licensed, insured & highly rated.",
+      "Reliable movers in Orlando, FL offering local and long-distance moving services.",
     images: ["/favicon.ico"],
   },
-  robots: { index: true, follow: true, nocache: false },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
-// ---- IDs из переменных окружения (Netlify) ----
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TK3RWLECG9";
 const ADS_ID = process.env.NEXT_PUBLIC_ADS_ID || "AW-17184627515";
 const ADS_CALL_LABEL = process.env.NEXT_PUBLIC_ADS_CALL_LABEL || "";
 const ADS_FORM_LABEL = process.env.NEXT_PUBLIC_ADS_FORM_LABEL || "";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -82,8 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}>
-        {/* gtag.js — один раз для GA4 и Google Ads */}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}
+      >
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
@@ -92,24 +118,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
             gtag('js', new Date());
 
-            // GA4
             gtag('config', '${GA_ID}');
 
-            // Google Ads (если указан ADS_ID)
             ${ADS_ID ? `gtag('config', '${ADS_ID}');` : ""}
           `}
         </Script>
 
-        {/* Отладка (можно удалить позже) */}
-        <Script id="debug" strategy="afterInteractive">
-          {`
-            console.log('[DEBUG] GA:', '${GA_ID}', 'ADS:', '${ADS_ID}', 'CALL_LABEL:', '${ADS_CALL_LABEL}', 'FORM_LABEL:', '${ADS_FORM_LABEL}');
-          `}
-        </Script>
-
-        {/* Трекинг кликов по телефону */}
         <Script id="call-tracking" strategy="afterInteractive">
           {`
             document.addEventListener('click', function (e) {
@@ -117,60 +134,48 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               if (!link) return;
 
               if (typeof window.gtag === 'function') {
-                // GA4
                 window.gtag('event', 'call_click', {
                   event_category: 'engagement',
                   event_label: 'Phone Call'
                 });
-                console.log('[GA4] call_click sent');
 
-                // Google Ads (если есть метка)
                 var adsId = '${ADS_ID}';
                 var label = '${ADS_CALL_LABEL}';
                 if (adsId && label) {
                   window.gtag('event', 'conversion', {
-                    'send_to': adsId + '/' + label,
-                    'value': 1.0,
-                    'currency': 'USD'
+                    send_to: adsId + '/' + label,
+                    value: 1.0,
+                    currency: 'USD'
                   });
-                  console.log('[ADS] call conversion sent to', adsId + '/' + label);
                 }
               }
             });
           `}
         </Script>
 
-        {/* Трекинг отправки формы */}
         <Script id="form-tracking" strategy="afterInteractive">
           {`
             document.addEventListener('submit', function (e) {
               var form = e.target;
               if (!form || !(form instanceof HTMLFormElement)) return;
 
-              // Можно ограничить отслеживание только целевых форм:
-              // if (!form.hasAttribute('data-ga-lead')) return;
-
               var formId = form.getAttribute('id') || '';
               var formName = form.getAttribute('name') || '';
 
               if (typeof window.gtag === 'function') {
-                // GA4
                 window.gtag('event', 'form_submit', {
                   form_id: formId,
                   form_name: formName
                 });
-                console.log('[GA4] form_submit sent', { formId, formName });
 
-                // Google Ads (если есть метка)
                 var adsId = '${ADS_ID}';
                 var label = '${ADS_FORM_LABEL}';
                 if (adsId && label) {
                   window.gtag('event', 'conversion', {
-                    'send_to': adsId + '/' + label,
-                    'value': 1.0,
-                    'currency': 'USD'
+                    send_to: adsId + '/' + label,
+                    value: 1.0,
+                    currency: 'USD'
                   });
-                  console.log('[ADS] form conversion sent to', adsId + '/' + label);
                 }
               }
             }, true);
