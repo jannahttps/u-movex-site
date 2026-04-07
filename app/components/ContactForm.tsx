@@ -6,101 +6,165 @@ import PromoTimer from "./PromoTimer";
 const SHOW_PROMO_TIMER = false;
 
 type FormState = {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  pickupAddress: string;
+  dropoffAddress: string;
+  movingDate: string;
+  bedrooms: string;
+  comments: string;
   prefPhone: boolean;
   prefEmail: boolean;
-  commentsLength: number;
   submitting: boolean;
   submitted: boolean;
-  error?: string;
-  phoneError?: string;
-  emailError?: string;
+  error: string;
+  phoneError: string;
+  emailError: string;
 };
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
+const initialState: FormState = {
+  fullName: "",
+  email: "",
+  phoneNumber: "",
+  pickupAddress: "",
+  dropoffAddress: "",
+  movingDate: "",
+  bedrooms: "",
+  comments: "",
+  prefPhone: true,
+  prefEmail: false,
+  submitting: false,
+  submitted: false,
+  error: "",
+  phoneError: "",
+  emailError: "",
+};
+
+function formatPhone(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 10);
+
+  if (digits.length === 0) return "";
+  if (digits.length < 4) return `(${digits}`;
+  if (digits.length < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 export default function ContactForm() {
-  const [s, setS] = useState<FormState>({
-    prefPhone: true,
-    prefEmail: false,
-    commentsLength: 0,
-    submitting: false,
-    submitted: false,
-  });
+  const [s, setS] = useState<FormState>(initialState);
 
-  const [phoneValue, setPhoneValue] = useState("");
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
 
-  function formatPhone(v: string) {
-    const d = v.replace(/\D/g, "").slice(0, 10);
-    const p1 = d.slice(0, 3);
-    const p2 = d.slice(3, 6);
-    const p3 = d.slice(6, 10);
-    if (d.length > 6) return `(${p1}) ${p2}-${p3}`;
-    if (d.length > 3) return `(${p1}) ${p2}`;
-    if (d.length > 0) return `(${p1}`;
-    return "";
-  }
+    if (name === "phoneNumber") {
+      setS((prev) => ({
+        ...prev,
+        phoneNumber: formatPhone(value),
+        phoneError: "",
+        error: "",
+      }));
+      return;
+    }
+
+    setS((prev) => ({
+      ...prev,
+      [name]: value,
+      error: "",
+      emailError: name === "email" ? "" : prev.emailError,
+    }));
+  };
+
+  const handleCheckboxChange = (name: "prefPhone" | "prefEmail") => {
+    setS((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+      error: "",
+    }));
+  };
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (s.submitting) return;
 
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-
-    const phoneDigits = phoneValue.replace(/\D/g, "");
-    const email = (fd.get("email") as string)?.trim();
+    const phoneDigits = s.phoneNumber.replace(/\D/g, "");
+    const email = s.email.trim();
 
     let phoneError = "";
     let emailError = "";
+    let generalError = "";
 
     if (!s.prefPhone && !s.prefEmail) {
-      setS((x) => ({ ...x, error: "Please select at least one preferred contact method." }));
-      return;
+      generalError = "Please select at least one preferred contact method.";
     }
+
     if (s.prefPhone && phoneDigits.length !== 10) {
-      phoneError = "Please enter a valid phone number (e.g. 407-639-6520).";
+      phoneError = "Please enter a valid phone number.";
     }
+
     if (s.prefEmail && (!email || !emailRegex.test(email))) {
-      emailError = "Please enter a valid email address (e.g. name@mail.com).";
+      emailError = "Please enter a valid email address.";
     }
-    if (phoneError || emailError) {
-      setS((x) => ({ ...x, phoneError, emailError, error: undefined }));
+
+    if (generalError || phoneError || emailError) {
+      setS((prev) => ({
+        ...prev,
+        error: generalError,
+        phoneError,
+        emailError,
+      }));
       return;
     }
 
-    fd.set("form-name", "contact");
-    fd.set("phoneNumber", phoneValue);
-    fd.set(
+    const formData = new URLSearchParams();
+    formData.append("form-name", "contact");
+    formData.append("fullName", s.fullName);
+    formData.append("email", s.email);
+    formData.append("phoneNumber", s.phoneNumber);
+    formData.append("pickupAddress", s.pickupAddress);
+    formData.append("dropoffAddress", s.dropoffAddress);
+    formData.append("movingDate", s.movingDate);
+    formData.append("bedrooms", s.bedrooms);
+    formData.append("comments", s.comments);
+    formData.append(
       "preferredContact",
-      [s.prefPhone && "phone", s.prefEmail && "email"].filter(Boolean).join(", ")
+      [s.prefPhone ? "phone" : "", s.prefEmail ? "email" : ""]
+        .filter(Boolean)
+        .join(", ")
     );
-
-    const body = new URLSearchParams();
-    for (const [k, v] of fd.entries()) body.append(k, String(v));
+    formData.append("bot-field", "");
 
     try {
-      setS((x) => ({
-        ...x,
+      setS((prev) => ({
+        ...prev,
         submitting: true,
-        error: undefined,
-        phoneError: undefined,
-        emailError: undefined,
+        error: "",
+        phoneError: "",
+        emailError: "",
       }));
 
-      const res = await fetch("/?no-cache=1", {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData.toString(),
       });
 
-      if (!res.ok) throw new Error("Netlify response not ok");
+      if (!res.ok) {
+        throw new Error("Form submission failed");
+      }
 
-      setS((x) => ({ ...x, submitted: true, submitting: false }));
-      form.reset();
-      setPhoneValue("");
+      setS({
+        ...initialState,
+        submitted: true,
+      });
     } catch {
-      setS((x) => ({
-        ...x,
+      setS((prev) => ({
+        ...prev,
         submitting: false,
         error: "Form submission failed. Please try again or call us directly.",
       }));
@@ -115,34 +179,54 @@ export default function ContactForm() {
     >
       {SHOW_PROMO_TIMER && <PromoTimer />}
 
-      <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 w-full max-w-2xl mx-auto">
-        
-        {/* Invisible Netlify form */}
+      <div className="mx-auto w-full max-w-2xl rounded-2xl bg-white p-4 shadow-2xl sm:p-6 md:p-8">
         <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="hidden" name="form-name" value="contact" />
           <input type="text" name="fullName" />
           <input type="email" name="email" />
           <input type="tel" name="phoneNumber" />
           <input type="text" name="pickupAddress" />
           <input type="text" name="dropoffAddress" />
           <input type="date" name="movingDate" />
-          <input type="text" name="bedrooms" />
-          <input type="text" name="preferredContact" />
+          <select name="bedrooms">
+            <option value="">Select</option>
+            <option value="Studio">Studio</option>
+            <option value="1 Bedroom">1 Bedroom</option>
+            <option value="2 Bedrooms">2 Bedrooms</option>
+            <option value="3 Bedrooms">3 Bedrooms</option>
+            <option value="4 Bedrooms">4 Bedrooms</option>
+            <option value="5+ Bedrooms">5+ Bedrooms</option>
+          </select>
           <textarea name="comments" />
-          <input name="bot-field" />
+          <input type="text" name="preferredContact" />
+          <input type="text" name="bot-field" />
         </form>
 
         {s.submitted ? (
-          <div className="text-center space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+          <div className="space-y-4 py-6 text-center">
+            <h2 className="text-2xl font-bold text-gray-800 sm:text-3xl">
               Thank you for your request!
             </h2>
             <p className="text-gray-700">
               We will get back to you as soon as possible today.
             </p>
+
+            <button
+              type="button"
+              onClick={() =>
+                setS({
+                  ...initialState,
+                  submitted: false,
+                })
+              }
+              className="rounded-xl bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700"
+            >
+              Send Another Request
+            </button>
           </div>
         ) : (
           <>
-            <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
+            <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 sm:text-3xl">
               Start your easy move today!
             </h2>
 
@@ -152,47 +236,172 @@ export default function ContactForm() {
               data-netlify="true"
               netlify-honeypot="bot-field"
               onSubmit={onSubmit}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+              className="grid grid-cols-1 gap-4 md:grid-cols-2"
             >
               <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" value="" />
 
-              <input type="text" name="fullName" placeholder="Full Name" required className="px-4 py-3 border rounded-xl" />
+              <div className="md:col-span-2">
+                <input
+                  type="text"
+                  name="fullName"
+                  placeholder="Full Name"
+                  required
+                  value={s.fullName}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                />
+              </div>
 
-              <input type="email" name="email" placeholder="Email Address" className="px-4 py-3 border rounded-xl" />
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={s.email}
+                  onChange={handleChange}
+                  className={`w-full rounded-xl border px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 ${
+                    s.emailError ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {s.emailError && (
+                  <p className="mt-1 text-sm text-red-600">{s.emailError}</p>
+                )}
+              </div>
 
-              <input type="tel" name="phoneNumber" placeholder="(407) 639-6520" className="px-4 py-3 border rounded-xl" />
+              <div>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  placeholder="(407) 639-6520"
+                  value={s.phoneNumber}
+                  onChange={handleChange}
+                  inputMode="tel"
+                  autoComplete="tel"
+                  className={`w-full rounded-xl border px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 ${
+                    s.phoneError ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {s.phoneError && (
+                  <p className="mt-1 text-sm text-red-600">{s.phoneError}</p>
+                )}
+              </div>
 
-              <input type="text" name="pickupAddress" placeholder="Pick-Up Address" required className="md:col-span-2 px-4 py-3 border rounded-xl" />
+              <div className="md:col-span-2">
+                <input
+                  type="text"
+                  name="pickupAddress"
+                  placeholder="Pick-Up Address"
+                  required
+                  value={s.pickupAddress}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                />
+              </div>
 
-              <input type="text" name="dropoffAddress" placeholder="Drop-Off Address" required className="md:col-span-2 px-4 py-3 border rounded-xl" />
+              <div className="md:col-span-2">
+                <input
+                  type="text"
+                  name="dropoffAddress"
+                  placeholder="Drop-Off Address"
+                  required
+                  value={s.dropoffAddress}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                />
+              </div>
 
-              {/* Moving Date */}
               <label className="relative md:col-span-2">
-                <span className="text-sm text-gray-600 mb-1 block">
+                <span className="mb-1 block text-sm font-medium text-gray-600">
                   Preferred Moving Date
                 </span>
                 <input
                   type="date"
                   name="movingDate"
                   required
-                  className="w-full px-4 py-3 pr-10 border rounded-xl appearance-none"
+                  value={s.movingDate}
+                  onChange={handleChange}
+                  className="w-full min-h-[52px] rounded-xl border border-gray-300 bg-white px-4 py-3 pr-12 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
-                <span className="absolute right-3 top-[42px] text-gray-400">📅</span>
+                <span className="pointer-events-none absolute right-4 top-[42px] text-gray-400">
+                  📅
+                </span>
               </label>
 
-              {/* Bedrooms */}
-              <input
-                type="text"
-                name="bedrooms"
-                placeholder="Bedrooms (1, 2, 3...)"
-                required
-                className="px-4 py-3 border rounded-xl"
-              />
+              <div className="md:col-span-2">
+                <label className="mb-1 block text-sm font-medium text-gray-600">
+                  Home Size
+                </label>
+                <select
+                  name="bedrooms"
+                  required
+                  value={s.bedrooms}
+                  onChange={handleChange}
+                  className="w-full min-h-[52px] rounded-xl border border-gray-300 bg-white px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                >
+                  <option value="" disabled>
+                    Select home size
+                  </option>
+                  <option value="Studio">Studio</option>
+                  <option value="1 Bedroom">1 Bedroom</option>
+                  <option value="2 Bedrooms">2 Bedrooms</option>
+                  <option value="3 Bedrooms">3 Bedrooms</option>
+                  <option value="4 Bedrooms">4 Bedrooms</option>
+                  <option value="5+ Bedrooms">5+ Bedrooms</option>
+                </select>
+              </div>
 
-              <textarea name="comments" placeholder="Comments" className="md:col-span-2 px-4 py-3 border rounded-xl" />
+              <div className="md:col-span-2">
+                <textarea
+                  name="comments"
+                  placeholder="Comments"
+                  rows={4}
+                  value={s.comments}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-base outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                />
+              </div>
 
-              <button type="submit" className="md:col-span-2 bg-blue-600 text-white py-4 rounded-xl">
-                Get Free Quote
+              <div className="md:col-span-2 rounded-xl border border-gray-200 p-4">
+                <p className="mb-3 font-medium text-gray-800">
+                  Preferred Contact Method
+                </p>
+
+                <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
+                  <label className="flex items-center gap-2 text-gray-700">
+                    <input
+                      type="checkbox"
+                      checked={s.prefPhone}
+                      onChange={() => handleCheckboxChange("prefPhone")}
+                      className="h-4 w-4"
+                    />
+                    <span>Phone</span>
+                  </label>
+
+                  <label className="flex items-center gap-2 text-gray-700">
+                    <input
+                      type="checkbox"
+                      checked={s.prefEmail}
+                      onChange={() => handleCheckboxChange("prefEmail")}
+                      className="h-4 w-4"
+                    />
+                    <span>Email</span>
+                  </label>
+                </div>
+              </div>
+
+              {s.error && (
+                <div className="md:col-span-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {s.error}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={s.submitting}
+                className="md:col-span-2 rounded-xl bg-blue-600 py-4 text-base font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {s.submitting ? "Sending..." : "Get Free Quote"}
               </button>
             </form>
           </>
