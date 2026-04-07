@@ -28,12 +28,24 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
   const isSolid = dark || scrolled;
 
   const shell = isSolid
-    ? 'border-b border-slate-200/80 bg-white/92 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
+    ? 'border-b border-slate-200/80 bg-white/95 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
     : 'bg-transparent';
 
-  const brandText = isSolid ? 'text-slate-900' : 'text-white';
-  const brandSubtext = isSolid ? 'text-slate-500' : 'text-white/75';
   const navText = isSolid ? 'text-slate-700' : 'text-white';
+
+  const desktopPhoneShell = isSolid
+    ? 'border-slate-200 bg-white text-slate-900 shadow-sm'
+    : 'border-white/20 bg-white/10 text-white backdrop-blur-md';
+
+  const desktopPhoneSub = isSolid ? 'text-slate-500' : 'text-white/70';
+
+  const logoShell = isSolid
+    ? 'bg-white/90 border-slate-200/80 shadow-sm'
+    : 'bg-slate-950/25 border-white/10 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.18)]';
+
+  const logoImageClass = isSolid
+    ? 'opacity-100'
+    : 'opacity-95';
 
   return (
     <>
@@ -43,29 +55,18 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="min-w-0 flex items-center gap-3"
+            className="min-w-0 flex items-center"
             aria-label="Go to U-MOVEX homepage"
             onClick={() => setOpen(false)}
           >
-            <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-lg backdrop-blur-md sm:h-14 sm:w-14">
+            <div
+              className={`flex items-center rounded-2xl border px-3 py-2 transition-all duration-300 sm:px-4 sm:py-2.5 ${logoShell}`}
+            >
               <img
-                src="/videos/logo.png"
-                alt="U-MOVEX logo"
-                className="h-10 w-10 object-contain sm:h-11 sm:w-11"
+                src="/logo-clean.png"
+                alt="U-MOVEX Orlando Movers"
+                className={`block h-9 w-auto object-contain transition-all duration-300 sm:h-10 lg:h-11 ${logoImageClass}`}
               />
-            </div>
-
-            <div className="min-w-0 leading-tight">
-              <div
-                className={`truncate text-lg font-bold tracking-[0.08em] sm:text-xl ${brandText}`}
-              >
-                U-MOVEX
-              </div>
-              <div
-                className={`truncate text-[10px] font-semibold uppercase tracking-[0.28em] sm:text-[11px] ${brandSubtext}`}
-              >
-                Orlando Movers
-              </div>
             </div>
           </Link>
 
@@ -123,6 +124,34 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="tel:+14076396520"
+              aria-label="Call U-MOVEX at +1 (407) 639-6520"
+              className={`hidden xl:flex min-w-[220px] items-center gap-3 rounded-2xl border px-4 py-2.5 transition hover:-translate-y-0.5 hover:shadow-md ${desktopPhoneShell}`}
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
+                <i className="ri-phone-fill text-base" aria-hidden="true"></i>
+              </div>
+              <div className="leading-tight">
+                <div
+                  className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${desktopPhoneSub}`}
+                >
+                  Call us now
+                </div>
+                <div className="text-base font-bold tracking-[0.02em]">
+                  +1 (407) 639-6520
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="tel:+14076396520"
+              aria-label="Call U-MOVEX at +1 (407) 639-6520"
+              className={`hidden lg:inline-flex xl:hidden h-11 items-center justify-center rounded-2xl border px-4 text-sm font-bold transition hover:-translate-y-0.5 hover:shadow-md ${desktopPhoneShell}`}
+            >
+              +1 (407) 639-6520
+            </a>
+
+            <a
+              href="tel:+14076396520"
               aria-label="Call U-MOVEX now"
               className="group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-2xl border border-blue-400/30 bg-gradient-to-r from-blue-600 via-blue-600 to-blue-500 px-4 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,99,235,0.35)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(37,99,235,0.42)] sm:h-12 sm:px-5"
             >
@@ -175,24 +204,15 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
         <div className="mb-8 flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-3"
+            className="flex items-center"
             onClick={() => setOpen(false)}
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50">
+            <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
               <img
-                src="/videos/logo.png"
-                alt="U-MOVEX logo"
-                className="h-9 w-9 object-contain"
+                src="/logo-clean.png"
+                alt="U-MOVEX Orlando Movers"
+                className="block h-9 w-auto object-contain"
               />
-            </div>
-
-            <div className="leading-tight">
-              <div className="text-lg font-bold tracking-[0.08em] text-slate-900">
-                U-MOVEX
-              </div>
-              <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">
-                Orlando Movers
-              </div>
             </div>
           </Link>
 
@@ -275,6 +295,13 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
           >
             <i className="ri-phone-fill mr-2 text-base" aria-hidden="true"></i>
             Call Now
+          </a>
+
+          <a
+            href="tel:+14076396520"
+            className="flex items-center justify-center rounded-2xl border border-slate-200 px-4 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
+          >
+            +1 (407) 639-6520
           </a>
 
           <Link
