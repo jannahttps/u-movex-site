@@ -49,17 +49,17 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             onClick={() => setOpen(false)}
           >
             <Link href="/" className="flex items-center gap-3">
-  
-  {/* LOGO IMAGE */}
+
+  {/* LOGO */}
   <img
     src="/logo-clean.png"
     alt="U-MOVEX Moving Company"
     className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
   />
 
-  {/* TEXT BLOCK */}
-  <div className="leading-tight">
-    <div className="text-[11px] sm:text-xs tracking-[0.25em] text-gray-500 uppercase">
+  {/* TEXT */}
+  <div className="leading-tight hidden sm:block">
+    <div className="text-[11px] tracking-[0.3em] uppercase text-white/70">
       Orlando Movers
     </div>
   </div>
