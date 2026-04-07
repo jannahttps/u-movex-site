@@ -1,54 +1,57 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import SiteHeader from '../components/SiteHeader';
 
 export const metadata: Metadata = {
-  title: "Local Movers Orlando, FL | U-MOVEX Moving Company",
+  title: 'Local Movers Orlando, FL | U-MOVEX Moving Company',
   description:
-    "Looking for local movers in Orlando, FL? U-MOVEX provides reliable residential, apartment, and office moving services with packing, loading, and careful handling.",
+    'Looking for local movers in Orlando, FL? U-MOVEX provides reliable residential, apartment, and office moving services with packing, loading, and careful handling.',
   alternates: {
-    canonical: "/local-movers-orlando",
+    canonical: '/local-movers-orlando',
   },
 };
 
 const serviceHighlights = [
-  "Apartment and house moves",
-  "Office and small business relocation",
-  "Packing and unpacking services",
-  "Loading and unloading help",
-  "Careful furniture protection",
-  "Fast quotes and flexible scheduling",
+  'Apartment and house moves',
+  'Office and small business relocation',
+  'Packing and unpacking services',
+  'Loading and unloading help',
+  'Careful furniture protection',
+  'Fast quotes and flexible scheduling',
 ];
 
 const serviceAreas = [
-  "Orlando",
-  "Winter Park",
-  "Kissimmee",
-  "Altamonte Springs",
-  "Lake Nona",
-  "Oviedo",
-  "Apopka",
-  "Central Florida",
+  'Orlando',
+  'Winter Park',
+  'Kissimmee',
+  'Altamonte Springs',
+  'Lake Nona',
+  'Oviedo',
+  'Apopka',
+  'Central Florida',
 ];
 
 const reasons = [
   {
-    title: "Clear communication",
-    text: "We keep the moving process simple with fast quotes, scheduling support, and responsive communication.",
+    title: 'Clear communication',
+    text: 'We keep the moving process simple with fast quotes, scheduling support, and responsive communication.',
   },
   {
-    title: "Careful handling",
-    text: "Furniture, boxes, and fragile items are moved with attention, padding, and practical protection.",
+    title: 'Careful handling',
+    text: 'Furniture, boxes, and fragile items are moved with attention, padding, and practical protection.',
   },
   {
-    title: "Reliable service",
-    text: "We focus on showing up on time, working efficiently, and helping your move feel organized from start to finish.",
+    title: 'Reliable service',
+    text: 'We focus on showing up on time, working efficiently, and helping your move feel organized from start to finish.',
   },
 ];
 
 export default function LocalMoversOrlandoPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-20">
+      <SiteHeader dark />
+
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 px-4 pb-16 pt-28 text-white sm:px-6 lg:px-8 lg:pb-20 lg:pt-32">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute -left-16 top-10 h-40 w-40 rounded-full bg-blue-400 blur-3xl"></div>
           <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-cyan-400 blur-3xl"></div>
