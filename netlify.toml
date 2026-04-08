@@ -1,24 +1,33 @@
-# Redirect old domain to new primary domain
+# Редирект со старого домена на новый
 [[redirects]]
-  from = "https://u-movex.com/*"
+  from = "u-movex.com/*"
   to = "https://umovex.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://www.u-movex.com/*"
+  from = "www.u-movex.com/*"
+  to = "https://umovex.com/:splat"
+  status = 301
+  force = true
+
+
+# HTTP → HTTPS (для нового домена)
+[[redirects]]
+  from = "http://umovex.com/*"
   to = "https://umovex.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://u-movex.com/*"
+  from = "http://www.umovex.com/*"
   to = "https://umovex.com/:splat"
   status = 301
   force = true
 
+
+# SPA (ОБЯЗАТЕЛЬНО в конце)
 [[redirects]]
-  from = "http://www.u-movex.com/*"
-  to = "https://umovex.com/:splat"
-  status = 301
-  force = true
+  from = "/*"
+  to = "/index.html"
+  status = 200
