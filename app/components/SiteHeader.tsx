@@ -3,7 +3,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-export default function SiteHeader() {
+type SiteHeaderProps = {
+  dark?: boolean;
+};
+
+export default function SiteHeader({ dark = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -14,32 +18,16 @@ export default function SiteHeader() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const isSolid = scrolled;
-
-  const headerClasses = isSolid
-    ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm'
-    : 'bg-transparent';
-
-  const navTextClasses = isSolid
-    ? 'text-gray-700 hover:text-blue-600'
-    : 'text-white hover:text-blue-200';
-
-  const desktopPhoneClasses = isSolid
-    ? 'bg-blue-600 text-white hover:bg-blue-700'
-    : 'bg-white text-slate-900 hover:bg-slate-100';
-
-  const estimateClasses = isSolid
-    ? 'border-gray-300 text-gray-800 hover:bg-gray-50'
-    : 'border-white/30 text-white hover:bg-white/10';
-
-  const burgerClasses = isSolid
-    ? 'border-gray-300 text-slate-900 bg-white'
-    : 'border-white/25 text-white bg-white/10 backdrop-blur-sm';
+  const isSolid = dark || scrolled;
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClasses}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isSolid
+            ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm'
+            : 'bg-transparent'
+        }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
           <Link href="/" className="flex items-center min-w-0">
@@ -70,37 +58,49 @@ export default function SiteHeader() {
           <nav className="hidden lg:flex items-center gap-6">
             <Link
               href="/#services"
-              className={`text-sm font-semibold transition ${navTextClasses}`}
+              className={`text-sm font-semibold transition ${
+                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+              }`}
             >
               Services
             </Link>
             <Link
               href="/#reviews"
-              className={`text-sm font-semibold transition ${navTextClasses}`}
+              className={`text-sm font-semibold transition ${
+                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+              }`}
             >
               Reviews
             </Link>
             <Link
               href="/local-movers-orlando"
-              className={`text-sm font-semibold transition ${navTextClasses}`}
+              className={`text-sm font-semibold transition ${
+                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+              }`}
             >
               Local
             </Link>
             <Link
               href="/apartment-movers-orlando"
-              className={`text-sm font-semibold transition ${navTextClasses}`}
+              className={`text-sm font-semibold transition ${
+                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+              }`}
             >
               Apartment
             </Link>
             <Link
               href="/office-movers-orlando"
-              className={`text-sm font-semibold transition ${navTextClasses}`}
+              className={`text-sm font-semibold transition ${
+                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+              }`}
             >
               Office
             </Link>
             <Link
               href="/packing-services-orlando"
-              className={`text-sm font-semibold transition ${navTextClasses}`}
+              className={`text-sm font-semibold transition ${
+                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+              }`}
             >
               Packing
             </Link>
@@ -109,15 +109,23 @@ export default function SiteHeader() {
           <div className="flex items-center gap-3">
             <a
               href="tel:+14076396520"
-              className={`hidden lg:flex items-center gap-2 px-6 py-3 rounded-2xl text-lg xl:text-xl font-bold shadow-md transition ${desktopPhoneClasses}`}
+              className={`hidden lg:flex items-center gap-2 px-5 py-3 rounded-xl text-lg font-bold shadow-md transition ${
+                isSolid
+                  ? 'bg-blue-600 text-white hover:bg-blue-700'
+                  : 'bg-white text-slate-900 hover:bg-slate-100'
+              }`}
             >
-              <i className="ri-phone-fill text-lg xl:text-xl" aria-hidden="true"></i>
+              <i className="ri-phone-fill text-lg" aria-hidden="true"></i>
               +1 (407) 639-6520
             </a>
 
             <Link
               href="/#quote"
-              className={`hidden lg:flex items-center px-4 py-2.5 rounded-xl border text-sm font-semibold transition ${estimateClasses}`}
+              className={`hidden lg:flex items-center px-4 py-2.5 rounded-xl border text-sm font-semibold transition ${
+                isSolid
+                  ? 'border-gray-300 text-gray-800 hover:bg-gray-50'
+                  : 'border-white/30 text-white hover:bg-white/10'
+              }`}
             >
               Get Estimate
             </Link>
@@ -133,9 +141,16 @@ export default function SiteHeader() {
             <button
               onClick={() => setOpen(!open)}
               aria-label={open ? 'Close menu' : 'Open menu'}
-              className={`lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center transition ${burgerClasses}`}
+              className={`lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center transition ${
+                isSolid
+                  ? 'border-gray-300 text-slate-900 bg-white'
+                  : 'border-white/25 text-white bg-white/10 backdrop-blur-sm'
+              }`}
             >
-              <i className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-xl`} aria-hidden="true"></i>
+              <i
+                className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-xl`}
+                aria-hidden="true"
+              ></i>
             </button>
           </div>
         </div>
