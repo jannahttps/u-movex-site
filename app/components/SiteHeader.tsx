@@ -18,114 +18,100 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   const isSolid = dark || scrolled;
+
+  const headerClasses = isSolid
+    ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm'
+    : 'bg-transparent';
+
+  const navTextClasses = isSolid
+    ? 'text-gray-700 hover:text-blue-600'
+    : 'text-white hover:text-blue-200';
+
+  const desktopPhoneClasses = isSolid
+    ? 'bg-blue-600 text-white hover:bg-blue-700'
+    : 'bg-white text-slate-900 hover:bg-slate-100';
+
+  const estimateClasses = isSolid
+    ? 'border-gray-300 text-gray-800 hover:bg-gray-50'
+    : 'border-white/30 text-white hover:bg-white/10';
+
+  const burgerClasses = isSolid
+    ? 'border-gray-300 text-slate-900 bg-white'
+    : 'border-white/25 text-white bg-white/10 backdrop-blur-sm';
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isSolid
-            ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm'
-            : 'bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClasses}`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
-          <Link href="/" className="flex items-center min-w-0">
-            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-              <img
-                src="/logo.png"
-                alt="U-MOVEX Orlando Movers"
-                className="h-16 sm:h-20 lg:h-24 xl:h-28 w-auto object-contain shrink-0"
-              />
-
-              <div className="hidden sm:flex flex-col justify-center min-w-0">
-                <div
-                  className={`text-[10px] sm:text-[11px] lg:text-xs uppercase tracking-[0.32em] font-semibold ${
-                    isSolid ? 'text-slate-500' : 'text-white/75'
-                  }`}
-                >
-                  Orlando Movers
-                </div>
-                <div
-                  className={`mt-1 h-[2px] w-10 rounded-full ${
-                    isSolid ? 'bg-blue-500/80' : 'bg-white/70'
-                  }`}
-                />
-              </div>
-            </div>
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3">
+          <Link href="/" className="flex items-center min-w-0 shrink-0">
+            <img
+              src="/logo.png"
+              alt="U-MOVEX Orlando Movers"
+              className="h-10 sm:h-11 lg:h-14 xl:h-16 w-auto max-w-[210px] sm:max-w-[260px] lg:max-w-[360px] xl:max-w-[420px] object-contain"
+            />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 min-w-0">
             <Link
               href="/#services"
-              className={`text-sm font-semibold transition ${
-                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-              }`}
+              className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}
             >
               Services
             </Link>
             <Link
               href="/#reviews"
-              className={`text-sm font-semibold transition ${
-                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-              }`}
+              className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}
             >
               Reviews
             </Link>
             <Link
               href="/local-movers-orlando"
-              className={`text-sm font-semibold transition ${
-                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-              }`}
+              className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}
             >
               Local
             </Link>
             <Link
               href="/apartment-movers-orlando"
-              className={`text-sm font-semibold transition ${
-                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-              }`}
+              className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}
             >
               Apartment
             </Link>
             <Link
               href="/office-movers-orlando"
-              className={`text-sm font-semibold transition ${
-                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-              }`}
+              className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}
             >
               Office
             </Link>
             <Link
               href="/packing-services-orlando"
-              className={`text-sm font-semibold transition ${
-                isSolid ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-              }`}
+              className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}
             >
               Packing
             </Link>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <a
               href="tel:+14076396520"
-              className={`hidden lg:flex items-center gap-2 px-5 py-3 rounded-xl text-lg font-bold shadow-md transition ${
-                isSolid
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-white text-slate-900 hover:bg-slate-100'
-              }`}
+              className={`hidden lg:flex items-center gap-2 px-4 xl:px-5 py-2.5 rounded-xl text-base xl:text-lg font-bold shadow-md transition whitespace-nowrap ${desktopPhoneClasses}`}
             >
-              <i className="ri-phone-fill text-lg" aria-hidden="true"></i>
+              <i className="ri-phone-fill text-base xl:text-lg" aria-hidden="true"></i>
               +1 (407) 639-6520
             </a>
 
             <Link
               href="/#quote"
-              className={`hidden lg:flex items-center px-4 py-2.5 rounded-xl border text-sm font-semibold transition ${
-                isSolid
-                  ? 'border-gray-300 text-gray-800 hover:bg-gray-50'
-                  : 'border-white/30 text-white hover:bg-white/10'
-              }`}
+              className={`hidden lg:flex items-center px-4 py-2.5 rounded-xl border text-sm font-semibold transition whitespace-nowrap ${estimateClasses}`}
             >
               Get Estimate
             </Link>
@@ -141,11 +127,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             <button
               onClick={() => setOpen(!open)}
               aria-label={open ? 'Close menu' : 'Open menu'}
-              className={`lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center transition ${
-                isSolid
-                  ? 'border-gray-300 text-slate-900 bg-white'
-                  : 'border-white/25 text-white bg-white/10 backdrop-blur-sm'
-              }`}
+              className={`lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center transition ${burgerClasses}`}
             >
               <i
                 className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-xl`}
@@ -170,37 +152,53 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
       >
         <div className="p-6 space-y-4">
           <Link href="/" onClick={() => setOpen(false)} className="block">
-            <div className="flex items-center gap-3 mb-6">
-              <img
-                src="/logo.png"
-                alt="U-MOVEX Orlando Movers"
-                className="h-14 w-auto object-contain"
-              />
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-slate-500">
-                  Orlando Movers
-                </span>
-                <span className="mt-1 h-[2px] w-8 rounded-full bg-blue-500/80"></span>
-              </div>
-            </div>
+            <img
+              src="/logo.png"
+              alt="U-MOVEX Orlando Movers"
+              className="h-12 w-auto max-w-[250px] object-contain mb-6"
+            />
           </Link>
 
-          <Link href="/#services" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
+          <Link
+            href="/#services"
+            onClick={() => setOpen(false)}
+            className="block font-semibold text-slate-900"
+          >
             Services
           </Link>
-          <Link href="/#reviews" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
+          <Link
+            href="/#reviews"
+            onClick={() => setOpen(false)}
+            className="block font-semibold text-slate-900"
+          >
             Reviews
           </Link>
-          <Link href="/local-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
+          <Link
+            href="/local-movers-orlando"
+            onClick={() => setOpen(false)}
+            className="block font-semibold text-slate-900"
+          >
             Local Movers
           </Link>
-          <Link href="/apartment-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
+          <Link
+            href="/apartment-movers-orlando"
+            onClick={() => setOpen(false)}
+            className="block font-semibold text-slate-900"
+          >
             Apartment Movers
           </Link>
-          <Link href="/office-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
+          <Link
+            href="/office-movers-orlando"
+            onClick={() => setOpen(false)}
+            className="block font-semibold text-slate-900"
+          >
             Office Movers
           </Link>
-          <Link href="/packing-services-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
+          <Link
+            href="/packing-services-orlando"
+            onClick={() => setOpen(false)}
+            className="block font-semibold text-slate-900"
+          >
             Packing
           </Link>
 
