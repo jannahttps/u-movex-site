@@ -26,36 +26,38 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://u-movex.com"),
-  title: "Movers Orlando FL | U-MOVEX Moving Company",
+  metadataBase: new URL("https://umovex.com"),
+  title: "Orlando Movers | Apartment & Home Moving | U-MOVEX",
   description:
-    "Professional movers in Orlando, FL offering local moving, packing, loading, and unloading services. Get a free quote from U-MOVEX today.",
+    "Trusted local movers in Orlando, FL. U-MOVEX specializes in apartment, home, and residential moving, with office moving services also available. Packing, loading, and unloading with fast quotes and no hidden fees.",
   keywords: [
-    "movers Orlando FL",
-    "Orlando moving company",
+    "Orlando movers",
+    "movers in Orlando FL",
     "local movers Orlando",
-    "moving company Orlando FL",
+    "local moving company Orlando",
     "apartment movers Orlando",
+    "home movers Orlando",
+    "residential movers Orlando",
     "office movers Orlando",
     "packing services Orlando",
     "loading and unloading Orlando",
-    "movers in Orlando",
+    "moving company Orlando FL",
     "U-MOVEX",
   ],
-  authors: [{ name: "U-MOVEX", url: "https://u-movex.com" }],
+  authors: [{ name: "U-MOVEX", url: "https://umovex.com" }],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://umovex.com/",
   },
   openGraph: {
-    title: "Movers Orlando FL | U-MOVEX Moving Company",
+    title: "Orlando Movers | Apartment & Home Moving | U-MOVEX",
     description:
-      "Reliable movers in Orlando, FL for homes, apartments, and offices. Local moving services with free quotes.",
-    url: "https://u-movex.com",
+      "Reliable local movers in Orlando, FL for apartments, homes, and residential moves. Office moving, packing, loading, and unloading also available.",
+    url: "https://umovex.com",
     siteName: "U-MOVEX",
     locale: "en_US",
     type: "website",
@@ -70,9 +72,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Movers Orlando FL | U-MOVEX Moving Company",
+    title: "Orlando Movers | Apartment & Home Moving | U-MOVEX",
     description:
-      "Reliable movers in Orlando, FL offering local moving services.",
+      "Trusted local movers in Orlando, FL for apartments, homes, and residential moves.",
     images: ["/favicon.ico"],
   },
   robots: {
@@ -96,9 +98,9 @@ const ADS_FORM_LABEL = process.env.NEXT_PUBLIC_ADS_FORM_LABEL || "";
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
