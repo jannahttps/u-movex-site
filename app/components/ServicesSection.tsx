@@ -40,7 +40,7 @@ export default function ServicesSection() {
       title: 'Office Movers in Orlando, FL',
       description:
         'Organized office moving services in Orlando for desks, workstations, boxes, and business relocation with flexible scheduling.',
-      image: '/office-movers-orlando.png',
+      image: '/office-movers-orlando.webp',
       alt: 'Office moving services in Orlando',
       link: '/office-movers-orlando',
     },
