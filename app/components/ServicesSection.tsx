@@ -16,7 +16,7 @@ export default function ServicesSection() {
       title: 'Local Movers in Orlando, FL',
       description:
         'Reliable local movers in Orlando for apartments, homes, and offices. Fast quotes, careful handling, and professional service.',
-      image: '/img1.jpg',
+      image: '/local-movers-orlando.webp',
       alt: 'Local movers in Orlando loading a moving truck',
       link: '/local-movers-orlando',
     },
