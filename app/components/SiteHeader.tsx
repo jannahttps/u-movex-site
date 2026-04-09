@@ -63,7 +63,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             aria-label="U-MOVEX home"
           >
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="U-MOVEX Orlando Movers"
               className={`w-auto object-contain shrink-0 transition-all duration-300 h-12 sm:h-14 md:h-16 lg:h-[72px] xl:h-[78px] max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[390px] xl:max-w-[430px] ${logoClasses}`}
             />
