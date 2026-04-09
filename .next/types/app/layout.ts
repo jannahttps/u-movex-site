@@ -1,4 +1,4 @@
-// File: C:\Users\Jeanne\Desktop\u-movex-site\app\layout.tsx
+// File: C:\Users\pavle\umovex-new\u-movex-site\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

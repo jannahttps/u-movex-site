@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Phone, Menu, X } from 'lucide-react';
 
 type SiteHeaderProps = {
   dark?: boolean;
@@ -70,40 +71,22 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-5 xl:gap-6 min-w-0">
-            <Link
-              href="/#services"
-              className={`text-sm font-semibold tracking-[0.01em] transition whitespace-nowrap ${navTextClasses}`}
-            >
+            <Link href="/#services" className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}>
               Services
             </Link>
-            <Link
-              href="/#reviews"
-              className={`text-sm font-semibold tracking-[0.01em] transition whitespace-nowrap ${navTextClasses}`}
-            >
+            <Link href="/#reviews" className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}>
               Reviews
             </Link>
-            <Link
-              href="/local-movers-orlando"
-              className={`text-sm font-semibold tracking-[0.01em] transition whitespace-nowrap ${navTextClasses}`}
-            >
+            <Link href="/local-movers-orlando" className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}>
               Local
             </Link>
-            <Link
-              href="/apartment-movers-orlando"
-              className={`text-sm font-semibold tracking-[0.01em] transition whitespace-nowrap ${navTextClasses}`}
-            >
+            <Link href="/apartment-movers-orlando" className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}>
               Apartment
             </Link>
-            <Link
-              href="/office-movers-orlando"
-              className={`text-sm font-semibold tracking-[0.01em] transition whitespace-nowrap ${navTextClasses}`}
-            >
+            <Link href="/office-movers-orlando" className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}>
               Office
             </Link>
-            <Link
-              href="/packing-services-orlando"
-              className={`text-sm font-semibold tracking-[0.01em] transition whitespace-nowrap ${navTextClasses}`}
-            >
+            <Link href="/packing-services-orlando" className={`text-sm font-semibold transition whitespace-nowrap ${navTextClasses}`}>
               Packing
             </Link>
           </nav>
@@ -114,7 +97,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
               className={`hidden lg:flex items-center gap-2.5 px-4 xl:px-5 py-2.5 rounded-2xl text-base xl:text-lg font-bold transition whitespace-nowrap ${desktopPhoneClasses}`}
               aria-label="Call U-MOVEX at +1 (407) 639-6520"
             >
-              <i className="ri-phone-fill text-base xl:text-lg" aria-hidden="true"></i>
+              <Phone className="w-5 h-5" />
               +1 (407) 639-6520
             </a>
 
@@ -130,7 +113,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
               className="lg:hidden bg-blue-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 shadow-[0_10px_24px_rgba(37,99,235,0.28)] hover:bg-blue-700 transition"
               aria-label="Call U-MOVEX now"
             >
-              <i className="ri-phone-fill" aria-hidden="true"></i>
+              <Phone className="w-4 h-4" />
               Call Now
             </a>
 
@@ -139,10 +122,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
               aria-label={open ? 'Close menu' : 'Open menu'}
               className={`lg:hidden w-11 h-11 rounded-xl border flex items-center justify-center transition ${burgerClasses}`}
             >
-              <i
-                className={`${open ? 'ri-close-line' : 'ri-menu-line'} text-xl`}
-                aria-hidden="true"
-              ></i>
+              {open ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -169,46 +149,22 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             />
           </Link>
 
-          <Link
-            href="/#services"
-            onClick={() => setOpen(false)}
-            className="block font-semibold text-slate-900"
-          >
+          <Link href="/#services" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
             Services
           </Link>
-          <Link
-            href="/#reviews"
-            onClick={() => setOpen(false)}
-            className="block font-semibold text-slate-900"
-          >
+          <Link href="/#reviews" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
             Reviews
           </Link>
-          <Link
-            href="/local-movers-orlando"
-            onClick={() => setOpen(false)}
-            className="block font-semibold text-slate-900"
-          >
+          <Link href="/local-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
             Local Movers
           </Link>
-          <Link
-            href="/apartment-movers-orlando"
-            onClick={() => setOpen(false)}
-            className="block font-semibold text-slate-900"
-          >
+          <Link href="/apartment-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
             Apartment Movers
           </Link>
-          <Link
-            href="/office-movers-orlando"
-            onClick={() => setOpen(false)}
-            className="block font-semibold text-slate-900"
-          >
+          <Link href="/office-movers-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
             Office Movers
           </Link>
-          <Link
-            href="/packing-services-orlando"
-            onClick={() => setOpen(false)}
-            className="block font-semibold text-slate-900"
-          >
+          <Link href="/packing-services-orlando" onClick={() => setOpen(false)} className="block font-semibold text-slate-900">
             Packing
           </Link>
 

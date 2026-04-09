@@ -1,11 +1,20 @@
 'use client';
 
+import {
+  DollarSign,
+  ShieldCheck,
+  Users,
+  Home,
+  Headphones,
+  CalendarCheck,
+} from 'lucide-react';
+
 type BenefitItem = {
   title: string;
   description: string;
   image: string;
   alt: string;
-  icon: string;
+  icon: React.ReactNode;
 };
 
 export default function WhyChooseUsSection() {
@@ -17,7 +26,7 @@ export default function WhyChooseUsSection() {
       image:
         'https://readdy.ai/api/search-image?query=Transparent%20pricing%20document%20with%20clear%20itemized%20costs%20and%20no%20hidden%20fees%20concept%2C%20clean%20professional%20financial%20transparency%20illustration&width=400&height=300&seq=benefit1&orientation=landscape',
       alt: 'Transparent moving pricing with clear itemized costs',
-      icon: 'ri-money-dollar-circle-line',
+      icon: <DollarSign size={22} />,
     },
     {
       title: 'Licensed, Insured, and Professional',
@@ -26,7 +35,7 @@ export default function WhyChooseUsSection() {
       image:
         'https://readdy.ai/api/search-image?query=Official%20business%20licenses%20insurance%20certificates%20and%20legal%20contracts%20displayed%20professionally%2C%20trust%20and%20credibility%20business%20concept&width=400&height=300&seq=benefit2&orientation=landscape',
       alt: 'Licensed and insured moving company documents',
-      icon: 'ri-shield-check-line',
+      icon: <ShieldCheck size={22} />,
     },
     {
       title: 'Experienced Movers Who Handle Items With Care',
@@ -35,7 +44,7 @@ export default function WhyChooseUsSection() {
       image:
         'https://readdy.ai/api/search-image?query=Team%20of%20professional%20movers%20in%20uniform%20with%20years%20of%20experience%20badges%2C%20skilled%20workforce%20and%20expertise%20in%20moving%20industry&width=400&height=300&seq=benefit3&orientation=landscape',
       alt: 'Experienced professional movers in uniform',
-      icon: 'ri-team-line',
+      icon: <Users size={22} />,
     },
     {
       title: 'Protection for Floors, Walls, and Doorways',
@@ -44,7 +53,7 @@ export default function WhyChooseUsSection() {
       image:
         'https://readdy.ai/api/search-image?query=Movers%20placing%20protective%20padding%20on%20walls%20floors%20and%20doorways%20during%20home%20move%2C%20interior%20protection%20and%20damage%20prevention&width=400&height=300&seq=benefit4&orientation=landscape',
       alt: 'Home interior protection during a move',
-      icon: 'ri-home-heart-line',
+      icon: <Home size={22} />,
     },
     {
       title: 'Fast Quotes and Friendly Customer Support',
@@ -53,7 +62,7 @@ export default function WhyChooseUsSection() {
       image:
         'https://readdy.ai/api/search-image?query=Customer%20service%20representative%20on%20phone%20with%20calendar%20and%20booking%20system%2C%20friendly%20customer%20support%20and%20fast%20service%20concept&width=400&height=300&seq=benefit5&orientation=landscape',
       alt: 'Friendly customer support for moving services',
-      icon: 'ri-customer-service-2-line',
+      icon: <Headphones size={22} />,
     },
     {
       title: 'Flexible Scheduling for Busy Orlando Clients',
@@ -62,69 +71,50 @@ export default function WhyChooseUsSection() {
       image:
         'https://readdy.ai/api/search-image?query=Calendar%20showing%20flexible%20scheduling%20options%20including%20weekends%20and%20evenings%2C%20time%20management%20and%20customer%20convenience%20concept&width=400&height=300&seq=benefit6&orientation=landscape',
       alt: 'Flexible moving schedule options',
-      icon: 'ri-calendar-check-line',
+      icon: <CalendarCheck size={22} />,
     },
   ];
 
   return (
-    <section
-      id="why-choose-us"
-      aria-labelledby="why-choose-us-heading"
-      className="bg-white py-20"
-    >
+    <section id="why-choose-us" className="bg-white py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <header className="mx-auto mb-14 max-w-3xl text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
             Why Clients Choose Us
           </p>
-          <h2
-            id="why-choose-us-heading"
-            className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl"
-          >
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
             Why Choose U-MOVEX for Your Orlando Move
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
             We focus on what matters most during a move: clear communication,
-            careful handling, reliable scheduling, and professional service from
-            start to finish.
+            careful handling, reliable scheduling, and professional service.
           </p>
         </header>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit) => (
-            <article
-              key={benefit.title}
-              className="group h-full"
-            >
-              <div className="h-full rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <article key={benefit.title}>
+              <div className="h-full rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
                 <div className="mb-4 flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100">
-                    <i
-                      className={`${benefit.icon} text-2xl text-blue-600`}
-                      aria-hidden="true"
-                    ></i>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+                    {benefit.icon}
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {benefit.title}
-                    </h3>
-                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {benefit.title}
+                  </h3>
                 </div>
 
                 <div className="relative mb-4 h-36 overflow-hidden rounded-xl">
                   <img
                     src={benefit.image}
                     alt={benefit.alt}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
                 </div>
 
-                <p className="leading-relaxed text-gray-600">
-                  {benefit.description}
-                </p>
+                <p className="text-gray-600">{benefit.description}</p>
               </div>
             </article>
           ))}
