@@ -55,7 +55,7 @@ export default function ServicesSection() {
       title: 'Moving Supplies & Equipment',
       description:
         'We use straps, blankets, dollies, tools, and protective materials to make the moving process smoother and safer.',
-      image: '/img6.jpg',
+      image: '/local-movers-orlando.webp',
       alt: 'Moving supplies and equipment for a safe relocation',
     },
   ];
