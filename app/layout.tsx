@@ -178,6 +178,165 @@ export default function RootLayout({
           `}
         </Script>
 
+        <Script id="schema-moving-company" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MovingCompany",
+            "@id": "https://umovex.com/#movingcompany",
+            name: "U-MOVEX",
+            alternateName: "U-MOVEX Orlando Movers",
+            url: "https://umovex.com",
+            logo: "https://umovex.com/logo.png",
+            image: [
+              "https://umovex.com/logo.png"
+            ],
+            telephone: "+14076396520",
+            priceRange: "$$",
+            description:
+              "Trusted local movers in Orlando, FL specializing in apartment, home, and residential moving. Office moving, packing, loading, and unloading services also available.",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Orlando",
+              addressRegion: "FL",
+              addressCountry: "US",
+            },
+            areaServed: [
+              {
+                "@type": "City",
+                name: "Orlando",
+              },
+              {
+                "@type": "AdministrativeArea",
+                name: "Central Florida",
+              },
+              {
+                "@type": "AdministrativeArea",
+                name: "Florida",
+              }
+            ],
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday",
+                ],
+                opens: "07:00",
+                closes: "23:00",
+              },
+            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+14076396520",
+              contactType: "customer service",
+              areaServed: "US",
+              availableLanguage: ["English"],
+            },
+            sameAs: [
+              "https://www.facebook.com/profile.php?id=61576221543424",
+              "https://www.tiktok.com/@umovex",
+              "https://youtube.com/@daniil-v6g8r?si=Wjmdpk4nXguuLggQ",
+              "https://www.yelp.com/biz/u-movex-orlando",
+              "https://maps.app.goo.gl/qCC1fSjMrVBGvbRa6?g_st=ic"
+            ],
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5.0",
+              reviewCount: "13",
+              bestRating: "5",
+              worstRating: "1"
+            },
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Moving Services",
+              itemListElement: [
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Local Moving",
+                    serviceType: "Local Moving",
+                    areaServed: "Orlando, FL"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Apartment Moving",
+                    serviceType: "Apartment Moving",
+                    areaServed: "Orlando, FL"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Home Moving",
+                    serviceType: "Residential Moving",
+                    areaServed: "Orlando, FL"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Office Moving",
+                    serviceType: "Office Moving",
+                    areaServed: "Orlando, FL"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Packing Services",
+                    serviceType: "Packing Services",
+                    areaServed: "Orlando, FL"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Loading and Unloading",
+                    serviceType: "Loading and Unloading",
+                    areaServed: "Orlando, FL"
+                  }
+                }
+              ]
+            }
+          })}
+        </Script>
+
+        <Script id="schema-organization" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://umovex.com/#organization",
+            name: "U-MOVEX",
+            url: "https://umovex.com",
+            logo: "https://umovex.com/logo.png",
+            sameAs: [
+              "https://www.facebook.com/profile.php?id=61576221543424",
+              "https://www.tiktok.com/@umovex",
+              "https://youtube.com/@daniil-v6g8r?si=Wjmdpk4nXguuLggQ"
+            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+14076396520",
+              contactType: "customer service",
+              areaServed: "US",
+              availableLanguage: ["English"]
+            }
+          })}
+        </Script>
+
         {children}
       </body>
     </html>
