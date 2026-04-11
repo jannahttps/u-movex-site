@@ -81,46 +81,55 @@ export default function RootLayout({
         </Script>
 
         {/* SCHEMA */}
-        <Script id="schema-moving-company" type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MovingCompany",
-            name: "U-MOVEX",
-            url: "https://umovex.com",
-            logo: "https://umovex.com/logo.webp",
-            image: ["https://umovex.com/logo.webp"],
-            telephone: "+14076396520",
-            priceRange: "$$",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "820 Main Lane, Apt 1423",
-              addressLocality: "Orlando",
-              addressRegion: "FL",
-              postalCode: "32801",
-              addressCountry: "US",
-            },
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: 28.531699552517367,
-              longitude: -81.37770382883488,
-            },
-            openingHoursSpecification: [
-              {
-                "@type": "OpeningHoursSpecification",
-                dayOfWeek: [
-                  "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
-                ],
-                opens: "07:00",
-                closes: "23:00",
-              },
-            ],
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5.0",
-              reviewCount: "13",
-            },
-          })}
-        </Script>
+<Script id="schema-moving-company" type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "MovingCompany",
+    name: "U-MOVEX",
+    alternateName: "UMOVEX",
+    url: "https://umovex.com",
+    logo: "https://umovex.com/logo.webp",
+    image: ["https://umovex.com/logo.webp"],
+    telephone: "+14076396520",
+    priceRange: "$$",
+    legalName: "MIAXON LLC",
+    identifier: "Florida Moving Registration #IM4023",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "820 Main Lane, Apt 1423",
+      addressLocality: "Orlando",
+      addressRegion: "FL",
+      postalCode: "32801",
+      addressCountry: "US",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 28.531699552517367,
+      longitude: -81.37770382883488,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "07:00",
+        closes: "23:00",
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "13",
+    },
+  })}
+</Script>
 
         {children}
       </body>
