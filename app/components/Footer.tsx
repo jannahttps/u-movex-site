@@ -108,7 +108,7 @@ export default function Footer() {
 
               {/* 🔥 ВОТ ТВОЙ БЛОК С ЛИЦЕНЗИЕЙ */}
               <p className="text-gray-500">
-                U-MOVEX operates as a DBA of MIAXON LLC.
+                UMOVEX operates as a DBA of MIAXON LLC.
               </p>
               <p className="text-gray-500">
                 Licensed &amp; Insured • Florida Moving Registration #IM4023
