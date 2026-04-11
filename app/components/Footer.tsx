@@ -95,14 +95,27 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 pt-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="text-center text-sm text-gray-400 md:text-left">
-              © {new Date().getFullYear()} U-MOVEX. All rights reserved.
-              <span className="mx-2">|</span>
-              <Link href="/privacy-policy" className="hover:underline">
-                Privacy Policy
-              </Link>
+            
+            {/* LEFT SIDE */}
+            <div className="text-center text-sm text-gray-400 md:text-left space-y-1">
+              <p>
+                © {new Date().getFullYear()} U-MOVEX. All rights reserved.
+                <span className="mx-2">|</span>
+                <Link href="/privacy-policy" className="hover:underline">
+                  Privacy Policy
+                </Link>
+              </p>
+
+              {/* 🔥 ВОТ ТВОЙ БЛОК С ЛИЦЕНЗИЕЙ */}
+              <p className="text-gray-500">
+                U-MOVEX operates as a DBA of MIAXON LLC.
+              </p>
+              <p className="text-gray-500">
+                Licensed &amp; Insured • Florida Moving Registration #IM4023
+              </p>
             </div>
 
+            {/* RIGHT SIDE */}
             <div className="flex justify-center gap-4">
               <a
                 href="https://www.tiktok.com/@umovex?_t=ZT-8y3ZCcWAPcl&_r=1"
