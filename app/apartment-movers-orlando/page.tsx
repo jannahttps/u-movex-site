@@ -3,9 +3,9 @@ import Link from 'next/link';
 import SiteHeader from '../components/SiteHeader';
 
 export const metadata: Metadata = {
-  title: 'Apartment Movers Orlando, FL | U-MOVEX Moving Company',
+  title: 'Apartment Movers Orlando, FL | UMOVEX Moving Company',
   description:
-    'Need apartment movers in Orlando, FL? U-MOVEX helps with apartment moving, stairs, elevators, packing, loading, and careful transportation across Orlando and Central Florida.',
+    'Need apartment movers in Orlando, FL? UMOVEX helps with apartment moving, stairs, elevators, packing, loading, and careful transportation across Orlando and Central Florida.',
   alternates: {
     canonical: '/apartment-movers-orlando',
   },
@@ -62,7 +62,7 @@ export default function ApartmentMoversOrlandoPage() {
           <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="mb-3 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-100 backdrop-blur-sm sm:text-sm">
-                U-MOVEX Apartment Moving
+                UMOVEX Apartment Moving
               </p>
 
               <h1 className="mb-5 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
@@ -70,7 +70,7 @@ export default function ApartmentMoversOrlandoPage() {
               </h1>
 
               <p className="mb-6 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-                Looking for reliable apartment movers in Orlando? U-MOVEX helps
+                Looking for reliable apartment movers in Orlando? UMOVEX helps
                 with apartment moving, packing, loading, unloading, and careful
                 transportation for renters, families, and busy professionals.
               </p>
@@ -149,7 +149,7 @@ export default function ApartmentMoversOrlandoPage() {
             </h2>
             <p className="text-lg leading-relaxed text-gray-600">
               Whether you are moving from a studio, one-bedroom apartment, or a
-              larger rental unit, U-MOVEX provides careful apartment moving
+              larger rental unit, UMOVEX provides careful apartment moving
               services designed to reduce stress and protect your belongings.
             </p>
           </header>
@@ -181,7 +181,7 @@ export default function ApartmentMoversOrlandoPage() {
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr]">
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-8">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-              Why Choose U-MOVEX
+              Why Choose UMOVEX
             </p>
             <h2 className="mb-5 text-3xl font-bold text-gray-900 sm:text-4xl">
               Why Clients Choose Our Apartment Movers in Orlando
@@ -199,7 +199,7 @@ export default function ApartmentMoversOrlandoPage() {
                 careful furniture handling.
               </p>
               <p>
-                If you are comparing apartment movers in Orlando, U-MOVEX offers
+                If you are comparing apartment movers in Orlando, UMOVEX offers
                 practical, organized help that makes moving day easier.
               </p>
             </div>
