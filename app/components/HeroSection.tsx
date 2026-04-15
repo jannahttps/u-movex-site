@@ -31,7 +31,7 @@ export default function HeroSection() {
 
               <p className="mb-6 text-base leading-relaxed text-white/90 sm:mb-8 sm:text-xl">
                 Reliable local movers in Orlando for apartments, homes, and offices.
-                U-MOVEX offers packing, loading, unloading, and full-service local
+                UMOVEX offers packing, loading, unloading, and full-service local
                 moving designed to make your relocation easier.
               </p>
 
