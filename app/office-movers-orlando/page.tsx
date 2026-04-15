@@ -3,9 +3,9 @@ import Link from 'next/link';
 import SiteHeader from '../components/SiteHeader';
 
 export const metadata: Metadata = {
-  title: 'Office Movers Orlando, FL | U-MOVEX Moving Company',
+  title: 'Office Movers Orlando, FL | UMOVEX Moving Company',
   description:
-    'Need office movers in Orlando, FL? U-MOVEX helps with office relocation, desks, equipment, packing, loading, and organized moving support for businesses across Orlando and Central Florida.',
+    'Need office movers in Orlando, FL? UMOVEX helps with office relocation, desks, equipment, packing, loading, and organized moving support for businesses across Orlando and Central Florida.',
   alternates: {
     canonical: '/office-movers-orlando',
   },
@@ -62,7 +62,7 @@ export default function OfficeMoversOrlandoPage() {
           <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="mb-3 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-100 backdrop-blur-sm sm:text-sm">
-                U-MOVEX Office Moving
+                UMOVEX Office Moving
               </p>
 
               <h1 className="mb-5 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
@@ -70,7 +70,7 @@ export default function OfficeMoversOrlandoPage() {
               </h1>
 
               <p className="mb-6 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-                Looking for reliable office movers in Orlando? U-MOVEX helps with
+                Looking for reliable office movers in Orlando? UMOVEX helps with
                 office relocation, furniture moving, packing, loading, unloading,
                 and organized moving support for businesses across Central Florida.
               </p>
@@ -149,7 +149,7 @@ export default function OfficeMoversOrlandoPage() {
             </h2>
             <p className="text-lg leading-relaxed text-gray-600">
               Whether you are relocating a small office, studio, or business
-              workspace, U-MOVEX provides organized office moving services with
+              workspace, UMOVEX provides organized office moving services with
               careful handling and efficient support.
             </p>
           </header>
@@ -181,7 +181,7 @@ export default function OfficeMoversOrlandoPage() {
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr]">
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-8">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-              Why Choose U-MOVEX
+              Why Choose UMOVEX
             </p>
             <h2 className="mb-5 text-3xl font-bold text-gray-900 sm:text-4xl">
               Why Businesses Choose Our Office Movers in Orlando
@@ -198,7 +198,7 @@ export default function OfficeMoversOrlandoPage() {
                 and responsive communication.
               </p>
               <p>
-                If you are comparing office movers in Orlando, U-MOVEX offers
+                If you are comparing office movers in Orlando, UMOVEX offers
                 dependable service designed to make business moving feel more
                 structured and less stressful.
               </p>
