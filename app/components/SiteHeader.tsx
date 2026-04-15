@@ -61,11 +61,11 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
           <Link
             href="/"
             className="flex items-center min-w-0 shrink-0"
-            aria-label="U-MOVEX home"
+            aria-label="UMOVEX home"
           >
             <img
               src="/logo.webp"
-              alt="U-MOVEX Orlando Movers"
+              alt="UMOVEX Orlando Movers"
               className={`w-auto object-contain shrink-0 transition-all duration-300 h-12 sm:h-14 md:h-16 lg:h-[72px] xl:h-[78px] max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[390px] xl:max-w-[430px] ${logoClasses}`}
             />
           </Link>
@@ -95,7 +95,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             <a
               href="tel:+14076396520"
               className={`hidden lg:flex items-center gap-2.5 px-4 xl:px-5 py-2.5 rounded-2xl text-base xl:text-lg font-bold transition whitespace-nowrap ${desktopPhoneClasses}`}
-              aria-label="Call U-MOVEX at +1 (407) 639-6520"
+              aria-label="Call UMOVEX at +1 (407) 639-6520"
             >
               <Phone className="w-5 h-5" />
               +1 (407) 639-6520
@@ -111,7 +111,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
             <a
               href="tel:+14076396520"
               className="lg:hidden bg-blue-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 shadow-[0_10px_24px_rgba(37,99,235,0.28)] hover:bg-blue-700 transition"
-              aria-label="Call U-MOVEX now"
+              aria-label="Call UMOVEX now"
             >
               <Phone className="w-4 h-4" />
               Call Now
@@ -144,7 +144,7 @@ export default function SiteHeader({ dark = false }: SiteHeaderProps) {
           <Link href="/" onClick={() => setOpen(false)} className="block">
             <img
               src="/logo.png"
-              alt="U-MOVEX Orlando Movers"
+              alt="UMOVEX Orlando Movers"
               className="h-14 w-auto max-w-[270px] object-contain mb-6"
             />
           </Link>
