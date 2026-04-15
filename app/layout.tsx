@@ -27,27 +27,27 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://umovex.com"),
-  title: "Orlando Movers | Apartment & Home Moving | U-MOVEX",
+  title: "Orlando Movers | Apartment & Home Moving | UMOVEX",
   description:
-    "Trusted local movers in Orlando, FL. U-MOVEX specializes in apartment, home, and residential moving, with office moving services also available.",
+    "Trusted local movers in Orlando, FL. UMOVEX specializes in apartment, home, and residential moving, with office moving services also available.",
   openGraph: {
-    title: "Orlando Movers | Apartment & Home Moving | U-MOVEX",
+    title: "Orlando Movers | Apartment & Home Moving | UMOVEX",
     description:
       "Reliable local movers in Orlando, FL for apartments and homes.",
     url: "https://umovex.com",
-    siteName: "U-MOVEX",
+    siteName: "UMOVEX",
     images: [
       {
         url: "/logo.webp",
         width: 1200,
         height: 630,
-        alt: "U-MOVEX Logo",
+        alt: "UMOVEX Logo",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "Orlando Movers | U-MOVEX",
+    title: "Orlando Movers | UMOVEX",
     images: ["/logo.webp"],
   },
 };
@@ -85,8 +85,8 @@ export default function RootLayout({
   {JSON.stringify({
     "@context": "https://schema.org",
     "@type": "MovingCompany",
-    name: "U-MOVEX",
-    alternateName: "UMOVEX",
+    name: "UMOVEX",
+    alternateName: "U-MOVEX",
     url: "https://umovex.com",
     logo: "https://umovex.com/logo.webp",
     image: ["https://umovex.com/logo.webp"],
