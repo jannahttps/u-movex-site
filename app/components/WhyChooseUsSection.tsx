@@ -83,7 +83,7 @@ export default function WhyChooseUsSection() {
             Why Clients Choose Us
           </p>
           <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
-            Why Choose U-MOVEX for Your Orlando Move
+            Why Choose UMOVEX for Your Orlando Move
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
             We focus on what matters most during a move: clear communication,
