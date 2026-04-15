@@ -5,18 +5,18 @@ import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Movers in Dr. Phillips, FL | Apartment & Home Moving | U-MOVEX",
+  title: "Movers in Dr. Phillips, FL | Apartment & Home Moving | UMOVEX",
   description:
-    "Need movers in Dr. Phillips, FL? U-MOVEX provides local apartment, home, and office moving services with packing, loading, and unloading. Fast quotes and no hidden fees.",
+    "Need movers in Dr. Phillips, FL? UMOVEX provides local apartment, home, and office moving services with packing, loading, and unloading. Fast quotes and no hidden fees.",
   alternates: {
     canonical: "https://umovex.com/movers-dr-phillips-fl",
   },
   openGraph: {
-    title: "Movers in Dr. Phillips, FL | U-MOVEX",
+    title: "Movers in Dr. Phillips, FL | UMOVEX",
     description:
       "Trusted local movers in Dr. Phillips, FL for apartments, homes, and office moves.",
     url: "https://umovex.com/movers-dr-phillips-fl",
-    siteName: "U-MOVEX",
+    siteName: "UMOVEX",
     type: "website",
   },
 };
@@ -34,7 +34,7 @@ export default function MoversDrPhillipsPage() {
     },
     provider: {
       "@type": "MovingCompany",
-      name: "U-MOVEX",
+      name: "UMOVEX",
       url: "https://umovex.com",
       telephone: "+14076396520",
       address: {
@@ -74,7 +74,7 @@ export default function MoversDrPhillipsPage() {
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-              U-MOVEX provides reliable local moving services in Dr. Phillips for
+              UMOVEX provides reliable local moving services in Dr. Phillips for
               apartments, homes, and offices. If you need careful movers for a
               local move with transparent pricing and responsive service, our team
               is ready to help.
@@ -116,7 +116,7 @@ export default function MoversDrPhillipsPage() {
               </p>
 
               <p className="mb-5 text-base leading-relaxed text-slate-700">
-                U-MOVEX helps customers with apartment moves, home moves, office
+                UMOVEX helps customers with apartment moves, home moves, office
                 relocation, packing, loading, unloading, and general local moving
                 support in Dr. Phillips. Whether you are moving into a new apartment
                 or relocating from a house in the area, we focus on careful service,
@@ -190,7 +190,7 @@ export default function MoversDrPhillipsPage() {
                     Do you provide movers near Dr. Phillips?
                   </h3>
                   <p className="mt-2 text-slate-700">
-                    Yes. U-MOVEX provides local moving services in Dr. Phillips
+                    Yes. UMOVEX provides local moving services in Dr. Phillips
                     and nearby Orlando areas for apartments, homes, and offices.
                   </p>
                 </div>
@@ -234,7 +234,7 @@ export default function MoversDrPhillipsPage() {
                 Need movers in Dr. Phillips?
               </h2>
               <p className="mb-6 text-white/80">
-                Talk to U-MOVEX for a fast quote and local moving help in
+                Talk to UMOVEX for a fast quote and local moving help in
                 Dr. Phillips, FL.
               </p>
 
