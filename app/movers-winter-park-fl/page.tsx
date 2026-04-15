@@ -5,18 +5,18 @@ import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Movers in Winter Park, FL | Apartment & Home Moving | U-MOVEX",
+  title: "Movers in Winter Park, FL | Apartment & Home Moving | UMOVEX",
   description:
-    "Looking for reliable movers in Winter Park, FL? U-MOVEX provides local apartment, home, and office moving services with packing, loading, and unloading. Fast quotes and no hidden fees.",
+    "Looking for reliable movers in Winter Park, FL? UMOVEX provides local apartment, home, and office moving services with packing, loading, and unloading. Fast quotes and no hidden fees.",
   alternates: {
     canonical: "https://umovex.com/movers-winter-park-fl",
   },
   openGraph: {
-    title: "Movers in Winter Park, FL | U-MOVEX",
+    title: "Movers in Winter Park, FL | UMOVEX",
     description:
       "Trusted local movers in Winter Park, FL for apartments, homes, and office moves.",
     url: "https://umovex.com/movers-winter-park-fl",
-    siteName: "U-MOVEX",
+    siteName: "UMOVEX",
     type: "website",
   },
 };
@@ -33,7 +33,7 @@ export default function MoversWinterParkPage() {
     },
     provider: {
       "@type": "MovingCompany",
-      name: "U-MOVEX",
+      name: "UMOVEX",
       url: "https://umovex.com",
       telephone: "+14076396520",
       address: {
@@ -73,7 +73,7 @@ export default function MoversWinterParkPage() {
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-              U-MOVEX provides trusted local moving services in Winter Park for
+              UMOVEX provides trusted local moving services in Winter Park for
               apartments, homes, and offices. If you are looking for careful,
               reliable movers near Winter Park with transparent pricing and fast
               scheduling, our team is ready to help.
@@ -118,7 +118,7 @@ export default function MoversWinterParkPage() {
                 We help with apartment moves, home moves, office relocation,
                 packing, loading, unloading, and general local moving support.
                 Whether you are moving into a new apartment near Park Avenue or
-                relocating from a home in the Winter Park area, U-MOVEX focuses
+                relocating from a home in the Winter Park area, UMOVEX focuses
                 on efficiency, care, and honest pricing.
               </p>
 
@@ -132,7 +132,7 @@ export default function MoversWinterParkPage() {
 
             <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
               <h2 className="mb-5 text-2xl font-bold text-slate-900">
-                Why customers in Winter Park choose U-MOVEX
+                Why customers in Winter Park choose UMOVEX
               </h2>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -190,7 +190,7 @@ export default function MoversWinterParkPage() {
                     Do you provide movers near Winter Park?
                   </h3>
                   <p className="mt-2 text-slate-700">
-                    Yes. U-MOVEX provides local moving services in Winter Park
+                    Yes. UMOVEX provides local moving services in Winter Park
                     and nearby Orlando areas for apartments, homes, and offices.
                   </p>
                 </div>
@@ -233,7 +233,7 @@ export default function MoversWinterParkPage() {
             <div className="rounded-3xl bg-slate-900 p-6 text-white shadow-lg sm:p-8">
               <h2 className="mb-4 text-2xl font-bold">Need movers in Winter Park?</h2>
               <p className="mb-6 text-white/80">
-                Talk to U-MOVEX for a fast quote and local moving help in Winter
+                Talk to UMOVEX for a fast quote and local moving help in Winter
                 Park, FL.
               </p>
 
