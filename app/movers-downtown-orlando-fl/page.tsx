@@ -5,18 +5,18 @@ import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Movers in Downtown Orlando, FL | Apartment & Home Moving | U-MOVEX",
+  title: "Movers in Downtown Orlando, FL | Apartment & Home Moving | UMOVEX",
   description:
-    "Need movers in Downtown Orlando, FL? U-MOVEX provides local apartment, home, and office moving services with packing, loading, and unloading. Fast quotes and no hidden fees.",
+    "Need movers in Downtown Orlando, FL? UMOVEX provides local apartment, home, and office moving services with packing, loading, and unloading. Fast quotes and no hidden fees.",
   alternates: {
     canonical: "https://umovex.com/movers-downtown-orlando-fl",
   },
   openGraph: {
-    title: "Movers in Downtown Orlando, FL | U-MOVEX",
+    title: "Movers in Downtown Orlando, FL | UMOVEX",
     description:
       "Trusted local movers in Downtown Orlando, FL for apartments, homes, and office moves.",
     url: "https://umovex.com/movers-downtown-orlando-fl",
-    siteName: "U-MOVEX",
+    siteName: "UMOVEX",
     type: "website",
   },
 };
@@ -34,7 +34,7 @@ export default function MoversDowntownOrlandoPage() {
     },
     provider: {
       "@type": "MovingCompany",
-      name: "U-MOVEX",
+      name: "UMOVEX",
       url: "https://umovex.com",
       telephone: "+14076396520",
       address: {
@@ -74,7 +74,7 @@ export default function MoversDowntownOrlandoPage() {
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-              U-MOVEX provides dependable local moving services in Downtown
+              UMOVEX provides dependable local moving services in Downtown
               Orlando for apartments, homes, and offices. If you need movers who
               understand city buildings, loading zones, elevators, traffic, and
               tighter access points, our team is ready to help.
@@ -116,7 +116,7 @@ export default function MoversDowntownOrlandoPage() {
               </p>
 
               <p className="mb-5 text-base leading-relaxed text-slate-700">
-                U-MOVEX helps with apartment moves, home moves, office relocation,
+                UMOVEX helps with apartment moves, home moves, office relocation,
                 packing, loading, unloading, and general local moving support in
                 Downtown Orlando. Whether you are moving into a condo near the
                 city center or relocating from a home nearby, our team focuses on
@@ -189,7 +189,7 @@ export default function MoversDowntownOrlandoPage() {
                     Do you provide movers near Downtown Orlando?
                   </h3>
                   <p className="mt-2 text-slate-700">
-                    Yes. U-MOVEX provides local moving services in Downtown Orlando
+                    Yes. UMOVEX provides local moving services in Downtown Orlando
                     and nearby Orlando areas for apartments, homes, and offices.
                   </p>
                 </div>
@@ -233,7 +233,7 @@ export default function MoversDowntownOrlandoPage() {
                 Need movers in Downtown Orlando?
               </h2>
               <p className="mb-6 text-white/80">
-                Contact U-MOVEX for a fast quote and reliable local moving help
+                Contact UMOVEX for a fast quote and reliable local moving help
                 in Downtown Orlando, FL.
               </p>
 
