@@ -20,7 +20,7 @@ export default function ReviewsSection() {
     {
       name: 'Karima',
       rating: 5,
-      text: 'U-MOVEX delivered a flawless, stress-free move. On time, professional, thoughtful, and highly efficient. No surprises, no hidden fees. Truly a gold standard in moving services!',
+      text: 'UMOVEX delivered a flawless, stress-free move. On time, professional, thoughtful, and highly efficient. No surprises, no hidden fees. Truly a gold standard in moving services!',
     },
     {
       name: 'Jake W.',
@@ -40,7 +40,7 @@ export default function ReviewsSection() {
     {
       name: 'Sarita M.',
       rating: 5,
-      text: 'U-MOVEX did a fantastic job moving my mom’s furniture. They were prompt, patient, and super accommodating. I would absolutely use them again.',
+      text: 'UMOVEX did a fantastic job moving my mom’s furniture. They were prompt, patient, and super accommodating. I would absolutely use them again.',
     },
   ];
 
@@ -68,7 +68,7 @@ export default function ReviewsSection() {
             id="reviews-heading"
             className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl"
           >
-            What Clients Say About U-MOVEX
+            What Clients Say About UMOVEX
           </h2>
 
           <div className="mb-4 flex items-center justify-center gap-1">
@@ -155,7 +155,7 @@ export default function ReviewsSection() {
             href="https://maps.app.goo.gl/qCC1fSjMrVBGvbRa6?g_st=ic"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Read more U-MOVEX reviews on Google"
+            aria-label="Read more UMOVEX reviews on Google"
             className="inline-flex min-w-[240px] items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-3 font-semibold text-gray-800 shadow-sm transition hover:border-blue-200 hover:shadow-md"
           >
             <i className="ri-google-fill text-xl text-blue-600" aria-hidden="true"></i>
@@ -166,7 +166,7 @@ export default function ReviewsSection() {
             href="https://www.yelp.com/biz/u-movex-orlando#reviews"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="See U-MOVEX reviews on Yelp"
+            aria-label="See UMOVEX reviews on Yelp"
             className="inline-flex min-w-[240px] items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-3 font-semibold text-gray-800 shadow-sm transition hover:border-red-200 hover:shadow-md"
           >
             <i className="ri-star-fill text-xl text-red-500" aria-hidden="true"></i>
