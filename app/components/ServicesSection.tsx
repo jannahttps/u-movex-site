@@ -79,7 +79,7 @@ export default function ServicesSection() {
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
             From local residential moves to apartment relocation, office moving,
-            and packing help, U-MOVEX provides clear, reliable moving solutions
+            and packing help, UMOVEX provides clear, reliable moving solutions
             designed to keep your move organized and stress-free.
           </p>
         </header>
