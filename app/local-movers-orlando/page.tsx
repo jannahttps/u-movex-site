@@ -3,9 +3,9 @@ import Link from 'next/link';
 import SiteHeader from '../components/SiteHeader';
 
 export const metadata: Metadata = {
-  title: 'Local Movers Orlando, FL | U-MOVEX Moving Company',
+  title: 'Local Movers Orlando, FL | UMOVEX Moving Company',
   description:
-    'Looking for local movers in Orlando, FL? U-MOVEX provides reliable residential, apartment, and office moving services with packing, loading, and careful handling.',
+    'Looking for local movers in Orlando, FL? UMOVEX provides reliable residential, apartment, and office moving services with packing, loading, and careful handling.',
   alternates: {
     canonical: '/local-movers-orlando',
   },
@@ -62,7 +62,7 @@ export default function LocalMoversOrlandoPage() {
           <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="mb-3 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-100 backdrop-blur-sm sm:text-sm">
-                U-MOVEX Local Moving
+                UMOVEX Local Moving
               </p>
 
               <h1 className="mb-5 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
@@ -70,7 +70,7 @@ export default function LocalMoversOrlandoPage() {
               </h1>
 
               <p className="mb-6 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-                Looking for reliable local movers in Orlando? U-MOVEX helps with
+                Looking for reliable local movers in Orlando? UMOVEX helps with
                 apartment moves, home relocations, office moving, packing,
                 loading, and unloading across Orlando and Central Florida.
               </p>
@@ -148,7 +148,7 @@ export default function LocalMoversOrlandoPage() {
               Professional Local Moving Services in Orlando
             </h2>
             <p className="text-lg leading-relaxed text-gray-600">
-              From apartment moving to home and office relocation, U-MOVEX
+              From apartment moving to home and office relocation, UMOVEX
               provides reliable local moving services with careful handling,
               organized support, and flexible scheduling.
             </p>
@@ -203,7 +203,7 @@ export default function LocalMoversOrlandoPage() {
           <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
             <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-8">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-                Why Choose U-MOVEX
+                Why Choose UMOVEX
               </p>
               <h2 className="mb-5 text-3xl font-bold text-gray-900 sm:text-4xl">
                 Why Orlando Clients Choose Our Local Movers
