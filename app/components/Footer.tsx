@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 grid gap-10 md:grid-cols-3">
           <div>
-            <div className="mb-4 text-3xl font-bold">U-MOVEX</div>
+            <div className="mb-4 text-3xl font-bold">UMOVEX</div>
 
             <p className="mb-6 leading-relaxed text-gray-300">
               Reliable movers in Orlando, FL providing local moving services for homes, apartments, and offices.
@@ -99,7 +99,7 @@ export default function Footer() {
             {/* LEFT SIDE */}
             <div className="text-center text-sm text-gray-400 md:text-left space-y-1">
               <p>
-                © {new Date().getFullYear()} U-MOVEX. All rights reserved.
+                © {new Date().getFullYear()} UMOVEX. All rights reserved.
                 <span className="mx-2">|</span>
                 <Link href="/privacy-policy" className="hover:underline">
                   Privacy Policy
