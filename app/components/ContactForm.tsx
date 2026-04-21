@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import PromoTimer from "./PromoTimer";
 
 const SHOW_PROMO_TIMER = false;
@@ -22,6 +22,13 @@ type FormState = {
   phoneError: string;
   emailError: string;
 };
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: Record<string, unknown>[];
+  }
+}
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
@@ -52,8 +59,36 @@ function formatPhone(value: string) {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
 
+function trackLeadSubmitSuccess(payload: {
+  preferredContact: string;
+  bedrooms: string;
+  hasEmail: boolean;
+  hasPhone: boolean;
+}) {
+  if (typeof window === "undefined") return;
+
+  const eventParams = {
+    form_name: "contact",
+    preferred_contact: payload.preferredContact,
+    home_size: payload.bedrooms || "unknown",
+    has_email: payload.hasEmail ? "yes" : "no",
+    has_phone: payload.hasPhone ? "yes" : "no",
+  };
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "lead_submit_success",
+    ...eventParams,
+  });
+
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "lead_submit_success", eventParams);
+  }
+}
+
 export default function ContactForm() {
   const [s, setS] = useState<FormState>(initialState);
+  const trackedSuccessRef = useRef(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -119,22 +154,21 @@ export default function ContactForm() {
       return;
     }
 
+    const preferredContact = [s.prefPhone ? "phone" : "", s.prefEmail ? "email" : ""]
+      .filter(Boolean)
+      .join(", ");
+
     const formData = new URLSearchParams();
     formData.append("form-name", "contact");
-    formData.append("fullName", s.fullName);
-    formData.append("email", s.email);
+    formData.append("fullName", s.fullName.trim());
+    formData.append("email", email);
     formData.append("phoneNumber", s.phoneNumber);
-    formData.append("pickupAddress", s.pickupAddress);
-    formData.append("dropoffAddress", s.dropoffAddress);
+    formData.append("pickupAddress", s.pickupAddress.trim());
+    formData.append("dropoffAddress", s.dropoffAddress.trim());
     formData.append("movingDate", s.movingDate);
     formData.append("bedrooms", s.bedrooms);
-    formData.append("comments", s.comments);
-    formData.append(
-      "preferredContact",
-      [s.prefPhone ? "phone" : "", s.prefEmail ? "email" : ""]
-        .filter(Boolean)
-        .join(", ")
-    );
+    formData.append("comments", s.comments.trim());
+    formData.append("preferredContact", preferredContact);
     formData.append("bot-field", "");
 
     try {
@@ -156,6 +190,16 @@ export default function ContactForm() {
 
       if (!res.ok) {
         throw new Error("Form submission failed");
+      }
+
+      if (!trackedSuccessRef.current) {
+        trackLeadSubmitSuccess({
+          preferredContact,
+          bedrooms: s.bedrooms,
+          hasEmail: Boolean(email),
+          hasPhone: phoneDigits.length === 10,
+        });
+        trackedSuccessRef.current = true;
       }
 
       setS({
@@ -213,12 +257,13 @@ export default function ContactForm() {
 
             <button
               type="button"
-              onClick={() =>
+              onClick={() => {
+                trackedSuccessRef.current = false;
                 setS({
                   ...initialState,
                   submitted: false,
-                })
-              }
+                });
+              }}
               className="rounded-xl bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700"
             >
               Send Another Request
