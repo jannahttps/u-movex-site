@@ -65,7 +65,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}
       >
-        {/* Google Analytics / Google Ads */}
+        {/* Google Analytics / Google Ads base tag */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
@@ -81,11 +81,12 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Call tracking */}
+        {/* Call click tracking */}
         <Script id="call-tracking" strategy="afterInteractive">
           {`
             document.addEventListener('click', function (e) {
-              var link = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
+              var target = e.target;
+              var link = target && target.closest ? target.closest('a[href^="tel:"]') : null;
               if (!link) return;
 
               if (typeof window.gtag === 'function') {
@@ -95,31 +96,6 @@ export default function RootLayout({
                 });
               }
             });
-          `}
-        </Script>
-
-        {/* Form submit conversion tracking */}
-        <Script id="form-tracking" strategy="afterInteractive">
-          {`
-            document.addEventListener('submit', function (e) {
-              var form = e.target;
-              if (!form || !(form instanceof HTMLFormElement)) return;
-
-              if (!form.checkValidity()) return;
-
-              if (typeof window.gtag === 'function') {
-                window.gtag('event', 'conversion', {
-                  send_to: 'AW-17184627515/Jb4QCPfMjaAcELu2ooJA',
-                  value: 1.0,
-                  currency: 'USD'
-                });
-
-                window.gtag('event', 'form_submit', {
-                  form_id: form.getAttribute('id') || '',
-                  form_name: form.getAttribute('name') || ''
-                });
-              }
-            }, true);
           `}
         </Script>
 
@@ -154,26 +130,11 @@ export default function RootLayout({
               longitude: -81.37770382883488,
             },
             areaServed: [
-              {
-                "@type": "City",
-                name: "Orlando",
-              },
-              {
-                "@type": "Place",
-                name: "Downtown Orlando",
-              },
-              {
-                "@type": "Place",
-                name: "Winter Park",
-              },
-              {
-                "@type": "Place",
-                name: "Dr. Phillips",
-              },
-              {
-                "@type": "AdministrativeArea",
-                name: "Central Florida",
-              },
+              { "@type": "City", name: "Orlando" },
+              { "@type": "Place", name: "Downtown Orlando" },
+              { "@type": "Place", name: "Winter Park" },
+              { "@type": "Place", name: "Dr. Phillips" },
+              { "@type": "AdministrativeArea", name: "Central Florida" },
             ],
             openingHoursSpecification: [
               {
