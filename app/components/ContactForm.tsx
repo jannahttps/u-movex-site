@@ -26,7 +26,7 @@ type FormState = {
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
-    dataLayer?: Record<string, unknown>[];
+    dataLayer?: Array<Record<string, unknown>>;
   }
 }
 
@@ -59,7 +59,7 @@ function formatPhone(value: string) {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
 
-function trackLeadSubmitSuccess(payload: {
+function sendLeadSubmitSuccessEvent(payload: {
   preferredContact: string;
   bedrooms: string;
   hasEmail: boolean;
@@ -69,21 +69,27 @@ function trackLeadSubmitSuccess(payload: {
 
   const eventParams = {
     form_name: "contact",
-    preferred_contact: payload.preferredContact,
+    preferred_contact: payload.preferredContact || "unknown",
     home_size: payload.bedrooms || "unknown",
     has_email: payload.hasEmail ? "yes" : "no",
     has_phone: payload.hasPhone ? "yes" : "no",
+    value: 1,
   };
 
+  // 1) Direct GA4 via gtag
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "lead_submit_success", eventParams);
+  }
+
+  // 2) GTM fallback / debugging
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: "lead_submit_success",
     ...eventParams,
   });
 
-  if (typeof window.gtag === "function") {
-    window.gtag("event", "lead_submit_success", eventParams);
-  }
+  // Optional debug log, remove later if you want
+  console.log("GA4 event sent: lead_submit_success", eventParams);
 }
 
 export default function ContactForm() {
@@ -121,8 +127,17 @@ export default function ContactForm() {
     }));
   };
 
+  const resetAndAllowNewTracking = () => {
+    trackedSuccessRef.current = false;
+    setS({
+      ...initialState,
+      submitted: false,
+    });
+  };
+
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
     if (s.submitting) return;
 
     const phoneDigits = s.phoneNumber.replace(/\D/g, "");
@@ -192,13 +207,15 @@ export default function ContactForm() {
         throw new Error("Form submission failed");
       }
 
+      // Fire only once per successful submission
       if (!trackedSuccessRef.current) {
-        trackLeadSubmitSuccess({
+        sendLeadSubmitSuccessEvent({
           preferredContact,
           bedrooms: s.bedrooms,
           hasEmail: Boolean(email),
           hasPhone: phoneDigits.length === 10,
         });
+
         trackedSuccessRef.current = true;
       }
 
@@ -206,7 +223,9 @@ export default function ContactForm() {
         ...initialState,
         submitted: true,
       });
-    } catch {
+    } catch (error) {
+      console.error("Contact form submit error:", error);
+
       setS((prev) => ({
         ...prev,
         submitting: false,
@@ -257,13 +276,7 @@ export default function ContactForm() {
 
             <button
               type="button"
-              onClick={() => {
-                trackedSuccessRef.current = false;
-                setS({
-                  ...initialState,
-                  submitted: false,
-                });
-              }}
+              onClick={resetAndAllowNewTracking}
               className="rounded-xl bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700"
             >
               Send Another Request
